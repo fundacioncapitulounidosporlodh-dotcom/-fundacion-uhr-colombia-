@@ -1,0 +1,7 @@
+# Redireccionar todo al dominio principal (evita contenido duplicado)
+https://rvzsjfu2k2sbo.kimi.show/*    https://fundacioncapitulounidosporlosddhh.netlify.app/:splat   301!
+https://*.kimi.show/*                  https://fundacioncapitulounidosporlosddhh.netlify.app/:splat   301!
+https://*.kimi.page/*                  https://fundacioncapitulounidosporlosddhh.netlify.app/:splat   301!
+
+# SPA redirect (React Router)
+/*                                     /index.html                                                  200
