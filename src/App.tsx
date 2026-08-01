@@ -1538,7 +1538,7 @@ function App() {
                     </div>
                     <div>
                       <h3 className="font-bold text-gray-900 mb-1">Teléfono / WhatsApp</h3>
-                      <p className="text-gray-600">301 673 3819/p>
+                      <p className="text-gray-600">301 673 3819</p>
                       <a 
                         href="https://wa.me/573016733819" 
                         target="_blank" 
