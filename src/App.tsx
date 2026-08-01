@@ -591,7 +591,7 @@ function App() {
                 <p className="text-gray-600 text-sm mb-4">Sindicato de Acción Comunal de Colombia - Organización que promueve el fortalecimiento de las organizaciones comunales y la participación ciudadana en la construcción de tejido social.</p>
                 <div className="flex justify-center gap-3">
                   <a 
-                    href="https://www.instagram.com/saccolguacari?igsh=NGhlajN4d3Ixd3dh" 
+                    href="https://www.instagram.com/saccolguacari/" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm rounded-full hover:opacity-90 transition-opacity"
@@ -602,7 +602,7 @@ function App() {
                     Instagram
                   </a>
                   <a 
-                    href="https://www.facebook.com/share/17J7DQCdcQ/" 
+                    href="https://www.facebook.com/SACCOLGuacariOficial/" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="inline-flex items-center px-3 py-1.5 bg-blue-600 text-white text-sm rounded-full hover:bg-blue-700 transition-colors"
@@ -715,7 +715,7 @@ function App() {
                 <p className="text-gray-600 text-sm mb-4">Memoria Viva Colombia - Visibilizar las víctimas y realizar ejercicios de memoria como acción para la no repetición de hechos que marcaron a la población, preservando la memoria histórica del país.</p>
                 <div className="flex justify-center gap-3">
                   <a 
-                    href="https://www.facebook.com/share/1ARHffmyrh/" 
+                    href="https://www.facebook.com/memoriavivacolombia/" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="inline-flex items-center px-3 py-1.5 bg-blue-600 text-white text-sm rounded-full hover:bg-blue-700 transition-colors"
@@ -726,7 +726,7 @@ function App() {
                     Facebook
                   </a>
                   <a 
-                    href="https://www.instagram.com/memoriavivacolombia?igsh=MTdlZ3RzMXJ3b2V5bQ==" 
+                    href="https://www.instagram.com/memoriavivacolombia/" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm rounded-full hover:opacity-90 transition-opacity"
@@ -763,7 +763,7 @@ function App() {
                     Linktree
                   </a>
                   <a 
-                    href="https://www.instagram.com/sintrajuspaz?igsh=MXZ4am5weWhuaHl3Yw==" 
+                    href="https://www.instagram.com/sintrajuspaz/" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm rounded-full hover:opacity-90 transition-opacity"
@@ -1538,9 +1538,9 @@ function App() {
                     </div>
                     <div>
                       <h3 className="font-bold text-gray-900 mb-1">Teléfono / WhatsApp</h3>
-                      <p className="text-gray-600">+57 311 323 8276</p>
+                      <p className="text-gray-600"><301 673 3819/p>
                       <a 
-                        href="https://wa.me/573113238276" 
+                        href="https://wa.me/573016733819" 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="inline-flex items-center text-green-600 hover:text-green-700 text-sm mt-1 font-medium"
@@ -1579,7 +1579,7 @@ function App() {
                     </div>
                     <div>
                       <h3 className="font-bold text-gray-900 mb-1">Instagram</h3>
-                      <a href="https://www.instagram.com/capitulounidosddhhcol?igsh=M3g2dGI1dnl4eG02" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:underline">@capitulounidosddhhcol</a>
+                      <a href="https://www.instagram.com/capitulounidosddhhcol/" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:underline">@capitulounidosddhhcol</a>
                     </div>
                   </div>
                 </CardContent>
@@ -1595,7 +1595,7 @@ function App() {
                     </div>
                     <div>
                       <h3 className="font-bold text-gray-900 mb-1">TikTok</h3>
-                      <a href="https://www.tiktok.com/@capitulounidosddhhcol?_r=1&_t=ZS-95e4hY1beCb" target="_blank" rel="noopener noreferrer" className="text-black hover:underline">@capitulounidosddhhcol</a>
+                      <a href="https://www.tiktok.com/@capitulounidosddhhcol" target="_blank" rel="noopener noreferrer" className="text-black hover:underline">@capitulounidosddhhcol</a>
                     </div>
                   </div>
                 </CardContent>
