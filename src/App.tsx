@@ -216,7 +216,7 @@ function App() {
             <div className="max-w-2xl">
             <div className="inline-flex items-center px-4 py-2 bg-yellow-500/30 border-2 border-yellow-400 rounded-full mb-6">
               <img src="/logo-uhr.png" alt="" className="w-6 h-6 mr-2" />
-              <span className="text-yellow-300 text-sm font-medium">CAPITULO AUTORIZADO EN COLOMBIA</span>
+              <span className="text-yellow-300 text-sm font-medium">CAPITULO AUTORIZADO EN COLOMBIA
             </div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
@@ -1089,7 +1089,7 @@ function App() {
                       <label className="block text-sm font-medium text-gray-700 mb-1">Telefono / WhatsApp *</label>
                       <input type="tel" name="telefono" value={formData.telefono} onChange={handleFormChange} required
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="+57 311 323 8276" />
+                        placeholder="301 673 3819"
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Ciudad *</label>
@@ -1605,7 +1605,7 @@ function App() {
               <div className="grid grid-cols-2 gap-4">
                 <Card className="border-0 shadow-md">
                   <CardContent className="p-4 text-center">
-                    <a href="https://www.instagram.com/capitulounidosddhhcol?igsh=M3g2dGI1dnl4eG02" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.instagram.com/capitulounidosddhhcol/" target="_blank" rel="noopener noreferrer">
                       <img 
                         src="/qr-instagram.jpg" 
                         alt="QR Instagram" 
@@ -1617,7 +1617,7 @@ function App() {
                 </Card>
                 <Card className="border-0 shadow-md">
                   <CardContent className="p-4 text-center">
-                    <a href="https://www.tiktok.com/@capitulounidosddhhcol?_r=1&_t=ZS-95e4hY1beCb" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.tiktok.com/@capitulounidosddhhcol" target="_blank" rel="noopener noreferrer">
                       <img 
                         src="/qr-tiktok.png" 
                         alt="QR TikTok" 
