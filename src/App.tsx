@@ -1090,7 +1090,7 @@ function App() {
                       <label className="block text-sm font-medium text-gray-700 mb-1">Telefono / WhatsApp *</label>
                       <input type="tel" name="telefono" value={formData.telefono} onChange={handleFormChange} required
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="301 673 3819"
+                        placeholder="301 673 3819" />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Ciudad *</label>
