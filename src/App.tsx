@@ -1,4 +1,3 @@
-sed -n '1,200p' /mnt/agents/output/app/src/App.tsx
 import { useState, useEffect } from 'react'
 import './App.css'
 import { 
@@ -138,11 +137,9 @@ function App() {
                 { name: 'Consejo de Paz', id: 'consejo-paz' },
                 { name: 'Alianzas', id: 'alianzas' },
                 { name: 'Videos', id: 'videos' },
-                { name: 'Noticias', id: 'noticias' },
                 { name: 'Descargas', id: 'descargas' },
                 { name: 'Formatos', id: 'formatos' },
                 { name: 'Afiches', id: 'afiches' },
-                { name: 'Donaciones', id: 'donaciones' },
                 { name: 'Afiliación', id: 'afiliacion' },
                 { name: 'Capacítate', id: 'capacitate' },
                 { name: 'Recursos', id: 'recursos' },
@@ -182,11 +179,9 @@ function App() {
                 { name: 'Consejo de Paz', id: 'consejo-paz' },
                 { name: 'Alianzas', id: 'alianzas' },
                 { name: 'Videos', id: 'videos' },
-                { name: 'Noticias', id: 'noticias' },
                 { name: 'Descargas', id: 'descargas' },
                 { name: 'Formatos', id: 'formatos' },
                 { name: 'Afiches', id: 'afiches' },
-                { name: 'Donaciones', id: 'donaciones' },
                 { name: 'Afiliación', id: 'afiliacion' },
                 { name: 'Capacítate', id: 'capacitate' },
                 { name: 'Recursos', id: 'recursos' },
@@ -199,7 +194,6 @@ function App() {
                 >
                   {item.name}
                 </button>
-sed -n '201,350p' /mnt/agents/output/app/src/App.tsx
               ))}
             </div>
           </div>
@@ -350,7 +344,6 @@ sed -n '201,350p' /mnt/agents/output/app/src/App.tsx
                 </div>
               </div>
             </div>
-sed -n '351,500p' /mnt/agents/output/app/src/App.tsx
             
             <div className="relative">
               <img 
@@ -501,7 +494,6 @@ sed -n '351,500p' /mnt/agents/output/app/src/App.tsx
               <span className="text-blue-700 text-sm font-medium">Nuestras Alianzas</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-sed -n '501,650p' /mnt/agents/output/app/src/App.tsx
               Organizaciones Aliadas
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
@@ -641,7 +633,17 @@ sed -n '501,650p' /mnt/agents/output/app/src/App.tsx
                   href="https://www.elcaminoalafelicidad.mx/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center px-3 py-1.5 bg-green-600 text-white text-sm rounded-full hover:bg-green-<response clipped><NOTE>Result is longer than **10000 characters**, will be **truncated**.</NOTE>sed -n '651,750p' /mnt/agents/output/app/src/App.tsx
+                  className="inline-flex items-center px-3 py-1.5 bg-green-600 text-white text-sm rounded-full hover:bg-green-700 transition-colors"
+                >
+                  <Globe className="w-4 h-4 mr-1" />
+                  Sitio Web
+                </a>
+              </CardContent>
+            </Card>
+
+            {/* Fundación por un Mundo Libre de Drogas */}
+            <Card className="hover:shadow-xl transition-shadow border-0 shadow-md">
+              <CardContent className="p-8 text-center">
                 <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
                   <img 
                     src="/logo-drug-free-world.jpg" 
@@ -742,7 +744,6 @@ sed -n '501,650p' /mnt/agents/output/app/src/App.tsx
             {/* SINTRAJUSPAZ */}
             <Card className="hover:shadow-xl transition-shadow border-0 shadow-md">
               <CardContent className="p-8 text-center">
-sed -n '751,850p' /mnt/agents/output/app/src/App.tsx
                 <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
                   <img 
                     src="/logo-sintrajuspaz.jpg" 
@@ -843,68 +844,12 @@ sed -n '751,850p' /mnt/agents/output/app/src/App.tsx
                   ></iframe>
                 </div>
                 <CardContent className="p-6">
-sed -n '851,950p' /mnt/agents/output/app/src/App.tsx
                   <h3 className="text-lg font-bold text-gray-900 mb-2">{video.title}</h3>
                   <p className="text-gray-600 text-sm">{video.description}</p>
                 </CardContent>
               </Card>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Noticias - Cuarta Vigilia */}
-      <section id="noticias" className="py-20 bg-gradient-to-br from-red-50 to-orange-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center px-4 py-2 bg-red-100 rounded-full mb-4">
-              <svg className="w-4 h-4 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-              </svg>
-              <span className="text-red-700 text-sm font-medium">Noticias</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Cuarta Vigilia
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              El poder que no duerme - Información y actualizaciones de nuestra fundación.
-            </p>
-          </div>
-
-          <Card className="border-0 shadow-xl overflow-hidden">
-            <div className="bg-gradient-to-r from-red-600 to-orange-500 p-6 text-white">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-2xl font-bold mb-1">Cuarta Vigilia</h3>
-                  <p className="text-red-100">Boletín informativo</p>
-                </div>
-                <img
-                  src="/logo-cuarta-vigilia.png"
-                  alt="Cuarta Vigilia"
-                  className="w-16 h-16 rounded-full bg-white p-1"
-                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                />
-              </div>
-            </div>
-            <CardContent className="p-6">
-              <p className="text-gray-700 mb-4">
-                Mantente informado sobre nuestras actividades, eventos y logros en defensa de los derechos humanos.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <a
-                  href="https://www.instagram.com/capitulounidosddhhcol/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full hover:opacity-90 transition-opacity"
-                >
-                  <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/>
-                  </svg>
-                  Síguenos en Instagram
-                </a>
-              </div>
-            </CardContent>
-          </Card>
         </div>
       </section>
 
@@ -944,7 +889,6 @@ sed -n '851,950p' /mnt/agents/output/app/src/App.tsx
               },
               {
                 title: 'Manual de Participación Ciudadana',
-sed -n '951,1050p' /mnt/agents/output/app/src/App.tsx
                 description: 'Guía completa para la participación ciudadana y veeduría',
                 type: 'PDF',
                 size: '13.1 MB',
@@ -1045,7 +989,6 @@ sed -n '951,1050p' /mnt/agents/output/app/src/App.tsx
               { num: 16, title: 'Derechos Humanos - Art. 16 #1', file: 'afiche-16-1.jpg', subtitle: 'Art. 16 #1' },
               { num: 16, title: 'Derechos Humanos - Art. 16 #2', file: 'afiche-16-2.jpg', subtitle: 'Art. 16 #2' },
               { num: 16, title: 'Derechos Humanos - Art. 16 #3', file: 'afiche-16-3.jpg', subtitle: 'Art. 16 #3' },
-sed -n '1051,1150p' /mnt/agents/output/app/src/App.tsx
               { num: 17, title: 'Derechos Humanos - Art. 17 #1', file: 'afiche-17-1.png', subtitle: 'Art. 17 #1' },
               { num: 17, title: 'Derechos Humanos - Art. 17 #2', file: 'afiche-17-2.png', subtitle: 'Art. 17 #2' }
             ].map((afiche, index) => (
@@ -1076,68 +1019,7 @@ sed -n '1051,1150p' /mnt/agents/output/app/src/App.tsx
             ))}
           </div>
         </div>
-      </section>
-
-      {/* Donaciones Section */}
-      <section id="donaciones" className="py-20 bg-gradient-to-br from-green-50 to-emerald-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center px-4 py-2 bg-green-100 rounded-full mb-4">
-              <svg className="w-4 h-4 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
-              </svg>
-              <span className="text-green-700 text-sm font-medium">Apoya Nuestra Causa</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Donaciones
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Tu aporte nos permite continuar educando y empoderando comunidades sobre sus derechos humanos. Cada contribución hace la diferencia.
-            </p>
-          </div>
-
-          <Card className="max-w-md mx-auto border-0 shadow-xl">
-            <CardContent className="p-6">
-              {/* Nequi */}
-              <a
-                href="https://wa.me/573016733819?text=Hola%2C%20quiero%20hacer%20una%20donacion%20por%20Nequi%20a%20la%20Fundacion%20Unidos%20por%20los%20Derechos%20Humanos"
-                className="block"
-              >
-                <div className="bg-gray-100 rounded-lg p-4 mb-4 text-center hover:bg-gray-200 transition-colors cursor-pointer">
-                  <p className="font-bold text-gray-900 mb-1">Nequi</p>
-                  <p className="text-2xl font-bold text-gray-900">301 673 3819</p>
-                  <p className="text-sm text-gray-600 mt-1">Toca para coordinar donacion por Nequi</p>
-                </div>
-              </a>
-
-              {/* Bre-B */}
-              <a
-                href="https://wa.me/573016733819?text=Hola%2C%20quiero%20hacer%20una%20donacion%20por%20Bre-B%20a%20la%20Fundacion%20Unidos%20por%20los%20Derechos%20Humanos"
-                className="block"
-              >
-                <div className="bg-gray-100 rounded-lg p-4 mb-4 text-center hover:bg-gray-200 transition-colors cursor-pointer">
-                  <p className="font-bold text-gray-900 mb-1">Bre-B (Llave)</p>
-                  <p className="text-2xl font-bold text-gray-900">301 673 3819</p>
-                  <p className="text-sm text-gray-600 mt-1">Toca para coordinar donacion por Bre-B</p>
-                </div>
-              </a>
-
-              {/* WhatsApp general */}
-              <a
-                href="https://wa.me/573016733819?text=Hola%2C%20quiero%20hacer%20una%20donacion%20a%20la%20Fundacion%20Unidos%20por%20los%20Derechos%20Humanos"
-                className="block"
-              >
-                <div className="bg-green-500 rounded-lg p-4 hover:bg-green-600 transition-colors cursor-pointer text-center text-white">
-                  <p className="font-bold mb-1">Coordinar donacion por WhatsApp</p>
-                  <p className="text-sm">Toca para escribirnos</p>
-                </div>
-              </a>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* Formulario de Afiliacion */}
+      </section>{/* Formulario de Afiliacion */}
       <section id="afiliacion" className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -1146,7 +1028,6 @@ sed -n '1051,1150p' /mnt/agents/output/app/src/App.tsx
               <span className="text-yellow-700 text-sm font-medium">Unete a Nosotros</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-sed -n '1151,1250p' /mnt/agents/output/app/src/App.tsx
               Formulario de Afiliacion
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
@@ -1247,7 +1128,6 @@ sed -n '1151,1250p' /mnt/agents/output/app/src/App.tsx
                   </Button>
 
                   <p className="text-center text-xs text-gray-500 mt-4">
-sed -n '1251,1350p' /mnt/agents/output/app/src/App.tsx
                     Al enviar, se abrira tu correo con los datos. El correo se enviara a: fundacioncapitulounidosporlodh@gmail.com
                   </p>
                 </form>
@@ -1348,7 +1228,6 @@ sed -n '1251,1350p' /mnt/agents/output/app/src/App.tsx
                         {item.format}
                       </Button>
                     </a>
-sed -n '1351,1450p' /mnt/agents/output/app/src/App.tsx
                   </div>
                 </CardContent>
               </Card>
@@ -1449,7 +1328,6 @@ sed -n '1351,1450p' /mnt/agents/output/app/src/App.tsx
                   Información veraz sobre los efectos de las drogas. Curso educativo gratuito.
                 </p>
                 <div className="flex items-center justify-between">
-sed -n '1451,1550p' /mnt/agents/output/app/src/App.tsx
                   <span className="text-sm text-green-600 font-medium">Gratuito</span>
                   <a 
                     href="https://www.vidasindrogas.org/" 
@@ -1550,7 +1428,6 @@ sed -n '1451,1550p' /mnt/agents/output/app/src/App.tsx
                   </a>
                 </div>
               </CardContent>
-sed -n '1551,1650p' /mnt/agents/output/app/src/App.tsx
             </Card>
           </div>
         </div>
@@ -1651,7 +1528,6 @@ sed -n '1551,1650p' /mnt/agents/output/app/src/App.tsx
                       <p className="text-gray-600">fundacioncapitulounidosporlodh@gmail.com</p>
                     </div>
                   </div>
-sed -n '1651,1750p' /mnt/agents/output/app/src/App.tsx
                 </CardContent>
               </Card>
 
@@ -1752,7 +1628,6 @@ sed -n '1651,1750p' /mnt/agents/output/app/src/App.tsx
                     <p className="text-sm text-gray-600">TikTok</p>
                   </CardContent>
                 </Card>
-sed -n '1751,1854p' /mnt/agents/output/app/src/App.tsx
               </div>
             </div>
 
