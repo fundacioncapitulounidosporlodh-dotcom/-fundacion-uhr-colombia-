@@ -855,6 +855,42 @@ function App() {
         </div>
       </section>
 
+      {/* Noticias - Cuarta Vigilia */}
+      <section id="noticias" className="py-20 bg-gradient-to-br from-red-50 to-orange-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center px-4 py-2 bg-red-100 rounded-full mb-4">
+              <svg className="w-4 h-4 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+              </svg>
+              <span className="text-red-700 text-sm font-medium">Noticias</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Cuarta Vigilia</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">El poder que no duerme - Informacion y actualizaciones de nuestra fundacion.</p>
+          </div>
+          <Card className="border-0 shadow-xl overflow-hidden">
+            <div className="bg-gradient-to-r from-red-600 to-orange-500 p-6 text-white">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-2xl font-bold mb-1">Cuarta Vigilia</h3>
+                  <p className="text-red-100">Boletin informativo</p>
+                </div>
+              </div>
+            </div>
+            <CardContent className="p-6">
+              <p className="text-gray-700 mb-4">Mantente informado sobre nuestras actividades, eventos y logros en defensa de los derechos humanos.</p>
+              <a href="https://www.instagram.com/capitulounidosddhhcol/" target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full hover:opacity-90 transition-opacity">
+                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+                Siguenos en Instagram
+              </a>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       {/* Descargas Section */}
       <section id="descargas" className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1021,6 +1057,47 @@ function App() {
             ))}
           </div>
         </div>
+        
+      {/* Donaciones Section */}
+      <section id="donaciones" className="py-20 bg-gradient-to-br from-green-50 to-emerald-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center px-4 py-2 bg-green-100 rounded-full mb-4">
+              <svg className="w-4 h-4 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+              </svg>
+              <span className="text-green-700 text-sm font-medium">Apoya Nuestra Causa</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Donaciones</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">Tu aporte nos permite continuar educando y empoderando comunidades sobre sus derechos humanos. Cada contribucion hace la diferencia.</p>
+          </div>
+          <Card className="max-w-md mx-auto border-0 shadow-xl">
+            <CardContent className="p-6">
+              <a href="https://wa.me/573016733819?text=Hola%2C%20quiero%20hacer%20una%20donacion%20por%20Nequi" target="_blank" rel="noopener noreferrer" className="block">
+                <div className="bg-gray-100 rounded-lg p-4 mb-4 text-center hover:bg-gray-200 transition-colors cursor-pointer">
+                  <p className="font-bold text-gray-900 mb-1">Nequi</p>
+                  <p className="text-2xl font-bold text-gray-900">301 673 3819</p>
+                  <p className="text-sm text-gray-600 mt-1">Toca para coordinar donacion por Nequi</p>
+                </div>
+              </a>
+              <a href="https://wa.me/573016733819?text=Hola%2C%20quiero%20hacer%20una%20donacion%20por%20Bre-B" target="_blank" rel="noopener noreferrer" className="block">
+                <div className="bg-gray-100 rounded-lg p-4 mb-4 text-center hover:bg-gray-200 transition-colors cursor-pointer">
+                  <p className="font-bold text-gray-900 mb-1">Bre-B (Llave)</p>
+                  <p className="text-2xl font-bold text-gray-900">301 673 3819</p>
+                  <p className="text-sm text-gray-600 mt-1">Toca para coordinar donacion por Bre-B</p>
+                </div>
+              </a>
+              <a href="https://wa.me/573016733819?text=Hola%2C%20quiero%20hacer%20una%20donacion" target="_blank" rel="noopener noreferrer" className="block">
+                <div className="bg-green-500 rounded-lg p-4 hover:bg-green-600 transition-colors cursor-pointer text-center text-white">
+                  <p className="font-bold mb-1">Coordinar donacion por WhatsApp</p>
+                  <p className="text-sm">Toca para escribirnos</p>
+                </div>
+              </a>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       </section>{/* Formulario de Afiliacion */}
       <section id="afiliacion" className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
