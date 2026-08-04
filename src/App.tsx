@@ -26,7 +26,13 @@ function App() {
   const [scrolled, setScrolled] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [formEnviado, setFormEnviado] = useState(false)
-  const [formData, setFormData] = useState({
+const [showPasswordModal, setShowPasswordModal] = useState(false)
+const [passwordInput, setPasswordInput] = useState('')
+const [passwordError, setPasswordError] = useState('')
+const VEEDURIAS_PASSWORD = 'DDHH2024'
+const [formData, setFormData] = useState({
+
+
     nombre: '',
     documento: '',
     tipoDocumento: 'CC',
@@ -83,6 +89,16 @@ function App() {
     
     scrollToSection('nosotros')
     setSearchQuery('')
+  }
+const handlePasswordSubmit = () => {
+    if (passwordInput === VEEDURIAS_PASSWORD) {
+      setShowPasswordModal(false)
+      setPasswordInput('')
+      setPasswordError('')
+      window.open('/manual-veedurias.pdf', '_blank')
+    } else {
+      setPasswordError('Contraseña incorrecta. Intente nuevamente.')
+    }
   }
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -1301,12 +1317,29 @@ function App() {
                         <p className="text-gray-600 text-sm">{item.description}</p>
                       </div>
                     </div>
-                    <a href={item.url} target="_blank" rel="noopener noreferrer">
-                      <Button size="sm" variant="outline" className="text-green-600 border-green-600 hover:bg-green-50 flex-shrink-0 ml-4">
-                        <Download className="w-4 h-4 mr-1" />
-                        {item.format}
-                      </Button>
-                    </a>
+                    {item.title === 'Manual de Veedurías' ? (
+  <Button 
+    size="sm" 
+    variant="outline" 
+    className="text-purple-600 border-purple-600 hover:bg-purple-50"
+    onClick={() => {
+      setShowPasswordModal(true)
+      setPasswordInput('')
+      setPasswordError('')
+    }}
+  >
+    <Download className="w-4 h-4 mr-1" />
+    Descargar
+  </Button>
+) : (
+  <a href={item.url} target="_blank" rel="noopener noreferrer">
+    <Button size="sm" variant="outline" className="text-blue-600 border-blue-600 hover:bg-blue-50">
+      <Download className="w-4 h-4 mr-1" />
+      Descargar
+    </Button>
+  </a>
+)}
+
                   </div>
                 </CardContent>
               </Card>
@@ -1805,9 +1838,63 @@ function App() {
             </p>
           </div>
         </div>
-      </footer>
+            </footer>
+
+      {showPasswordModal && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6">
+            <div className="text-center mb-6">
+              <div className="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-7 h-7 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-1">Acceso Restringido</h3>
+              <p className="text-gray-600 text-sm">Este documento requiere contraseña para descargar.</p>
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700 mb-2">Contraseña</label>
+              <input
+                type="password"
+                value={passwordInput}
+                onChange={(e) => {
+                  setPasswordInput(e.target.value)
+                  setPasswordError('')
+                }}
+                onKeyDown={(e) => e.key === 'Enter' && handlePasswordSubmit()}
+                placeholder="Ingrese la contraseña"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                autoFocus
+              />
+              {passwordError && (
+                <p className="text-red-500 text-sm mt-2">{passwordError}</p>
+              )}
+            </div>
+            <div className="flex gap-3">
+              <Button
+                variant="outline"
+                className="flex-1"
+                onClick={() => {
+                  setShowPasswordModal(false)
+                  setPasswordInput('')
+                  setPasswordError('')
+                }}
+              >
+                Cancelar
+              </Button>
+              <Button
+                className="flex-1 bg-purple-600 hover:bg-purple-700 text-white"
+                onClick={handlePasswordSubmit}
+              >
+                Acceder
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
+
 }
 
 export default App
