@@ -886,6 +886,19 @@ const handlePasswordSubmit = () => {
           </div>
           <Card className="border-0 shadow-xl overflow-hidden">
             <div className="bg-gradient-to-r from-red-600 to-orange-500 p-6 text-white">
+              <div className="flex items-center gap-4">
+                <img 
+                  src="/logo-cuarta-vigilia.png" 
+                  alt="Cuarta Vigilia" 
+                  className="w-20 h-20 rounded-full object-cover border-2 border-white/30 shadow-lg flex-shrink-0"
+                />
+                <div>
+                  <h3 className="text-2xl font-bold mb-1">Cuarta Vigilia</h3>
+                  <p className="text-red-100">Boletin informativo</p>
+                </div>
+              </div>
+            </div>
+
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-2xl font-bold mb-1">Cuarta Vigilia</h3>
