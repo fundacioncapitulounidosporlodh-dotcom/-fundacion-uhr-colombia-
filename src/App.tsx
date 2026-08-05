@@ -888,7 +888,7 @@ const handlePasswordSubmit = () => {
             <div className="bg-gradient-to-r from-red-600 to-orange-500 p-6 text-white">
               <div className="flex items-center gap-4">
                 <img 
-                  src="/logo-cuarta-vigilia.png" 
+                  src="/logo-cuarta-vigilia.jpg" 
                   alt="Cuarta Vigilia" 
                   className="w-20 h-20 rounded-full object-cover border-2 border-white/30 shadow-lg flex-shrink-0"
                 />
@@ -898,7 +898,6 @@ const handlePasswordSubmit = () => {
                 </div>
               </div>
             </div>
-
             <CardContent className="p-6">
               <p className="text-gray-700 mb-4">Mantente informado sobre nuestras actividades, eventos y logros en defensa de los derechos humanos.</p>
               <a href="https://www.instagram.com/capitulounidosddhhcol/" target="_blank" rel="noopener noreferrer"
