@@ -1037,7 +1037,7 @@ const handlePasswordSubmit = () => {
               Afiches de Derechos Humanos
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Articulos 1 al 17 de la Declaracion Universal de Derechos Humanos
+              Articulos 1 al 21 de la Declaracion Universal de Derechos Humanos
             </p>
           </div>
 
@@ -1066,7 +1066,13 @@ const handlePasswordSubmit = () => {
               { num: 16, title: 'Derechos Humanos - Art. 16 #2', file: 'afiche-16-2.jpg', subtitle: 'Art. 16 #2' },
               { num: 16, title: 'Derechos Humanos - Art. 16 #3', file: 'afiche-16-3.jpg', subtitle: 'Art. 16 #3' },
               { num: 17, title: 'Derechos Humanos - Art. 17 #1', file: 'afiche-17-1.png', subtitle: 'Art. 17 #1' },
-              { num: 17, title: 'Derechos Humanos - Art. 17 #2', file: 'afiche-17-2.png', subtitle: 'Art. 17 #2' }
+              { num: 17, title: 'Derechos Humanos - Art. 17 #2', file: 'afiche-17-2.png', subtitle: 'Art. 17 #2' },
+              { num: 18, title: 'Derechos Humanos - Art. 18', file: 'afiche-18.jpg', subtitle: 'Art. 18' },
+              { num: 19, title: 'Derechos Humanos - Art. 19', file: 'afiche-19.jpg', subtitle: 'Art. 19' },
+              { num: 20, title: 'Derechos Humanos - Art. 20 #1', file: 'afiche-20-1.jpg', subtitle: 'Art. 20 #1' },
+              { num: 20, title: 'Derechos Humanos - Art. 20 #2', file: 'afiche20-2.jpg', subtitle: 'Art. 20 #2' },
+              { num: 21, title: 'Derechos Humanos - Art. 21 #1', file: 'afiche-21-1.jpg', subtitle: 'Art. 21 #1' }
+
             ].map((afiche, index) => (
               <Card key={`${afiche.subtitle}-${index}`} className="overflow-hidden hover:shadow-xl transition-shadow border-0 shadow-md group">
                 <div className="aspect-[3/4] bg-gray-100 overflow-hidden">
