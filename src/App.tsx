@@ -1070,7 +1070,7 @@ const handlePasswordSubmit = () => {
               { num: 18, title: 'Derechos Humanos - Art. 18', file: 'afiche-18.jpg', subtitle: 'Art. 18' },
               { num: 19, title: 'Derechos Humanos - Art. 19', file: 'afiche-19.jpg', subtitle: 'Art. 19' },
               { num: 20, title: 'Derechos Humanos - Art. 20 #1', file: 'afiche-20-1.jpg', subtitle: 'Art. 20 #1' },
-              { num: 20, title: 'Derechos Humanos - Art. 20 #2', file: 'afiche20-2.jpg', subtitle: 'Art. 20 #2' },
+              { num: 20, title: 'Derechos Humanos - Art. 20 #2', file: 'afiche-20-2.jpg', subtitle: 'Art. 20 #2' },
               { num: 21, title: 'Derechos Humanos - Art. 21 #1', file: 'afiche-21-1.jpg', subtitle: 'Art. 21 #1' }
 
             ].map((afiche, index) => (
