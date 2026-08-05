@@ -899,8 +899,6 @@ const handlePasswordSubmit = () => {
               </div>
             </div>
 
-              <div className="flex items-center justify-between">
-                <div>
                   <h3 className="text-2xl font-bold mb-1">Cuarta Vigilia</h3>
                   <p className="text-red-100">Boletin informativo</p>
                 </div>
