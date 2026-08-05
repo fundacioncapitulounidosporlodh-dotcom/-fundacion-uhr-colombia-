@@ -985,12 +985,29 @@ const handlePasswordSubmit = () => {
                       <p className="text-gray-600 text-sm mb-3">{item.description}</p>
                       <div className="flex items-center justify-between">
                         <span className="text-xs text-gray-500">{item.type} • {item.size}</span>
-                        <a href={item.url} target="_blank" rel="noopener noreferrer">
-                          <Button size="sm" variant="outline" className="text-blue-600 border-blue-600 hover:bg-blue-50">
-                            <Download className="w-4 h-4 mr-1" />
-                            Descargar
-                          </Button>
-                        </a>
+                        {item.title === 'Manual de Veedurías' ? (
+  <Button 
+    size="sm" 
+    variant="outline" 
+    className="text-purple-600 border-purple-600 hover:bg-purple-50"
+    onClick={() => {
+      setShowPasswordModal(true)
+      setPasswordInput('')
+      setPasswordError('')
+    }}
+  >
+    <Download className="w-4 h-4 mr-1" />
+    Descargar
+  </Button>
+) : (
+  <a href={item.url} target="_blank" rel="noopener noreferrer">
+    <Button size="sm" variant="outline" className="text-blue-600 border-blue-600 hover:bg-blue-50">
+      <Download className="w-4 h-4 mr-1" />
+      Descargar
+    </Button>
+  </a>
+)}
+
                       </div>
                     </div>
                   </div>
