@@ -899,11 +899,6 @@ const handlePasswordSubmit = () => {
               </div>
             </div>
 
-                  <h3 className="text-2xl font-bold mb-1">Cuarta Vigilia</h3>
-                  <p className="text-red-100">Boletin informativo</p>
-                </div>
-              </div>
-            </div>
             <CardContent className="p-6">
               <p className="text-gray-700 mb-4">Mantente informado sobre nuestras actividades, eventos y logros en defensa de los derechos humanos.</p>
               <a href="https://www.instagram.com/capitulounidosddhhcol/" target="_blank" rel="noopener noreferrer"
