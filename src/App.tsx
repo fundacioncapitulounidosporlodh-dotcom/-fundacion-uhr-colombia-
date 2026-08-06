@@ -30,53 +30,6 @@ const [showPasswordModal, setShowPasswordModal] = useState(false)
 const [passwordInput, setPasswordInput] = useState('')
 const [passwordError, setPasswordError] = useState('')
 const VEEDURIAS_PASSWORD = 'DDHH2024'
-  
-  const [isGalleryOpen, setIsGalleryOpen] = useState(false)
-  const [selectedAficheIndex, setSelectedAficheIndex] = useState(0)
-
-  const afichesList = [
-    { num: 1, title: 'Derechos Humanos - Art. 1', file: 'afiche-01.jpg', subtitle: 'Art. 1' },
-    { num: 2, title: 'Derechos Humanos - Art. 2', file: 'afiche-02.jpg', subtitle: 'Art. 2' },
-    { num: 3, title: 'Derechos Humanos - Art. 3', file: 'afiche-03.jpg', subtitle: 'Art. 3' },
-    { num: 4, title: 'Derechos Humanos - Art. 4', file: 'afiche-04.jpg', subtitle: 'Art. 4' },
-    { num: 5, title: 'Derechos Humanos - Art. 5', file: 'afiche-05.jpg', subtitle: 'Art. 5' },
-    { num: 6, title: 'Derechos Humanos - Art. 6', file: 'afiche-06.jpg', subtitle: 'Art. 6' },
-    { num: 7, title: 'Derechos Humanos - Art. 7', file: 'afiche-07.jpg', subtitle: 'Art. 7' },
-    { num: 8, title: 'Derechos Humanos - Art. 8', file: 'afiche-08.jpg', subtitle: 'Art. 8' },
-    { num: 9, title: 'Derechos Humanos - Art. 9', file: 'afiche-09.jpg', subtitle: 'Art. 9' },
-    { num: 10, title: 'Derechos Humanos - Art. 10', file: 'afiche-10.jpg', subtitle: 'Art. 10' },
-    { num: 11, title: 'Derechos Humanos - Art. 11 #1', file: 'afiche-11.jpg', subtitle: 'Art. 11 #1' },
-    { num: 11, title: 'Derechos Humanos - Art. 11 #2', file: 'afiche-11-2.jpg', subtitle: 'Art. 11 #2' },
-    { num: 12, title: 'Derechos Humanos - Art. 12', file: 'afiche-12.jpg', subtitle: 'Art. 12' },
-    { num: 13, title: 'Derechos Humanos - Art. 13 #1', file: 'afiche-13-1.jpg', subtitle: 'Art. 13 #1' },
-    { num: 13, title: 'Derechos Humanos - Art. 13 #2', file: 'afiche-13-2.jpg', subtitle: 'Art. 13 #2' },
-    { num: 14, title: 'Derechos Humanos - Art. 14 #1', file: 'afiche-14-1.jpg', subtitle: 'Art. 14 #1' },
-    { num: 14, title: 'Derechos Humanos - Art. 14 #2', file: 'afiche-14-2.jpg', subtitle: 'Art. 14 #2' },
-    { num: 15, title: 'Derechos Humanos - Art. 15 #1', file: 'afiche-15-1.jpg', subtitle: 'Art. 15 #1' },
-    { num: 15, title: 'Derechos Humanos - Art. 15 #2', file: 'afiche-15-2.jpg', subtitle: 'Art. 15 #2' },
-    { num: 16, title: 'Derechos Humanos - Art. 16 #1', file: 'afiche-16-1.jpg', subtitle: 'Art. 16 #1' },
-    { num: 16, title: 'Derechos Humanos - Art. 16 #2', file: 'afiche-16-2.jpg', subtitle: 'Art. 16 #2' },
-    { num: 16, title: 'Derechos Humanos - Art. 16 #3', file: 'afiche-16-3.jpg', subtitle: 'Art. 16 #3' },
-    { num: 17, title: 'Derechos Humanos - Art. 17 #1', file: 'afiche-17-1.png', subtitle: 'Art. 17 #1' },
-    { num: 17, title: 'Derechos Humanos - Art. 17 #2', file: 'afiche-17-2.png', subtitle: 'Art. 17 #2' },
-    { num: 18, title: 'Derechos Humanos - Art. 18', file: 'afiche-18.jpg', subtitle: 'Art. 18' },
-    { num: 19, title: 'Derechos Humanos - Art. 19', file: 'afiche-19.jpg', subtitle: 'Art. 19' },
-    { num: 20, title: 'Derechos Humanos - Art. 20 #1', file: 'afiche-20-1.jpg', subtitle: 'Art. 20 #1' },
-    { num: 20, title: 'Derechos Humanos - Art. 20 #2', file: 'afiche-20-2.png', subtitle: 'Art. 20 #2' },
-    { num: 21, title: 'Derechos Humanos - Art. 21 #1', file: 'afiche-21-1.jpg', subtitle: 'Art. 21 #1' }
-  ]
-
-  const openGallery = (index: number) => {
-    setSelectedAficheIndex(index)
-    setIsGalleryOpen(true)
-    document.body.style.overflow = 'hidden'
-  }
-
-  const closeGallery = () => {
-    setIsGalleryOpen(false)
-    document.body.style.overflow = 'auto'
-  }
-
 const [formData, setFormData] = useState({
 
 
@@ -1089,41 +1042,47 @@ const handlePasswordSubmit = () => {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-            {afichesList.map((afiche, index) => (
-              <Card key={afiche.subtitle + "-" + index} className="overflow-hidden hover:shadow-xl transition-shadow border-0 shadow-md group cursor-pointer" onClick={() => openGallery(index)}>
-                <div className="aspect-[3/4] bg-gray-100 overflow-hidden relative">
-                  <img 
-                    src={"/afiches/" + afiche.file}
-                    alt={afiche.subtitle}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
-                    <div className="w-10 h-10 bg-white/80 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
-                      <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-                <CardContent className="p-4">
-                  <p className="text-xs text-purple-600 font-semibold mb-1">{afiche.subtitle}</p>
-                  <h3 className="font-bold text-gray-900 text-sm mb-3 truncate">{afiche.title}</h3>
-                  <a 
-                    href={"/afiches/" + afiche.file}
-                    download={afiche.file}
-                    className="block w-full"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <Button size="sm" variant="outline" className="w-full text-purple-600 border-purple-600 hover:bg-purple-50 text-xs">
-                      <Download className="w-3 h-3 mr-1" />
-                      Descargar
-                    </Button>
-                  </a>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+            {[
+              { num: 1, title: 'Derechos Humanos - Art. 1', file: 'afiche-01.jpg', subtitle: 'Art. 1' },
+              { num: 2, title: 'Derechos Humanos - Art. 2', file: 'afiche-02.jpg', subtitle: 'Art. 2' },
+              { num: 3, title: 'Derechos Humanos - Art. 3', file: 'afiche-03.jpg', subtitle: 'Art. 3' },
+              { num: 4, title: 'Derechos Humanos - Art. 4', file: 'afiche-04.jpg', subtitle: 'Art. 4' },
+              { num: 5, title: 'Derechos Humanos - Art. 5', file: 'afiche-05.jpg', subtitle: 'Art. 5' },
+              { num: 6, title: 'Derechos Humanos - Art. 6', file: 'afiche-06.jpg', subtitle: 'Art. 6' },
+              { num: 7, title: 'Derechos Humanos - Art. 7', file: 'afiche-07.jpg', subtitle: 'Art. 7' },
+              { num: 8, title: 'Derechos Humanos - Art. 8', file: 'afiche-08.jpg', subtitle: 'Art. 8' },
+              { num: 9, title: 'Derechos Humanos - Art. 9', file: 'afiche-09.jpg', subtitle: 'Art. 9' },
+              { num: 10, title: 'Derechos Humanos - Art. 10', file: 'afiche-10.jpg', subtitle: 'Art. 10' },
+              { num: 11, title: 'Derechos Humanos - Art. 11 #1', file: 'afiche-11.jpg', subtitle: 'Art. 11 #1' },
+              { num: 11, title: 'Derechos Humanos - Art. 11 #2', file: 'afiche-11-2.jpg', subtitle: 'Art. 11 #2' },
+              { num: 12, title: 'Derechos Humanos - Art. 12', file: 'afiche-12.jpg', subtitle: 'Art. 12' },
+              { num: 13, title: 'Derechos Humanos - Art. 13 #1', file: 'afiche-13-1.jpg', subtitle: 'Art. 13 #1' },
+              { num: 13, title: 'Derechos Humanos - Art. 13 #2', file: 'afiche-13-2.jpg', subtitle: 'Art. 13 #2' },
+              { num: 14, title: 'Derechos Humanos - Art. 14 #1', file: 'afiche-14-1.jpg', subtitle: 'Art. 14 #1' },
+              { num: 14, title: 'Derechos Humanos - Art. 14 #2', file: 'afiche-14-2.jpg', subtitle: 'Art. 14 #2' },
+              { num: 15, title: 'Derechos Humanos - Art. 15 #1', file: 'afiche-15-1.jpg', subtitle: 'Art. 15 #1' },
+              { num: 15, title: 'Derechos Humanos - Art. 15 #2', file: 'afiche-15-2.jpg', subtitle: 'Art. 15 #2' },
+              { num: 16, title: 'Derechos Humanos - Art. 16 #1', file: 'afiche-16-1.jpg', subtitle: 'Art. 16 #1' },
+              { num: 16, title: 'Derechos Humanos - Art. 16 #2', file: 'afiche-16-2.jpg', subtitle: 'Art. 16 #2' },
+              { num: 16, title: 'Derechos Humanos - Art. 16 #3', file: 'afiche-16-3.jpg', subtitle: 'Art. 16 #3' },
+              { num: 17, title: 'Derechos Humanos - Art. 17 #1', file: 'afiche-17-1.png', subtitle: 'Art. 17 #1' },
+              { num: 17, title: 'Derechos Humanos - Art. 17 #2', file: 'afiche-17-2.png', subtitle: 'Art. 17 #2' },
+              { num: 18, title: 'Derechos Humanos - Art. 18', file: 'afiche-18.jpg', subtitle: 'Art. 18' },
+              { num: 19, title: 'Derechos Humanos - Art. 19', file: 'afiche-19.jpg', subtitle: 'Art. 19' },
+              { num: 20, title: 'Derechos Humanos - Art. 20 #1', file: 'afiche-20-1.jpg', subtitle: 'Art. 20 #1' },
+              { num: 20, title: 'Derechos Humanos - Art. 20 #2', file: 'afiche-20-2.jpg', subtitle: 'Art. 20 #2' },
+              { num: 21, title: 'Derechos Humanos - Art. 21 #1', file: 'afiche-21-1.jpg', subtitle: 'Art. 21 #1' }
 
+            ].map((afiche, index) => (
+              <Card key={`${afiche.subtitle}-${index}`} className="overflow-hidden hover:shadow-xl transition-shadow border-0 shadow-md group">
+                <div className="aspect-[3/4] bg-gray-100 overflow-hidden">
+                  <img 
+                    src={`/afiches/${afiche.file}`}
+                    alt={`${afiche.subtitle}`}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                </div>
                 <CardContent className="p-4">
                   <p className="text-xs text-purple-600 font-semibold mb-1">{afiche.subtitle}</p>
                   <h3 className="font-bold text-gray-900 text-sm mb-3 truncate">{afiche.title}</h3>
@@ -1961,62 +1920,6 @@ const handlePasswordSubmit = () => {
           </div>
         </div>
       )}
-        {/* Galeria de Afiches - Lightbox */}
-      {isGalleryOpen && (
-        <div 
-          className="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4"
-          onClick={closeGallery}
-        >
-          <button 
-            className="absolute top-4 right-4 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors z-10"
-            onClick={closeGallery}
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-
-          <button 
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors z-10"
-            onClick={(e) => { e.stopPropagation(); setSelectedAficheIndex((prev) => (prev - 1 + 29) % 29); }}
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-
-          <button 
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors z-10"
-            onClick={(e) => { e.stopPropagation(); setSelectedAficheIndex((prev) => (prev + 1) % 29); }}
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-
-          <div className="max-w-4xl max-h-[85vh] w-full flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
-            <img 
-              src={"/afiches/" + afichesList[selectedAficheIndex].file}
-              alt={afichesList[selectedAficheIndex].title}
-              className="max-w-full max-h-[75vh] object-contain rounded-lg shadow-2xl"
-            />
-            <div className="mt-4 text-center">
-              <p className="text-white text-lg font-bold">{afichesList[selectedAficheIndex].title}</p>
-              <p className="text-white/60 text-sm mt-1">{selectedAficheIndex + 1} de {afichesList.length}</p>
-            </div>
-            <a 
-              href={"/afiches/" + afichesList[selectedAficheIndex].file}
-              download={afichesList[selectedAficheIndex].file}
-              className="mt-4 inline-flex items-center px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-full transition-colors"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <Download className="w-4 h-4 mr-2" />
-              Descargar afiche
-            </a>
-          </div>
-        </div>
-      )}
-
     </div>
   )
 
