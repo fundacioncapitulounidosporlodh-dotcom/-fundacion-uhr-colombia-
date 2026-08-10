@@ -1886,7 +1886,7 @@ function App() {
           <Card className="max-w-md mx-auto border-0 shadow-xl">
             <CardContent className="p-6">
               <a
-                href="https://web.whatsapp.com/send?phone=573016733819&text=Hola%2C%20quiero%20hacer%20una%20donacion%20por%20Nequi"
+                href="https://wa.me/573016733819?text=Hola%2C%20quiero%20hacer%20una%20donacion%20por%20Nequi"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block"
@@ -1902,7 +1902,7 @@ function App() {
                 </div>
               </a>
               <a
-                href="https://web.whatsapp.com/send?phone=573016733819&text=Hola%2C%20quiero%20hacer%20una%20donacion%20por%20Bre-B"
+                href="https://wa.me/573016733819?text=Hola%2C%20quiero%20hacer%20una%20donacion%20por%20Bre-B"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block"
@@ -1918,7 +1918,7 @@ function App() {
                 </div>
               </a>
               <a
-                href="https://web.whatsapp.com/send?phone=573016733819&text=Hola%2C%20quiero%20hacer%20una%20donacion"
+                href="https://wa.me/573016733819?text=Hola%2C%20quiero%20hacer%20una%20donacion"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block"
@@ -2636,7 +2636,7 @@ function App() {
                       </h3>
                       <p className="text-gray-600">301 673 3819</p>
                       <a
-                        href="https://web.whatsapp.com/send?phone=573016733819"
+                        href="https://wa.me/573016733819"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center text-green-600 hover:text-green-700 text-sm mt-1 font-medium"
