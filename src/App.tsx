@@ -26,13 +26,98 @@ function App() {
   const [scrolled, setScrolled] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [formEnviado, setFormEnviado] = useState(false)
-const [showPasswordModal, setShowPasswordModal] = useState(false)
-const [passwordInput, setPasswordInput] = useState('')
-const [passwordError, setPasswordError] = useState('')
-const VEEDURIAS_PASSWORD = 'DDHH2024'
-const [formData, setFormData] = useState({
+  const [showPasswordModal, setShowPasswordModal] = useState(false)
+  const [passwordInput, setPasswordInput] = useState('')
+  const [passwordError, setPasswordError] = useState('')
+  const VEEDURIAS_PASSWORD = 'DDHH2024'
 
+  // Galería de Afiches - Lightbox
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false)
+  const [selectedAficheIndex, setSelectedAficheIndex] = useState(0)
 
+  const afichesList = [
+    { num: 1, title: 'Derechos Humanos - Art. 1', file: 'afiche-01.jpg', subtitle: 'Art. 1' },
+    { num: 2, title: 'Derechos Humanos - Art. 2', file: 'afiche-02.jpg', subtitle: 'Art. 2' },
+    { num: 3, title: 'Derechos Humanos - Art. 3', file: 'afiche-03.jpg', subtitle: 'Art. 3' },
+    { num: 4, title: 'Derechos Humanos - Art. 4', file: 'afiche-04.jpg', subtitle: 'Art. 4' },
+    { num: 5, title: 'Derechos Humanos - Art. 5', file: 'afiche-05.jpg', subtitle: 'Art. 5' },
+    { num: 6, title: 'Derechos Humanos - Art. 6', file: 'afiche-06.jpg', subtitle: 'Art. 6' },
+    { num: 7, title: 'Derechos Humanos - Art. 7', file: 'afiche-07.jpg', subtitle: 'Art. 7' },
+    { num: 8, title: 'Derechos Humanos - Art. 8', file: 'afiche-08.jpg', subtitle: 'Art. 8' },
+    { num: 9, title: 'Derechos Humanos - Art. 9', file: 'afiche-09.jpg', subtitle: 'Art. 9' },
+    { num: 10, title: 'Derechos Humanos - Art. 10', file: 'afiche-10.jpg', subtitle: 'Art. 10' },
+    { num: 11, title: 'Derechos Humanos - Art. 11 #1', file: 'afiche-11.jpg', subtitle: 'Art. 11 #1' },
+    { num: 11, title: 'Derechos Humanos - Art. 11 #2', file: 'afiche-11-2.jpg', subtitle: 'Art. 11 #2' },
+    { num: 12, title: 'Derechos Humanos - Art. 12', file: 'afiche-12.jpg', subtitle: 'Art. 12' },
+    { num: 13, title: 'Derechos Humanos - Art. 13 #1', file: 'afiche-13-1.jpg', subtitle: 'Art. 13 #1' },
+    { num: 13, title: 'Derechos Humanos - Art. 13 #2', file: 'afiche-13-2.jpg', subtitle: 'Art. 13 #2' },
+    { num: 14, title: 'Derechos Humanos - Art. 14 #1', file: 'afiche-14-1.jpg', subtitle: 'Art. 14 #1' },
+    { num: 14, title: 'Derechos Humanos - Art. 14 #2', file: 'afiche-14-2.jpg', subtitle: 'Art. 14 #2' },
+    { num: 15, title: 'Derechos Humanos - Art. 15 #1', file: 'afiche-15-1.jpg', subtitle: 'Art. 15 #1' },
+    { num: 15, title: 'Derechos Humanos - Art. 15 #2', file: 'afiche-15-2.jpg', subtitle: 'Art. 15 #2' },
+    { num: 16, title: 'Derechos Humanos - Art. 16 #1', file: 'afiche-16-1.jpg', subtitle: 'Art. 16 #1' },
+    { num: 16, title: 'Derechos Humanos - Art. 16 #2', file: 'afiche-16-2.jpg', subtitle: 'Art. 16 #2' },
+    { num: 16, title: 'Derechos Humanos - Art. 16 #3', file: 'afiche-16-3.jpg', subtitle: 'Art. 16 #3' },
+    { num: 17, title: 'Derechos Humanos - Art. 17 #1', file: 'afiche-17-1.png', subtitle: 'Art. 17 #1' },
+    { num: 17, title: 'Derechos Humanos - Art. 17 #2', file: 'afiche-17-2.png', subtitle: 'Art. 17 #2' },
+    { num: 18, title: 'Derechos Humanos - Art. 18', file: 'afiche-18.jpg', subtitle: 'Art. 18' },
+    { num: 19, title: 'Derechos Humanos - Art. 19', file: 'afiche-19.jpg', subtitle: 'Art. 19' },
+    { num: 20, title: 'Derechos Humanos - Art. 20 #1', file: 'afiche-20-1.jpg', subtitle: 'Art. 20 #1' },
+    { num: 20, title: 'Derechos Humanos - Art. 20 #2', file: 'afiche-20-2.png', subtitle: 'Art. 20 #2' },
+    { num: 21, title: 'Derechos Humanos - Art. 21 #1', file: 'afiche-21-1.jpg', subtitle: 'Art. 21 #1' },
+    { num: 21, title: 'Derechos Humanos - Art. 21 #2', file: 'afiche-21-2.jpg', subtitle: 'Art. 21 #2' },
+    { num: 21, title: 'Derechos Humanos - Art. 21 #3', file: 'afiche-21-3.jpg', subtitle: 'Art. 21 #3' },
+    { num: 22, title: 'Derechos Humanos - Art. 22', file: 'afiche-22.jpg', subtitle: 'Art. 22' },
+    { num: 23, title: 'Derechos Humanos - Art. 23 #1', file: 'afiche-23-1.jpg', subtitle: 'Art. 23 #1' },
+    { num: 23, title: 'Derechos Humanos - Art. 23 #2', file: 'afiche-23-2.jpg', subtitle: 'Art. 23 #2' },
+    { num: 23, title: 'Derechos Humanos - Art. 23 #3', file: 'afiche-23-3.jpg', subtitle: 'Art. 23 #3' },
+    { num: 23, title: 'Derechos Humanos - Art. 23 #4', file: 'afiche-23-4.jpg', subtitle: 'Art. 23 #4' },
+    { num: 24, title: 'Derechos Humanos - Art. 24', file: 'afiche-24.jpg', subtitle: 'Art. 24' },
+    { num: 25, title: 'Derechos Humanos - Art. 25 #1', file: 'afiche-25-1.jpg', subtitle: 'Art. 25 #1' },
+    { num: 25, title: 'Derechos Humanos - Art. 25 #2', file: 'afiche-25-2.jpg', subtitle: 'Art. 25 #2' },
+    { num: 26, title: 'Derechos Humanos - Art. 26 #1', file: 'afiche-26-1.jpg', subtitle: 'Art. 26 #1' },
+    { num: 26, title: 'Derechos Humanos - Art. 26 #2', file: 'afiche-26-2.jpg', subtitle: 'Art. 26 #2' },
+    { num: 26, title: 'Derechos Humanos - Art. 26 #3', file: 'afiche-26-3.jpg', subtitle: 'Art. 26 #3' },
+    { num: 27, title: 'Derechos Humanos - Art. 27 #1', file: 'afiche-27-1.jpg', subtitle: 'Art. 27 #1' },
+    { num: 27, title: 'Derechos Humanos - Art. 27 #2', file: 'afiche-27-2.jpg', subtitle: 'Art. 27 #2' },
+    { num: 28, title: 'Derechos Humanos - Art. 28', file: 'afiche-28.jpg', subtitle: 'Art. 28' },
+    { num: 29, title: 'Derechos Humanos - Art. 29 #1', file: 'afiche-29-1.jpg', subtitle: 'Art. 29 #1' },
+    { num: 29, title: 'Derechos Humanos - Art. 29 #2', file: 'afiche-29-2.jpg', subtitle: 'Art. 29 #2' },
+    { num: 29, title: 'Derechos Humanos - Art. 29 #3', file: 'afiche-29-3.jpg', subtitle: 'Art. 29 #3' },
+    { num: 30, title: 'Derechos Humanos - Art. 30', file: 'afiche-30.jpg', subtitle: 'Art. 30' }
+  ]
+
+  const openGallery = (index: number) => {
+    setSelectedAficheIndex(index)
+    setIsGalleryOpen(true)
+    document.body.style.overflow = 'hidden'
+  }
+
+  const closeGallery = () => {
+    setIsGalleryOpen(false)
+    document.body.style.overflow = 'auto'
+  }
+
+  const nextAfiche = () => {
+    setSelectedAficheIndex((prev) => (prev + 1) % afichesList.length)
+  }
+
+  const prevAfiche = () => {
+    setSelectedAficheIndex((prev) => (prev - 1 + afichesList.length) % afichesList.length)
+  }
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isGalleryOpen) return
+      if (e.key === 'Escape') closeGallery()
+      if (e.key === 'ArrowRight') nextAfiche()
+      if (e.key === 'ArrowLeft') prevAfiche()
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [isGalleryOpen])
+
+  const [formData, setFormData] = useState({
     nombre: '',
     documento: '',
     tipoDocumento: 'CC',
@@ -59,343 +144,256 @@ const [formData, setFormData] = useState({
       setIsMenuOpen(false)
     }
   }
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className={`font-medium hover:text-blue-400 transition-colors ${scrolled ? 'text-gray-700' : 'text-white'}`}
+              >
+                {item.name}
+              </button>
+            ))}
+          </div>
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault()
-    const query = searchQuery.toLowerCase().trim()
-    if (!query) return
-    
-    const sections = [
-      { id: 'nosotros', keywords: ['nosotros', 'sobre', 'mision', 'vision', 'quienes somos', 'historia', 'fundacion', 'info', 'informacion'] },
-      { id: 'consejo-paz', keywords: ['consejo', 'paz', 'reconciliacion', 'convivencia', 'cali', 'territorial', 'escudo'] },
-      { id: 'alianzas', keywords: ['alianzas', 'aliados', 'organizaciones', 'ong', 'saccol', 'cepdipo', 'mevico', 'sintrajuspaz', 'arbol fuente', 'hawks', 'halcones', 'veeduria', 'camino felicidad', 'mundo libre drogas', 'memoria viva', 'sintrajuspaz', 'ong', 'aliados', 'amigos'] },
-      { id: 'videos', keywords: ['videos', 'derechos humanos', 'derecho', 'youtube', 'ver', 'documental', 'nacemos libres', 'discriminar', 'tortura', 'esclavitud'] },
-      { id: 'descargas', keywords: ['descargas', 'manual', 'materiales', 'pdf', 'descargar', 'bajar', 'archivos', 'cartilla', 'niño', 'participacion ciudadana', 'embargos', 'sentencia'] },
-      { id: 'afiches', keywords: ['afiches', 'posters', 'derechos humanos', 'afiche', 'poster', 'imagenes', 'fotos', 'descargar afiches'] },
-      { id: 'formatos', keywords: ['formatos', 'tutela', 'peticion', 'formularios', 'veeduria', 'afiliacion', 'solicitud', 'capacitacion', 'reporte', 'violacion', 'autorizacion', 'alianza', 'compromiso', 'observacion', 'modelo'] },
-      { id: 'afiliacion', keywords: ['afiliacion', 'afiliarse', 'inscribir', 'unirme', 'registro', 'ser miembro', 'formulario afiliacion', 'hacer parte'] },
-      { id: 'capacitate', keywords: ['capacitate', 'cursos', 'curso', 'educacion', 'estudiar', 'aprender', 'capacitacion', 'formacion', 'camino felicidad', 'drogas', 'ops', 'oms', 'defensoria', 'campus virtual'] },
-      { id: 'recursos', keywords: ['recursos', 'humanrights', 'sitio oficial', 'youtube', 'materiales'] },
-      { id: 'contacto', keywords: ['contacto', 'telefono', 'correo', 'whatsapp', 'email', 'llamar', 'escribir', 'mensaje', 'instagram', 'tiktok', 'redes', 'social', 'ubicacion', 'direccion'] }
-    ]
-    
-    for (const section of sections) {
-      if (section.keywords.some(kw => query.includes(kw))) {
-        scrollToSection(section.id)
-        setSearchQuery('')
-        return
-      }
-    }
-    
-    scrollToSection('nosotros')
-    setSearchQuery('')
-  }
-const handlePasswordSubmit = () => {
-    if (passwordInput === VEEDURIAS_PASSWORD) {
-      setShowPasswordModal(false)
-      setPasswordInput('')
-      setPasswordError('')
-      window.open('/manual-veedurias.pdf', '_blank')
-    } else {
-      setPasswordError('Contraseña incorrecta. Intente nuevamente.')
-    }
-  }
-
-  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
-
-  const handleFormSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    const subject = `Nueva Afiliacion - ${formData.nombre}`
-    const body = `Nombre: ${formData.nombre}%0D%0ATipo de Documento: ${formData.tipoDocumento}%0D%0ADocumento: ${formData.documento}%0D%0AEmail: ${formData.email}%0D%0ATelefono: ${formData.telefono}%0D%0ACiudad: ${formData.ciudad}%0D%0ADepartamento: ${formData.departamento}%0D%0AOcupacion: ${formData.ocupacion}%0D%0AMotivo: ${formData.motivo}`
-    window.location.href = `mailto:fundacioncapitulounidosporlodh@gmail.com?subject=${subject}&body=${body}`
-    setFormEnviado(true)
-    setFormData({
-      nombre: '', documento: '', tipoDocumento: 'CC', email: '',
-      telefono: '', ciudad: '', departamento: '', ocupacion: '', motivo: ''
-    })
-  }
-
-  return (
-    <div className="min-h-screen bg-white relative">
-      {/* Marca de agua fondo - Logo Fundacion Capitulo UHR Colombia */}
-      <div className="fixed inset-0 z-0 opacity-[0.05] pointer-events-none flex items-center justify-center">
-        <img 
-          src="/logo-fundacion-capitulo.jpg" 
-          alt="" 
-          className="w-[500px] h-[500px] object-contain"
-        />
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden p-2"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? (
+              <X className={`w-6 h-6 ${scrolled ? 'text-gray-900' : 'text-white'}`} />
+            ) : (
+              <Menu className={`w-6 h-6 ${scrolled ? 'text-gray-900' : 'text-white'}`} />
+            )}
+          </button>
+        </div>
       </div>
-      {/* Navbar */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-lg' : 'bg-transparent'}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            {/* Logo */}
-            <div className="flex items-center space-x-3">
-              <img 
-                src="/logo-uhr.png" 
-                alt="United for Human Rights Logo" 
-                className="w-14 h-14 object-contain"
-              />
-              <div className="hidden sm:block">
-                <h1 className={`font-bold text-lg leading-tight ${scrolled ? 'text-gray-900' : 'text-white'}`}>
-                  Unidos por los<br />Derechos Humanos
-                </h1>
-              </div>
-            </div>
 
-            {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-8">
-              {[
-                { name: 'Inicio', id: 'inicio' },
-                { name: 'Nosotros', id: 'nosotros' },
-                { name: 'Consejo de Paz', id: 'consejo-paz' },
-                { name: 'Alianzas', id: 'alianzas' },
-                { name: 'Videos', id: 'videos' },
-                { name: 'Noticias', id: 'noticias' },
-                { name: 'Descargas', id: 'descargas' },
-                { name: 'Formatos', id: 'formatos' },
-                { name: 'Afiches', id: 'afiches' },
-                { name: 'Donaciones', id: 'donaciones' },{ name: 'Afiliación', id: 'afiliacion' },
-                { name: 'Capacítate', id: 'capacitate' },
-                { name: 'Recursos', id: 'recursos' },
-                { name: 'Contacto', id: 'contacto' }
-              ].map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`font-medium hover:text-blue-400 transition-colors ${scrolled ? 'text-gray-700' : 'text-white'}`}
-                >
-                  {item.name}
-                </button>
-              ))}
-            </div>
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden bg-white shadow-lg">
+          <div className="px-4 py-4 space-y-3">
+            {[
+              { name: 'Inicio', id: 'inicio' },
+              { name: 'Nosotros', id: 'nosotros' },
+              { name: 'Consejo de Paz', id: 'consejo-paz' },
+              { name: 'Alianzas', id: 'alianzas' },
+              { name: 'Videos', id: 'videos' },
+              { name: 'Noticias', id: 'noticias' }, { name: 'Descargas', id: 'descargas' },
+              { name: 'Formatos', id: 'formatos' },
+              { name: 'Afiches', id: 'afiches' },
+              { name: 'Donaciones', id: 'donaciones' },
+              { name: 'Afiliación', id: 'afiliacion' },
+              { name: 'Capacítate', id: 'capacitate' },
+              { name: 'Recursos', id: 'recursos' },
+              { name: 'Contacto', id: 'contacto' }
+            ].map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-md font-medium"
+              >
+                {item.name}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+    </nav>
 
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden p-2"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+    {/* Hero Section */}
+    <section id="inicio" className="relative min-h-screen flex items-center justify-center">
+      <div className="absolute inset-0">
+        <img 
+          src="/hero-image.jpg" 
+          alt="Derechos Humanos Colombia" 
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-800/80 to-transparent"></div>
+      </div>
+      
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="max-w-2xl">
+          <div className="inline-flex items-center px-4 py-2 bg-yellow-500/30 border-2 border-yellow-400 rounded-full mb-6">
+            <img src="/logo-uhr.png" alt="" className="w-6 h-6 mr-2" />
+            <span className="text-yellow-300 text-sm font-medium">CAPITULO AUTORIZADO EN COLOMBIA</span>
+          </div>
+      
+          
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            Unidos por los<br />
+            <span className="text-yellow-400">Derechos Humanos</span><br />
+            Capítulo Colombia
+          </h1>
+          
+          <p className="text-xl text-blue-100 mb-8 leading-relaxed">
+            Educando y empoderando a las comunidades colombianas sobre sus derechos fundamentales. 
+            Parte de la organización internacional con sede en Estados Unidos.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Button 
+              onClick={() => scrollToSection('recursos')}
+              className="bg-gradient-to-r from-yellow-500 to-yellow-400 hover:from-yellow-400 hover:to-yellow-300 text-blue-900 font-bold px-8 py-6 text-lg shadow-lg"
             >
-              {isMenuOpen ? (
-                <X className={`w-6 h-6 ${scrolled ? 'text-gray-900' : 'text-white'}`} />
-              ) : (
-                <Menu className={`w-6 h-6 ${scrolled ? 'text-gray-900' : 'text-white'}`} />
-              )}
-            </button>
+              <BookOpen className="w-5 h-5 mr-2" />
+              Explorar Recursos
+            </Button>
+            <Button 
+              onClick={() => scrollToSection('donaciones')}
+              className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 text-white font-bold px-8 py-6 text-lg shadow-lg"
+            >
+              <Heart className="w-5 h-5 mr-2" />
+              Donaciones
+            </Button>
+            <Button 
+              onClick={() => scrollToSection('contacto')}
+              className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold px-8 py-6 text-lg shadow-lg"
+            >
+              <Phone className="w-5 h-5 mr-2" />
+              Contáctanos
+            </Button>
+          </div>
+
+          <div className="mt-4">
+            <Button 
+              onClick={() => scrollToSection('capacitate')}
+              className="bg-gradient-to-r from-green-500 to-emerald-400 hover:from-green-400 hover:to-emerald-300 text-white font-bold px-8 py-6 text-lg shadow-lg w-full sm:w-auto animate-pulse"
+            >
+              <GraduationCap className="w-5 h-5 mr-2" />
+              Capacítate y Certifícate sin Costo
+            </Button>
+          </div>
+
+          {/* Search Bar */}
+          <form onSubmit={handleSearch} className="mt-8 max-w-xl">
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Buscar secciones, alianzas, formatos..."
+                className="w-full pl-12 pr-4 py-4 bg-white/95 backdrop-blur rounded-xl text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-400 shadow-lg text-base"
+              />
+              <button
+                type="submit"
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium text-sm transition-colors"
+              >
+                Buscar
+              </button>
+            </div>
+          </form>
+          </div>
+
+          {/* Logo Fundacion Capitulo UHR Colombia */}
+          <div className="hidden lg:flex justify-center">
+            <img 
+              src="/logo-fundacion-capitulo.jpg" 
+              alt="Fundacion Capitulo Unidos por los Derechos Humanos Colombia" 
+              className="w-80 h-80 object-contain rounded-full shadow-2xl border-4 border-yellow-400/50"
+            />
           </div>
         </div>
+      </div>
 
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-white shadow-lg">
-            <div className="px-4 py-4 space-y-3">
-              {[
-                { name: 'Inicio', id: 'inicio' },
-                { name: 'Nosotros', id: 'nosotros' },
-                { name: 'Consejo de Paz', id: 'consejo-paz' },
-                { name: 'Alianzas', id: 'alianzas' },
-                { name: 'Videos', id: 'videos' },
-                { name: 'Noticias', id: 'noticias' }, { name: 'Descargas', id: 'descargas' },
-                { name: 'Formatos', id: 'formatos' },
-                { name: 'Afiches', id: 'afiches' },
-                { name: 'Donaciones', id: 'donaciones' },
-                { name: 'Afiliación', id: 'afiliacion' },
-                { name: 'Capacítate', id: 'capacitate' },
-                { name: 'Recursos', id: 'recursos' },
-                { name: 'Contacto', id: 'contacto' }
-              ].map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-md font-medium"
-                >
-                  {item.name}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-      </nav>
-
-      {/* Hero Section */}
-      <section id="inicio" className="relative min-h-screen flex items-center justify-center">
-        <div className="absolute inset-0">
-          <img 
-            src="/hero-image.jpg" 
-            alt="Derechos Humanos Colombia" 
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-800/80 to-transparent"></div>
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+          <div className="w-1.5 h-3 bg-white/70 rounded-full mt-2"></div>
         </div>
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="max-w-2xl">
-            <div className="inline-flex items-center px-4 py-2 bg-yellow-500/30 border-2 border-yellow-400 rounded-full mb-6">
-              <img src="/logo-uhr.png" alt="" className="w-6 h-6 mr-2" />
-              <span className="text-yellow-300 text-sm font-medium">CAPITULO AUTORIZADO EN COLOMBIA</span>
+      </div>
+    </section>
+
+    {/* About Section */}
+    <section id="nosotros" className="py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <div className="inline-flex items-center px-4 py-2 bg-yellow-100 rounded-full mb-6">
+              <img src="/logo-uhr.png" alt="" className="w-5 h-5 mr-2" />
+              <span className="text-yellow-700 text-sm font-medium">Sobre Nosotros</span>
             </div>
-        
             
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              Unidos por los<br />
-              <span className="text-yellow-400">Derechos Humanos</span><br />
-              Capítulo Colombia
-            </h1>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+              Capítulo Colombia de<br />
+              <span className="text-yellow-600">Unidos por los Derechos Humanos</span>
+            </h2>
             
-            <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-              Educando y empoderando a las comunidades colombianas sobre sus derechos fundamentales. 
-              Parte de la organización internacional con sede en Estados Unidos.
+            <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+              La Fundación capítulo Unidos por los Derechos Humanos Colombia, y su movimiento 
+              "Unidos haremos de Colombia y el mundo un mejor lugar para vivir", se consolidan 
+              como un eje de articulación ciudadana para la protección de la dignidad humana.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                onClick={() => scrollToSection('recursos')}
-                className="bg-gradient-to-r from-yellow-500 to-yellow-400 hover:from-yellow-400 hover:to-yellow-300 text-blue-900 font-bold px-8 py-6 text-lg shadow-lg"
-              >
-                <BookOpen className="w-5 h-5 mr-2" />
-                Explorar Recursos
-              </Button>
-              <Button 
-                onClick={() => scrollToSection('contacto')}
-                variant="outline"
-                className="border-white text-white hover:bg-white/10 px-8 py-6 text-lg"
-              >
-                <Phone className="w-5 h-5 mr-2" />
-                Contáctanos
-              </Button>
-            </div>
+            <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+              A través de una red de apoyo estratégica, que integra organizaciones aliadas y 
+              mecanismos de veeduría en diversos ámbitos, garantizamos una presencia efectiva 
+              en la defensa y educación de los Derechos Humanos.
+            </p>
 
-            {/* Search Bar */}
-            <form onSubmit={handleSearch} className="mt-8 max-w-xl">
-              <div className="relative">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Buscar secciones, alianzas, formatos..."
-                  className="w-full pl-12 pr-4 py-4 bg-white/95 backdrop-blur rounded-xl text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-400 shadow-lg text-base"
-                />
-                <button
-                  type="submit"
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium text-sm transition-colors"
-                >
-                  Buscar
-                </button>
+            <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+              Nuestra labor trasciende la teoría: somos una plataforma de incidencia real que, 
+              mediante la cooperación técnica y el empoderamiento social, trabaja para que las 
+              garantías fundamentales sean el pilar de la convivencia en nuestro territorio y 
+              un referente de transformación global.
+            </p>
+
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div className="flex items-start space-x-3">
+                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Scale className="w-5 h-5 text-blue-600" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-900">Derechos Fundamentales</h4>
+                  <p className="text-gray-600 text-sm">Educación sobre derechos universales</p>
+                </div>
               </div>
-            </form>
+              <div className="flex items-start space-x-3">
+                <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <BookOpen className="w-5 h-5 text-yellow-600" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-900">Materiales Educativos</h4>
+                  <p className="text-gray-600 text-sm">Recursos oficiales de Human Rights</p>
+                </div>
+              </div>
             </div>
-
-            {/* Logo Fundacion Capitulo UHR Colombia */}
-            <div className="hidden lg:flex justify-center">
-              <img 
-                src="/logo-fundacion-capitulo.jpg" 
-                alt="Fundacion Capitulo Unidos por los Derechos Humanos Colombia" 
-                className="w-80 h-80 object-contain rounded-full shadow-2xl border-4 border-yellow-400/50"
-              />
+          </div>
+          
+          <div className="relative">
+            <img 
+              src="/educacion-image.jpg" 
+              alt="Educación en Derechos Humanos" 
+              className="rounded-2xl shadow-2xl"
+            />
+            <div className="absolute -bottom-6 -left-6 bg-gradient-to-br from-yellow-500 to-yellow-600 text-white p-6 rounded-xl shadow-lg">
+              <div className="text-3xl font-bold">100%</div>
+              <div className="text-yellow-100">Capítulo Autorizado</div>
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-            <div className="w-1.5 h-3 bg-white/70 rounded-full mt-2"></div>
-          </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section id="nosotros" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="inline-flex items-center px-4 py-2 bg-yellow-100 rounded-full mb-6">
-                <img src="/logo-uhr.png" alt="" className="w-5 h-5 mr-2" />
-                <span className="text-yellow-700 text-sm font-medium">Sobre Nosotros</span>
-              </div>
-              
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
-                Capítulo Colombia de<br />
-                <span className="text-yellow-600">Unidos por los Derechos Humanos</span>
-              </h2>
-              
-              <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                La Fundación capítulo Unidos por los Derechos Humanos Colombia, y su movimiento 
-                "Unidos haremos de Colombia y el mundo un mejor lugar para vivir", se consolidan 
-                como un eje de articulación ciudadana para la protección de la dignidad humana.
-              </p>
-              
-              <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                A través de una red de apoyo estratégica, que integra organizaciones aliadas y 
-                mecanismos de veeduría en diversos ámbitos, garantizamos una presencia efectiva 
-                en la defensa y educación de los Derechos Humanos.
-              </p>
-
-              <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-                Nuestra labor trasciende la teoría: somos una plataforma de incidencia real que, 
-                mediante la cooperación técnica y el empoderamiento social, trabaja para que las 
-                garantías fundamentales sean el pilar de la convivencia en nuestro territorio y 
-                un referente de transformación global.
-              </p>
-
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="flex items-start space-x-3">
-                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Scale className="w-5 h-5 text-blue-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900">Derechos Fundamentales</h4>
-                    <p className="text-gray-600 text-sm">Educación sobre derechos universales</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <BookOpen className="w-5 h-5 text-yellow-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900">Materiales Educativos</h4>
-                    <p className="text-gray-600 text-sm">Recursos oficiales de Human Rights</p>
-                  </div>
-                </div>
-              </div>
+    {/* Consejo Territorial de Paz Section */}
+    <section id="consejo-paz" className="py-16 bg-gradient-to-br from-sky-400 via-sky-500 to-blue-500">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="text-center lg:text-left">
+            <div className="inline-flex items-center px-4 py-2 bg-white/20 rounded-full mb-6">
+              <Scale className="w-4 h-4 text-white mr-2" />
+              <span className="text-white text-sm font-medium">Membresía Oficial</span>
             </div>
             
-            <div className="relative">
-              <img 
-                src="/educacion-image.jpg" 
-                alt="Educación en Derechos Humanos" 
-                className="rounded-2xl shadow-2xl"
-              />
-              <div className="absolute -bottom-6 -left-6 bg-gradient-to-br from-yellow-500 to-yellow-600 text-white p-6 rounded-xl shadow-lg">
-                <div className="text-3xl font-bold">100%</div>
-                <div className="text-yellow-100">Capítulo Autorizado</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Consejo Territorial de Paz Section */}
-      <section id="consejo-paz" className="py-16 bg-gradient-to-br from-sky-400 via-sky-500 to-blue-500">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="text-center lg:text-left">
-              <div className="inline-flex items-center px-4 py-2 bg-white/20 rounded-full mb-6">
-                <Scale className="w-4 h-4 text-white mr-2" />
-                <span className="text-white text-sm font-medium">Membresía Oficial</span>
-              </div>
-              
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-                Consejo Territorial de Paz, Reconciliación y Convivencia
-              </h2>
-              <p className="text-xl text-sky-100 mb-4">
-                Santiago de Cali
-              </p>
-              <p className="text-sky-50 text-lg mb-4 leading-relaxed">
-                Hacemos parte del Consejo Territorial de Paz, Reconciliación y Convivencia de Santiago de Cali 
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              Consejo Territorial de Paz, Reconciliación y Convivencia
+            </h2>
+            <p className="text-xl text-sky-100 mb-4">
+              Santiago de Cali
+            </p>
+            <p className="text-sky-50 text-lg mb-4 leading-relaxed">
+              Hacemos parte del Consejo Territorial de Paz, Reconciliación y Convivencia de Santiago de Cali
                 <span className="font-bold text-white"> en representación de la Fundación Árbol Fuente de Vida</span>, 
                 trabajando conjuntamente por la construcción de paz, la reconciliación y la convivencia ciudadana en nuestra ciudad.
               </p>
@@ -431,133 +429,198 @@ const handlePasswordSubmit = () => {
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      {/* Official Logo Section */}
-      <section className="py-16 bg-gradient-to-br from-yellow-600 via-yellow-500 to-yellow-400">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="inline-block mb-6">
-              <img 
-                src="/logo-uhr.png" 
-                alt="United for Human Rights - Logo Oficial" 
-                className="w-48 h-48 md:w-64 md:h-64 object-contain drop-shadow-2xl"
-              />
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Unidos por los Derechos Humanos
-            </h2>
-            <p className="text-xl text-yellow-100 mb-2">
-              <span className="font-semibold">Organización Internacional</span> con sede en Estados Unidos
-            </p>
-            <p className="text-lg text-yellow-50 max-w-3xl mx-auto">
-              Capítulo Colombia autorizado oficialmente. Utilizamos los logos, colores y materiales 
-              educativos oficiales de la sede principal.
-            </p>
-            <div className="mt-6 inline-flex items-center px-6 py-3 bg-white/20 backdrop-blur rounded-full">
-              <Globe className="w-5 h-5 text-white mr-2" />
-              <span className="text-white font-medium">www.humanrights.com</span>
-            </div>
+    {/* Official Logo Section */}
+    <section className="py-16 bg-gradient-to-br from-yellow-600 via-yellow-500 to-yellow-400">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <div className="inline-block mb-6">
+            <img 
+              src="/logo-uhr.png" 
+              alt="United for Human Rights - Logo Oficial" 
+              className="w-48 h-48 md:w-64 md:h-64 object-contain drop-shadow-2xl"
+            />
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Unidos por los Derechos Humanos
+          </h2>
+          <p className="text-xl text-yellow-100 mb-2">
+            <span className="font-semibold">Organización Internacional</span> con sede en Estados Unidos
+          </p>
+          <p className="text-lg text-yellow-50 max-w-3xl mx-auto">
+            Capítulo Colombia autorizado oficialmente. Utilizamos los logos, colores y materiales 
+            educativos oficiales de la sede principal.
+          </p>
+          <div className="mt-6 inline-flex items-center px-6 py-3 bg-white/20 backdrop-blur rounded-full">
+            <Globe className="w-5 h-5 text-white mr-2" />
+            <span className="text-white font-medium">www.humanrights.com</span>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      {/* Mission & Vision */}
-      <section className="py-20 bg-gradient-to-br from-blue-900 to-blue-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="bg-white/10 backdrop-blur border-white/20">
-              <CardHeader>
-                <div className="w-14 h-14 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-xl flex items-center justify-center mb-4 shadow-lg">
-                  <Heart className="w-7 h-7 text-white" />
-                </div>
-                <CardTitle className="text-2xl text-white">Nuestra Misión</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-blue-100 leading-relaxed">
-                  Educar y empoderar a las comunidades colombianas sobre sus derechos humanos 
-                  fundamentales, utilizando los recursos oficiales de la organización internacional 
-                  Unidos por los Derechos Humanos, para construir una sociedad más justa, 
-                  equitativa y consciente de sus libertades.
-                </p>
-              </CardContent>
-            </Card>
+    {/* Mission & Vision */}
+    <section className="py-20 bg-gradient-to-br from-blue-900 to-blue-800">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid md:grid-cols-2 gap-8">
+          <Card className="bg-white/10 backdrop-blur border-white/20">
+            <CardHeader>
+              <div className="w-14 h-14 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-xl flex items-center justify-center mb-4 shadow-lg">
+                <Heart className="w-7 h-7 text-white" />
+              </div>
+              <CardTitle className="text-2xl text-white">Nuestra Misión</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-blue-100 leading-relaxed">
+                Educar y empoderar a las comunidades colombianas sobre sus derechos humanos 
+                fundamentales, utilizando los recursos oficiales de la organización internacional 
+                Unidos por los Derechos Humanos, para construir una sociedad más justa, 
+                equitativa y consciente de sus libertades.
+              </p>
+            </CardContent>
+          </Card>
 
-            <Card className="bg-white/10 backdrop-blur border-white/20">
-              <CardHeader>
-                <div className="w-14 h-14 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-xl flex items-center justify-center mb-4 shadow-lg">
-                  <Globe className="w-7 h-7 text-white" />
-                </div>
-                <CardTitle className="text-2xl text-white">Nuestra Visión</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-blue-100 leading-relaxed">
-                  Ser el referente principal en educación de derechos humanos en Colombia, 
-                  alcanzando todas las regiones del país con materiales educativos de calidad, 
-                  formando una ciudadanía informada que defienda activamente los derechos 
-                  humanos para todos.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
+          <Card className="bg-white/10 backdrop-blur border-white/20">
+            <CardHeader>
+              <div className="w-14 h-14 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-xl flex items-center justify-center mb-4 shadow-lg">
+                <Globe className="w-7 h-7 text-white" />
+              </div>
+              <CardTitle className="text-2xl text-white">Nuestra Visión</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-blue-100 leading-relaxed">
+                Ser el referente principal en educación de derechos humanos en Colombia, 
+                alcanzando todas las regiones del país con materiales educativos de calidad, 
+                formando una ciudadanía informada que defienda activamente los derechos 
+                humanos para todos.
+              </p>
+            </CardContent>
+          </Card>
         </div>
-      </section>
+      </div>
+    </section>
 
-      {/* Alianzas Section */}
-      <section id="alianzas" className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 bg-blue-100 rounded-full mb-4">
-              <Users className="w-4 h-4 text-blue-600 mr-2" />
-              <span className="text-blue-700 text-sm font-medium">Nuestras Alianzas</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Organizaciones Aliadas
-            </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Trabajamos junto a diversas organizaciones para promover y defender los derechos humanos en Colombia
-            </p>
+    {/* Alianzas Section */}
+    <section id="alianzas" className="py-20 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center px-4 py-2 bg-blue-100 rounded-full mb-4">
+            <Users className="w-4 h-4 text-blue-600 mr-2" />
+            <span className="text-blue-700 text-sm font-medium">Nuestras Alianzas</span>
           </div>
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+            Organizaciones Aliadas
+          </h2>
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            Trabajamos junto a diversas organizaciones para promover y defender los derechos humanos en Colombia
+          </p>
+        </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* ONG ARBOL FUENTE DE VIDA */}
-            <Card className="hover:shadow-xl transition-shadow border-0 shadow-md">
-              <CardContent className="p-8 text-center">
-                <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
-                  <img 
-                    src="/logo-arbol-fuente-vida.png" 
-                    alt="ONG ARBOL FUENTE DE VIDA" 
-                    className="w-28 h-28 object-contain"
-                  />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">ONG ARBOL FUENTE DE VIDA</h3>
-                <p className="text-gray-600 text-sm mb-4">Fortalecer el tejido social generando confianza y bienestar de todos los sectores de la sociedad, ofreciendo servicios con altos estándares de calidad para el desarrollo social y económico comunitario.</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* ONG ARBOL FUENTE DE VIDA */}
+          <Card className="hover:shadow-xl transition-shadow border-0 shadow-md">
+            <CardContent className="p-8 text-center">
+              <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
+                <img 
+                  src="/logo-arbol-fuente-vida.png" 
+                  alt="ONG ARBOL FUENTE DE VIDA" 
+                  className="w-28 h-28 object-contain"
+                />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">ONG ARBOL FUENTE DE VIDA</h3>
+              <p className="text-gray-600 text-sm mb-4">Fortalecer el tejido social generando confianza y bienestar de todos los sectores de la sociedad, ofreciendo servicios con altos estándares de calidad para el desarrollo social y económico comunitario.</p>
+              <a 
+                href="https://ongfuentevidaddhhihrc.org/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-3 py-1.5 bg-green-600 text-white text-sm rounded-full hover:bg-green-700 transition-colors"
+              >
+                <Globe className="w-4 h-4 mr-1" />
+                Sitio Web
+              </a>
+            </CardContent>
+          </Card>
+
+          {/* NGO CAPEHALCONES / Fundación Hawks */}
+          <Card className="hover:shadow-xl transition-shadow border-0 shadow-md">
+            <CardContent className="p-8 text-center">
+              <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
+                <img 
+                  src="/logo-hawks.jpg" 
+                  alt="NGO CAPEHALCONES" 
+                  className="w-28 h-28 object-contain"
+                />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">NGO CAPEHALCONES</h3>
+              <p className="text-gray-600 text-sm mb-4">Organización no gubernamental dedicada a la protección y promoción de los derechos humanos, trabajando por la justicia social y el bienestar de las comunidades vulnerables.</p>
+              <a 
+                href="https://www.facebook.com/people/Ngo-Capehalcones/pfbid026Q9rnsE9Vy3WbFuWsbE9XKFr82u69LJmNYnF7KgALACv4GJfvob7PyC7abXWomjNl/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-3 py-1.5 bg-blue-600 text-white text-sm rounded-full hover:bg-blue-700 transition-colors"
+              >
+                <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+                Facebook
+              </a>
+            </CardContent>
+          </Card>
+
+          {/* Veeduría Ciudadana de la Nación Cali */}
+          <Card className="hover:shadow-xl transition-shadow border-0 shadow-md">
+            <CardContent className="p-8 text-center">
+              <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
+                <img 
+                  src="/logo-veeduria-nacion.jpg" 
+                  alt="Veeduría Ciudadana de la Nación Cali" 
+                  className="w-28 h-28 object-contain"
+                />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Veeduría Ciudadana de la Nación Cali</h3>
+              <p className="text-gray-600 text-sm mb-4">Veeduría ciudadana facultada por la Ley 850 de 2003 para el control social, vigilancia y seguimiento de la gestión pública, promoviendo la transparencia y el buen uso de los recursos públicos.</p>
+              <a 
+                href="https://www.facebook.com/Veeduriacali/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-3 py-1.5 bg-blue-600 text-white text-sm rounded-full hover:bg-blue-700 transition-colors"
+              >
+                <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+                Facebook
+              </a>
+            </CardContent>
+          </Card>
+
+          {/* SACCOL */}
+          <Card className="hover:shadow-xl transition-shadow border-0 shadow-md">
+            <CardContent className="p-8 text-center">
+              <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
+                <img 
+                  src="/logo-saccol.png" 
+                  alt="SACCOL" 
+                  className="w-28 h-28 object-contain"
+                />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">SACCOL</h3>
+              <p className="text-gray-600 text-sm mb-4">Sindicato de Acción Comunal de Colombia - Organización que promueve el fortalecimiento de las organizaciones comunales y la participación ciudadana en la construcción de tejido social.</p>
+              <div className="flex justify-center gap-3">
                 <a 
-                  href="https://ongfuentevidaddhhihrc.org/" 
+                  href="https://www.instagram.com/saccolguacari/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center px-3 py-1.5 bg-green-600 text-white text-sm rounded-full hover:bg-green-700 transition-colors"
+                  className="inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm rounded-full hover:opacity-90 transition-opacity"
                 >
-                  <Globe className="w-4 h-4 mr-1" />
-                  Sitio Web
+                  <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                  </svg>
+                  Instagram
                 </a>
-              </CardContent>
-            </Card>
-
-            {/* NGO CAPEHALCONES / Fundación Hawks */}
-            <Card className="hover:shadow-xl transition-shadow border-0 shadow-md">
-              <CardContent className="p-8 text-center">
-                <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
-                  <img 
-                    src="/logo-hawks.jpg" 
-                    alt="NGO CAPEHALCONES" 
-                    className="w-28 h-28 object-contain"
-                  />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">NGO CAPEHALCONES</h3>
-                <p className="text-gray-600 text-sm mb-4">Organización no gubernamental dedicada a la protección y promoción de los derechos humanos, trabajando por la justicia social y el bienestar de las comunidades vulnerables.</p>
                 <a 
-                  href="https://www.facebook.com/share/1Cic3HMD9L/" 
+                  href="https://www.facebook.com/SACCOLGuacariOficial/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center px-3 py-1.5 bg-blue-600 text-white text-sm rounded-full hover:bg-blue-700 transition-colors"
@@ -567,85 +630,21 @@ const handlePasswordSubmit = () => {
                   </svg>
                   Facebook
                 </a>
-              </CardContent>
-            </Card>
+              </div>
+            </CardContent>
+          </Card>
 
-            {/* Veeduría Ciudadana de la Nación Cali */}
-            <Card className="hover:shadow-xl transition-shadow border-0 shadow-md">
-              <CardContent className="p-8 text-center">
-                <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
-                  <img 
-                    src="/logo-veeduria-nacion.jpg" 
-                    alt="Veeduría Ciudadana de la Nación Cali" 
-                    className="w-28 h-28 object-contain"
-                  />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Veeduría Ciudadana de la Nación Cali</h3>
-                <p className="text-gray-600 text-sm mb-4">Veeduría ciudadana facultada por la Ley 850 de 2003 para el control social, vigilancia y seguimiento de la gestión pública, promoviendo la transparencia y el buen uso de los recursos públicos.</p>
-                <a 
-                  href="https://www.facebook.com/share/18b3HgPjuw/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-3 py-1.5 bg-blue-600 text-white text-sm rounded-full hover:bg-blue-700 transition-colors"
-                >
-                  <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                  </svg>
-                  Facebook
-                </a>
-              </CardContent>
-            </Card>
-
-            {/* SACCOL */}
-            <Card className="hover:shadow-xl transition-shadow border-0 shadow-md">
-              <CardContent className="p-8 text-center">
-                <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
-                  <img 
-                    src="/logo-saccol.png" 
-                    alt="SACCOL" 
-                    className="w-28 h-28 object-contain"
-                  />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">SACCOL</h3>
-                <p className="text-gray-600 text-sm mb-4">Sindicato de Acción Comunal de Colombia - Organización que promueve el fortalecimiento de las organizaciones comunales y la participación ciudadana en la construcción de tejido social.</p>
-                <div className="flex justify-center gap-3">
-                  <a 
-                    href="https://www.instagram.com/saccolguacari/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm rounded-full hover:opacity-90 transition-opacity"
-                  >
-                    <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                    </svg>
-                    Instagram
-                  </a>
-                  <a 
-                    href="https://www.facebook.com/SACCOLGuacariOficial/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center px-3 py-1.5 bg-blue-600 text-white text-sm rounded-full hover:bg-blue-700 transition-colors"
-                  >
-                    <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                    </svg>
-                    Facebook
-                  </a>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Fundación El Camino de la Felicidad */}
-            <Card className="hover:shadow-xl transition-shadow border-0 shadow-md">
-              <CardContent className="p-8 text-center">
-                <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
-                  <img 
-                    src="/logo-camino-felicidad.jpg" 
-                    alt="Fundación El Camino de la Felicidad" 
-                    className="w-28 h-28 object-contain"
-                  />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Fundación El Camino de la Felicidad</h3>
+          {/* Fundación El Camino de la Felicidad */}
+          <Card className="hover:shadow-xl transition-shadow border-0 shadow-md">
+            <CardContent className="p-8 text-center">
+              <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
+                <img 
+                  src="/logo-camino-felicidad.jpg" 
+                  alt="Fundación El Camino de la Felicidad" 
+                  className="w-28 h-28 object-contain"
+                />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Fundación El Camino de la Felicidad</h3>
                 <p className="text-gray-600 text-sm mb-4">Revertir la decadencia moral de la sociedad al restaurar la confianza y honestidad a través de la distribución amplia del libro "El Camino a la Felicidad", una guía basada en el sentido común para vivir mejor.</p>
                 <a 
                   href="https://www.elcaminoalafelicidad.mx/" 
@@ -888,7 +887,7 @@ const handlePasswordSubmit = () => {
             <div className="bg-gradient-to-r from-red-600 to-orange-500 p-6 text-white">
               <div className="flex items-center gap-4">
                 <img 
-                  src="/logo-cuarta-vigilia.jpg" 
+                  src="/logo-cuarta-vigilia.png" 
                   alt="Cuarta Vigilia" 
                   className="w-20 h-20 rounded-full object-cover border-2 border-white/30 shadow-lg flex-shrink-0"
                 />
@@ -991,28 +990,27 @@ const handlePasswordSubmit = () => {
                       <div className="flex items-center justify-between">
                         <span className="text-xs text-gray-500">{item.type} • {item.size}</span>
                         {item.title === 'Manual de Veedurías' ? (
-  <Button 
-    size="sm" 
-    variant="outline" 
-    className="text-purple-600 border-purple-600 hover:bg-purple-50"
-    onClick={() => {
-      setShowPasswordModal(true)
-      setPasswordInput('')
-      setPasswordError('')
-    }}
-  >
-    <Download className="w-4 h-4 mr-1" />
-    Descargar
-  </Button>
-) : (
-  <a href={item.url} target="_blank" rel="noopener noreferrer">
-    <Button size="sm" variant="outline" className="text-blue-600 border-blue-600 hover:bg-blue-50">
-      <Download className="w-4 h-4 mr-1" />
-      Descargar
-    </Button>
-  </a>
-)}
-
+                          <Button 
+                            size="sm" 
+                            variant="outline" 
+                            className="text-purple-600 border-purple-600 hover:bg-purple-50"
+                            onClick={() => {
+                              setShowPasswordModal(true)
+                              setPasswordInput('')
+                              setPasswordError('')
+                            }}
+                          >
+                            <Download className="w-4 h-4 mr-1" />
+                            Descargar
+                          </Button>
+                        ) : (
+                          <a href={item.url} target="_blank" rel="noopener noreferrer">
+                            <Button size="sm" variant="outline" className="text-blue-600 border-blue-600 hover:bg-blue-50">
+                              <Download className="w-4 h-4 mr-1" />
+                              Descargar
+                            </Button>
+                          </a>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -1025,7 +1023,7 @@ const handlePasswordSubmit = () => {
         </div>
       </section>
 
-            {/* Afiches Section */}
+      {/* Afiches Section */}
       <section id="afiches" className="py-20 bg-gradient-to-br from-purple-50 to-pink-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -1042,54 +1040,30 @@ const handlePasswordSubmit = () => {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-            {[
-              { num: 1, title: 'Derechos Humanos - Art. 1', file: 'afiche-01.jpg', subtitle: 'Art. 1' },
-              { num: 2, title: 'Derechos Humanos - Art. 2', file: 'afiche-02.jpg', subtitle: 'Art. 2' },
-              { num: 3, title: 'Derechos Humanos - Art. 3', file: 'afiche-03.jpg', subtitle: 'Art. 3' },
-              { num: 4, title: 'Derechos Humanos - Art. 4', file: 'afiche-04.jpg', subtitle: 'Art. 4' },
-              { num: 5, title: 'Derechos Humanos - Art. 5', file: 'afiche-05.jpg', subtitle: 'Art. 5' },
-              { num: 6, title: 'Derechos Humanos - Art. 6', file: 'afiche-06.jpg', subtitle: 'Art. 6' },
-              { num: 7, title: 'Derechos Humanos - Art. 7', file: 'afiche-07.jpg', subtitle: 'Art. 7' },
-              { num: 8, title: 'Derechos Humanos - Art. 8', file: 'afiche-08.jpg', subtitle: 'Art. 8' },
-              { num: 9, title: 'Derechos Humanos - Art. 9', file: 'afiche-09.jpg', subtitle: 'Art. 9' },
-              { num: 10, title: 'Derechos Humanos - Art. 10', file: 'afiche-10.jpg', subtitle: 'Art. 10' },
-              { num: 11, title: 'Derechos Humanos - Art. 11 #1', file: 'afiche-11.jpg', subtitle: 'Art. 11 #1' },
-              { num: 11, title: 'Derechos Humanos - Art. 11 #2', file: 'afiche-11-2.jpg', subtitle: 'Art. 11 #2' },
-              { num: 12, title: 'Derechos Humanos - Art. 12', file: 'afiche-12.jpg', subtitle: 'Art. 12' },
-              { num: 13, title: 'Derechos Humanos - Art. 13 #1', file: 'afiche-13-1.jpg', subtitle: 'Art. 13 #1' },
-              { num: 13, title: 'Derechos Humanos - Art. 13 #2', file: 'afiche-13-2.jpg', subtitle: 'Art. 13 #2' },
-              { num: 14, title: 'Derechos Humanos - Art. 14 #1', file: 'afiche-14-1.jpg', subtitle: 'Art. 14 #1' },
-              { num: 14, title: 'Derechos Humanos - Art. 14 #2', file: 'afiche-14-2.jpg', subtitle: 'Art. 14 #2' },
-              { num: 15, title: 'Derechos Humanos - Art. 15 #1', file: 'afiche-15-1.jpg', subtitle: 'Art. 15 #1' },
-              { num: 15, title: 'Derechos Humanos - Art. 15 #2', file: 'afiche-15-2.jpg', subtitle: 'Art. 15 #2' },
-              { num: 16, title: 'Derechos Humanos - Art. 16 #1', file: 'afiche-16-1.jpg', subtitle: 'Art. 16 #1' },
-              { num: 16, title: 'Derechos Humanos - Art. 16 #2', file: 'afiche-16-2.jpg', subtitle: 'Art. 16 #2' },
-              { num: 16, title: 'Derechos Humanos - Art. 16 #3', file: 'afiche-16-3.jpg', subtitle: 'Art. 16 #3' },
-              { num: 17, title: 'Derechos Humanos - Art. 17 #1', file: 'afiche-17-1.png', subtitle: 'Art. 17 #1' },
-              { num: 17, title: 'Derechos Humanos - Art. 17 #2', file: 'afiche-17-2.png', subtitle: 'Art. 17 #2' },
-              { num: 18, title: 'Derechos Humanos - Art. 18', file: 'afiche-18.jpg', subtitle: 'Art. 18' },
-              { num: 19, title: 'Derechos Humanos - Art. 19', file: 'afiche-19.jpg', subtitle: 'Art. 19' },
-              { num: 20, title: 'Derechos Humanos - Art. 20 #1', file: 'afiche-20-1.jpg', subtitle: 'Art. 20 #1' },
-              { num: 20, title: 'Derechos Humanos - Art. 20 #2', file: 'afiche-20-2.jpg', subtitle: 'Art. 20 #2' },
-              { num: 21, title: 'Derechos Humanos - Art. 21 #1', file: 'afiche-21-1.jpg', subtitle: 'Art. 21 #1' }
-
-            ].map((afiche, index) => (
-              <Card key={`${afiche.subtitle}-${index}`} className="overflow-hidden hover:shadow-xl transition-shadow border-0 shadow-md group">
-                <div className="aspect-[3/4] bg-gray-100 overflow-hidden">
+            {afichesList.map((afiche, index) => (
+              <Card key={`${afiche.subtitle}-${index}`} className="overflow-hidden hover:shadow-xl transition-shadow border-0 shadow-md group cursor-pointer" onClick={() => openGallery(index)}>
+                <div className="aspect-[3/4] bg-gray-100 overflow-hidden relative">
                   <img 
-                    src={`/afiches/${afiche.file}`}
-                    alt={`${afiche.subtitle}`}
+                    src={"/afiches/" + afiche.file}
+                    alt={afiche.subtitle}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
                   />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                    <div className="w-10 h-10 bg-white/80 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
+                      <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                      </svg>
+                    </div>
+                  </div>
                 </div>
                 <CardContent className="p-4">
                   <p className="text-xs text-purple-600 font-semibold mb-1">{afiche.subtitle}</p>
                   <h3 className="font-bold text-gray-900 text-sm mb-3 truncate">{afiche.title}</h3>
                   <a 
-                    href={`/afiches/${afiche.file}`}
+                    href={"/afiches/" + afiche.file}
                     download={afiche.file}
                     className="block w-full"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <Button size="sm" variant="outline" className="w-full text-purple-600 border-purple-600 hover:bg-purple-50 text-xs">
                       <Download className="w-3 h-3 mr-1" />
@@ -1101,7 +1075,8 @@ const handlePasswordSubmit = () => {
             ))}
           </div>
         </div>
-        
+      </section>
+
       {/* Donaciones Section */}
       <section id="donaciones" className="py-20 bg-gradient-to-br from-green-50 to-emerald-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1117,21 +1092,21 @@ const handlePasswordSubmit = () => {
           </div>
           <Card className="max-w-md mx-auto border-0 shadow-xl">
             <CardContent className="p-6">
-              <a href="https://wa.me/573016733819?text=Hola%2C%20quiero%20hacer%20una%20donacion%20por%20Nequi" target="_blank" rel="noopener noreferrer" className="block">
+              <a href="https://web.whatsapp.com/send?phone=573016733819&text=Hola%2C%20quiero%20hacer%20una%20donacion%20por%20Nequi" target="_blank" rel="noopener noreferrer" className="block">
                 <div className="bg-gray-100 rounded-lg p-4 mb-4 text-center hover:bg-gray-200 transition-colors cursor-pointer">
                   <p className="font-bold text-gray-900 mb-1">Nequi</p>
                   <p className="text-2xl font-bold text-gray-900">301 673 3819</p>
                   <p className="text-sm text-gray-600 mt-1">Toca para coordinar donacion por Nequi</p>
                 </div>
               </a>
-              <a href="https://wa.me/573016733819?text=Hola%2C%20quiero%20hacer%20una%20donacion%20por%20Bre-B" target="_blank" rel="noopener noreferrer" className="block">
+              <a href="https://web.whatsapp.com/send?phone=573016733819&text=Hola%2C%20quiero%20hacer%20una%20donacion%20por%20Bre-B" target="_blank" rel="noopener noreferrer" className="block">
                 <div className="bg-gray-100 rounded-lg p-4 mb-4 text-center hover:bg-gray-200 transition-colors cursor-pointer">
                   <p className="font-bold text-gray-900 mb-1">Bre-B (Llave)</p>
                   <p className="text-2xl font-bold text-gray-900">301 673 3819</p>
                   <p className="text-sm text-gray-600 mt-1">Toca para coordinar donacion por Bre-B</p>
                 </div>
               </a>
-              <a href="https://wa.me/573016733819?text=Hola%2C%20quiero%20hacer%20una%20donacion" target="_blank" rel="noopener noreferrer" className="block">
+              <a href="https://web.whatsapp.com/send?phone=573016733819&text=Hola%2C%20quiero%20hacer%20una%20donacion" target="_blank" rel="noopener noreferrer" className="block">
                 <div className="bg-green-500 rounded-lg p-4 hover:bg-green-600 transition-colors cursor-pointer text-center text-white">
                   <p className="font-bold mb-1">Coordinar donacion por WhatsApp</p>
                   <p className="text-sm">Toca para escribirnos</p>
@@ -1142,7 +1117,7 @@ const handlePasswordSubmit = () => {
         </div>
       </section>
 
-      </section>{/* Formulario de Afiliacion */}
+      {/* Formulario de Afiliacion */}
       <section id="afiliacion" className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -1170,204 +1145,148 @@ const handlePasswordSubmit = () => {
                   <Button onClick={() => setFormEnviado(false)} variant="outline" className="text-blue-600 border-blue-600">
                     Enviar otra afiliacion
                   </Button>
+                  </div>
                 </div>
-              ) : (
-                <form onSubmit={handleFormSubmit} className="space-y-5">
-                  <div className="grid sm:grid-cols-2 gap-5">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Nombres y Apellidos *</label>
-                      <input type="text" name="nombre" value={formData.nombre} onChange={handleFormChange} required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="Tu nombre completo" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Correo Electronico *</label>
-                      <input type="email" name="email" value={formData.email} onChange={handleFormChange} required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="tu@email.com" />
-                    </div>
-                  </div>
+              </div>
+            </div>
 
-                  <div className="grid sm:grid-cols-2 gap-5">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Tipo de Documento *</label>
-                      <select name="tipoDocumento" value={formData.tipoDocumento} onChange={handleFormChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        <option value="CC">Cedula de Ciudadania</option>
-                        <option value="CE">Cedula de Extranjeria</option>
-                        <option value="PA">Pasaporte</option>
-                        <option value="TI">Tarjeta de Identidad</option>
-                        <option value="PEP">PEP</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Numero de Documento *</label>
-                      <input type="text" name="documento" value={formData.documento} onChange={handleFormChange} required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="1234567890" />
-                    </div>
-                  </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Ciudad</label>
+              <input 
+                type="text"
+                value={formData.ciudad}
+                onChange={(e) => setFormData({...formData, ciudad: e.target.value})}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Tu ciudad"
+              />
+            </div>
 
-                  <div className="grid sm:grid-cols-2 gap-5">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Telefono / WhatsApp *</label>
-                      <input type="tel" name="telefono" value={formData.telefono} onChange={handleFormChange} required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="301 673 3819" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Ciudad *</label>
-                      <input type="text" name="ciudad" value={formData.ciudad} onChange={handleFormChange} required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="Cali" />
-                    </div>
-                  </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Departamento</label>
+              <input 
+                type="text"
+                value={formData.departamento}
+                onChange={(e) => setFormData({...formData, departamento: e.target.value})}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Tu departamento"
+              />
+            </div>
 
-                  <div className="grid sm:grid-cols-2 gap-5">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Departamento *</label>
-                      <input type="text" name="departamento" value={formData.departamento} onChange={handleFormChange} required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="Valle del Cauca" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Ocupacion / Profesion</label>
-                      <input type="text" name="ocupacion" value={formData.ocupacion} onChange={handleFormChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="Estudiante, Profesor, etc." />
-                    </div>
-                  </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Ocupación</label>
+              <input 
+                type="text"
+                value={formData.ocupacion}
+                onChange={(e) => setFormData({...formData, ocupacion: e.target.value})}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Tu ocupación"
+              />
+            </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">¿Por que deseas afiliarte? *</label>
-                    <textarea name="motivo" value={formData.motivo} onChange={handleFormChange} required rows={3}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="Cuéntanos tu motivacion para unirte..."></textarea>
-                  </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">¿Por qué quieres afiliarte?</label>
+              <textarea 
+                rows={3}
+                value={formData.motivo}
+                onChange={(e) => setFormData({...formData, motivo: e.target.value})}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Cuéntanos tu motivación..."
+              ></textarea>
+            </div>
 
-                  <Button type="submit" className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-4 text-lg font-bold">
-                    <Mail className="w-5 h-5 mr-2" />
-                    Enviar Solicitud de Afiliacion
-                  </Button>
+            <Button 
+              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-3"
+              onClick={handleAfiliacion}
+            >
+              <Mail className="w-5 h-5 mr-2" />
+              Enviar solicitud de afiliación
+            </Button>
 
-                  <p className="text-center text-xs text-gray-500 mt-4">
-                    Al enviar, se abrira tu correo con los datos. El correo se enviara a: fundacioncapitulounidosporlodh@gmail.com
-                  </p>
-                </form>
-              )}
-            </CardContent>
-          </Card>
+            <p className="text-xs text-gray-500 text-center">
+              Al enviar, se abrirá tu cliente de correo con la información completa.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Formatos Section */}
-      <section id="formatos" className="py-20 bg-white">
+      {/* Formularios y Formatos Section */}
+      <section id="formatos" className="py-20 bg-gradient-to-br from-purple-50 to-pink-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 bg-green-100 rounded-full mb-4">
-              <FileText className="w-4 h-4 text-green-600 mr-2" />
-              <span className="text-green-700 text-sm font-medium">Formatos y Documentos</span>
+            <div className="inline-flex items-center px-4 py-2 bg-purple-100 rounded-full mb-4">
+              <FileText className="w-4 h-4 text-purple-600 mr-2" />
+              <span className="text-purple-700 text-sm font-medium">Formatos y Documentos</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Formatos
+              Formularios Oficiales
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Formularios y documentos oficiales para tramites y solicitudes
+              Descarga los formatos oficiales de la fundación para denuncias, solicitudes y documentación
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {[ 
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
               {
-                title: 'Solicitud de Capacitación',
-                description: 'Formulario para solicitar talleres y capacitaciones',
-                format: 'PDF',
-                url: '/formatos/solicitud-capacitacion.pdf'
+                title: 'Formato de Denuncia',
+                description: 'Documento oficial para presentar denuncias ante la fundación',
+                type: 'PDF',
+                size: '245 KB',
+                color: 'bg-red-500'
               },
               {
-                title: 'Reporte de Violación de DDHH',
-                description: 'Formato para reportar presuntas violaciones de derechos humanos',
-                format: 'PDF',
-                url: '/reporte-violacion-ddhh.pdf'
+                title: 'Solicitud de Auxilio',
+                description: 'Formato para solicitar apoyo y auxilio a la fundación',
+                type: 'PDF',
+                size: '189 KB',
+                color: 'bg-blue-500'
               },
               {
-                title: 'Autorización de Uso de Imagen',
-                description: 'Formulario para autorizar uso de imagen en eventos',
-                format: 'PDF',
-                url: '/formatos/autorizacion-imagen.pdf'
+                title: 'Carta de Veeduría',
+                description: 'Formato oficial para ejercer veeduría ciudadana',
+                type: 'PDF',
+                size: '156 KB',
+                color: 'bg-green-500'
               },
               {
-                title: 'Solicitud de Alianza',
-                description: 'Formulario para solicitar alianza estratégica con nuestra fundación',
-                format: 'PDF',
-                url: '/formatos/solicitud-alianza.pdf'
+                title: 'Solicitud de Información',
+                description: 'Formato para solicitar información a entidades públicas',
+                type: 'PDF',
+                size: '198 KB',
+                color: 'bg-amber-500'
               },
               {
-                title: 'Carta de Compromiso',
-                description: 'Formato de compromiso para voluntarios y colaboradores',
-                format: 'PDF',
-                url: '/formatos/carta-compromiso.pdf'
+                title: 'Formato de Queja',
+                description: 'Documento para presentar quejas formales',
+                type: 'PDF',
+                size: '167 KB',
+                color: 'bg-purple-500'
               },
               {
-                title: 'Formato Derecho de Petición',
-                description: 'Modelo para ejercer el derecho de petición constitucional',
-                format: 'PDF',
-                url: '/formato-derecho-peticion.pdf'
-              },
-              {
-                title: 'Formato Observación Procedimiento',
-                description: 'Formato para observar procedimientos administrativos',
-                format: 'PDF',
-                url: '/formato-observacion-procedimiento.pdf'
-              },
-              {
-                title: 'Modelo de Petición',
-                description: 'Ejemplo práctico de derecho de petición',
-                format: 'PDF',
-                url: '/modelo-de-peticion-1.pdf'
-              },
-              {
-                title: 'Modelo de Tutela',
-                description: 'Ejemplo práctico de acción de tutela',
-                format: 'PDF',
-                url: '/modelo-de-tutela-1.pdf'
+                title: 'Consentimiento Informado',
+                description: 'Formato de consentimiento para participación en actividades',
+                type: 'PDF',
+                size: '203 KB',
+                color: 'bg-teal-500'
               }
             ].map((item, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow border-0 shadow-md">
                 <CardContent className="p-6">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <FileText className="w-6 h-6 text-green-600" />
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-gray-900 mb-1">{item.title}</h3>
-                        <p className="text-gray-600 text-sm">{item.description}</p>
+                  <div className="flex items-start space-x-4">
+                    <div className={`w-12 h-12 ${item.color} rounded-lg flex items-center justify-center flex-shrink-0`}>
+                      <FileText className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-bold text-gray-900 mb-1">{item.title}</h3>
+                      <p className="text-gray-600 text-sm mb-3">{item.description}</p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-gray-500">{item.type} • {item.size}</span>
+                        <Button size="sm" variant="outline" className="text-blue-600 border-blue-600 hover:bg-blue-50">
+                          <Download className="w-4 h-4 mr-1" />
+                          Descargar
+                        </Button>
                       </div>
                     </div>
-                    {item.title === 'Manual de Veedurías' ? (
-  <Button 
-    size="sm" 
-    variant="outline" 
-    className="text-purple-600 border-purple-600 hover:bg-purple-50"
-    onClick={() => {
-      setShowPasswordModal(true)
-      setPasswordInput('')
-      setPasswordError('')
-    }}
-  >
-    <Download className="w-4 h-4 mr-1" />
-    Descargar
-  </Button>
-) : (
-  <a href={item.url} target="_blank" rel="noopener noreferrer">
-    <Button size="sm" variant="outline" className="text-blue-600 border-blue-600 hover:bg-blue-50">
-      <Download className="w-4 h-4 mr-1" />
-      Descargar
-    </Button>
-  </a>
-)}
-
                   </div>
                 </CardContent>
               </Card>
@@ -1377,15 +1296,15 @@ const handlePasswordSubmit = () => {
       </section>
 
       {/* Capacítate Section */}
-      <section id="capacitate" className="py-20 bg-gradient-to-br from-yellow-50 to-orange-50">
+      <section id="capacitate" className="py-20 bg-gradient-to-br from-indigo-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 bg-yellow-100 rounded-full mb-4">
-              <GraduationCap className="w-4 h-4 text-yellow-600 mr-2" />
-              <span className="text-yellow-700 text-sm font-medium">Capacitación</span>
+            <div className="inline-flex items-center px-4 py-2 bg-indigo-100 rounded-full mb-4">
+              <GraduationCap className="w-4 h-4 text-indigo-600 mr-2" />
+              <span className="text-indigo-700 text-sm font-medium">Capacitación Gratuita</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Capacítate
+              Capacítate y Certifícate sin Costo
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
               Accede a cursos gratuitos sobre derechos humanos y desarrolla tus habilidades
@@ -1482,7 +1401,6 @@ const handlePasswordSubmit = () => {
                 </div>
               </CardContent>
             </Card>
-
             {/* Campus Virtual OPS/OMS */}
             <Card className="hover:shadow-xl transition-shadow border-0 shadow-md overflow-hidden">
               <div className="h-48 bg-gradient-to-br from-cyan-600 to-blue-700 flex items-center justify-center">
@@ -1498,11 +1416,7 @@ const handlePasswordSubmit = () => {
                 </p>
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-green-600 font-medium">Gratuito</span>
-                  <a 
-                    href="https://campus.paho.org/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                  >
+                  <a href="https://campus.paho.org/" target="_blank" rel="noopener noreferrer">
                     <Button size="sm" className="bg-cyan-600 hover:bg-cyan-700">
                       <ExternalLink className="w-4 h-4 mr-1" />
                       Acceder
@@ -1527,11 +1441,7 @@ const handlePasswordSubmit = () => {
                 </p>
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-green-600 font-medium">Gratuito</span>
-                  <a 
-                    href="https://www.defensoria.gov.co/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                  >
+                  <a href="https://www.defensoria.gov.co/" target="_blank" rel="noopener noreferrer">
                     <Button size="sm" className="bg-indigo-600 hover:bg-indigo-700">
                       <ExternalLink className="w-4 h-4 mr-1" />
                       Acceder
@@ -1556,11 +1466,7 @@ const handlePasswordSubmit = () => {
                 </p>
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-green-600 font-medium">Gratuito</span>
-                  <a 
-                    href="https://sirecec4.esap.edu.co/inicio" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                  >
+                  <a href="https://sirecec4.esap.edu.co/inicio" target="_blank" rel="noopener noreferrer">
                     <Button size="sm" className="bg-yellow-600 hover:bg-yellow-700">
                       <ExternalLink className="w-4 h-4 mr-1" />
                       Acceder
@@ -1616,13 +1522,7 @@ const handlePasswordSubmit = () => {
                 icon: GraduationCap
               }
             ].map((resource, index) => (
-              <a 
-                key={index}
-                href={resource.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block"
-              >
+              <a key={index} href={resource.url} target="_blank" rel="noopener noreferrer" className="block">
                 <Card className="bg-white/10 backdrop-blur border-white/20 hover:bg-white/20 transition-colors h-full">
                   <CardContent className="p-6 text-center">
                     <div className="w-14 h-14 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-xl flex items-center justify-center mx-auto mb-4">
@@ -1680,12 +1580,7 @@ const handlePasswordSubmit = () => {
                     <div>
                       <h3 className="font-bold text-gray-900 mb-1">Teléfono / WhatsApp</h3>
                       <p className="text-gray-600">301 673 3819</p>
-                      <a 
-                        href="https://wa.me/573016733819" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center text-green-600 hover:text-green-700 text-sm mt-1 font-medium"
-                      >
+                      <a href="https://web.whatsapp.com/send?phone=573016733819" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-green-600 hover:text-green-700 text-sm mt-1 font-medium">
                         <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                         </svg>
@@ -1743,15 +1638,11 @@ const handlePasswordSubmit = () => {
               </Card>
 
               {/* QR Codes */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-3 gap-4">
                 <Card className="border-0 shadow-md">
                   <CardContent className="p-4 text-center">
                     <a href="https://www.instagram.com/capitulounidosddhhcol/" target="_blank" rel="noopener noreferrer">
-                      <img 
-                        src="/qr-instagram.jpg" 
-                        alt="QR Instagram" 
-                        className="w-24 h-24 mx-auto mb-2 hover:scale-105 transition-transform"
-                      />
+                      <img src="/qr-instagram.jpg" alt="QR Instagram" className="w-24 h-24 mx-auto mb-2 hover:scale-105 transition-transform" />
                     </a>
                     <p className="text-sm text-gray-600">Instagram</p>
                   </CardContent>
@@ -1759,13 +1650,17 @@ const handlePasswordSubmit = () => {
                 <Card className="border-0 shadow-md">
                   <CardContent className="p-4 text-center">
                     <a href="https://www.tiktok.com/@capitulounidosddhhcol" target="_blank" rel="noopener noreferrer">
-                      <img 
-                        src="/qr-tiktok.png" 
-                        alt="QR TikTok" 
-                        className="w-24 h-24 mx-auto mb-2 hover:scale-105 transition-transform"
-                      />
+                      <img src="/qr-tiktok.png" alt="QR TikTok" className="w-24 h-24 mx-auto mb-2 hover:scale-105 transition-transform" />
                     </a>
                     <p className="text-sm text-gray-600">TikTok</p>
+                  </CardContent>
+                </Card>
+                <Card className="border-0 shadow-md">
+                  <CardContent className="p-4 text-center">
+                    <a href="https://fundacioncapitulounidosporlos-ddhh.netlify.app/" target="_blank" rel="noopener noreferrer">
+                      <img src="/qr-code-sitio-web.png" alt="QR Sitio Web" className="w-24 h-24 mx-auto mb-2 hover:scale-105 transition-transform" />
+                    </a>
+                    <p className="text-sm text-gray-600">Sitio Web</p>
                   </CardContent>
                 </Card>
               </div>
@@ -1778,35 +1673,19 @@ const handlePasswordSubmit = () => {
                 <form className="space-y-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Nombre completo</label>
-                    <input 
-                      type="text" 
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="Tu nombre"
-                    />
+                    <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Tu nombre" />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Correo electrónico</label>
-                    <input 
-                      type="email" 
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="tu@email.com"
-                    />
+                    <input type="email" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="tu@email.com" />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Asunto</label>
-                    <input 
-                      type="text" 
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="¿Sobre qué nos quieres contactar?"
-                    />
+                    <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="¿Sobre qué nos quieres contactar?" />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Mensaje</label>
-                    <textarea 
-                      rows={4}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="Escribe tu mensaje aquí..."
-                    ></textarea>
+                    <textarea rows={4} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Escribe tu mensaje aquí..."></textarea>
                   </div>
                   <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-3">
                     <Mail className="w-5 h-5 mr-2" />
@@ -1820,6 +1699,7 @@ const handlePasswordSubmit = () => {
       </section>
 
       {/* Footer */}
+      {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
@@ -1832,16 +1712,16 @@ const handlePasswordSubmit = () => {
                 />
                 <div>
                   <h3 className="font-bold text-lg">Unidos por los Derechos Humanos</h3>
-                  <p className="text-gray-400 text-sm">Capítulo Colombia</p>
+                  <p className="text-gray-400 text-sm">Capitulo Colombia</p>
                 </div>
               </div>
               <p className="text-gray-400 text-sm leading-relaxed max-w-md">
-                Capítulo autorizado en Colombia de Unidos por los Derechos Humanos, 
-                organización internacional dedicada a la educación sobre derechos humanos.
+                Capitulo autorizado en Colombia de Unidos por los Derechos Humanos, 
+                organizacion internacional dedicada a la educacion sobre derechos humanos.
               </p>
             </div>
             <div>
-              <h4 className="font-bold mb-4">Enlaces Rápidos</h4>
+              <h4 className="font-bold mb-4">Enlaces Rapidos</h4>
               <ul className="space-y-2 text-sm text-gray-400">
                 <li><button onClick={() => scrollToSection('inicio')} className="hover:text-white transition-colors">Inicio</button></li>
                 <li><button onClick={() => scrollToSection('nosotros')} className="hover:text-white transition-colors">Nosotros</button></li>
@@ -1854,20 +1734,21 @@ const handlePasswordSubmit = () => {
               <h4 className="font-bold mb-4">Recursos Oficiales</h4>
               <ul className="space-y-2 text-sm text-gray-400">
                 <li><a href="https://www.humanrights.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">humanrights.com</a></li>
-                <li><a href="https://www.humanrights.com/course/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Curso en línea</a></li>
+                <li><a href="https://www.humanrights.com/course/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Curso en linea</a></li>
                 <li><a href="https://www.humanrights.com/resources/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Materiales</a></li>
               </ul>
             </div>
           </div>
           <div className="border-t border-gray-800 pt-8 text-center">
             <p className="text-gray-500 text-sm">
-              © {new Date().getFullYear()} Unidos por los Derechos Humanos - Capítulo Colombia. 
+              2025 Unidos por los Derechos Humanos - Capitulo Colombia. 
               Todos los derechos reservados.
             </p>
           </div>
         </div>
-            </footer>
+      </footer>
 
+      {/* Modal de Contrasena - Manual de Veedurias */}
       {showPasswordModal && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6">
@@ -1878,10 +1759,10 @@ const handlePasswordSubmit = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-1">Acceso Restringido</h3>
-              <p className="text-gray-600 text-sm">Este documento requiere contraseña para descargar.</p>
+              <p className="text-gray-600 text-sm">Este documento requiere contrasena para descargar.</p>
             </div>
             <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">Contraseña</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Contrasena</label>
               <input
                 type="password"
                 value={passwordInput}
@@ -1890,7 +1771,7 @@ const handlePasswordSubmit = () => {
                   setPasswordError('')
                 }}
                 onKeyDown={(e) => e.key === 'Enter' && handlePasswordSubmit()}
-                placeholder="Ingrese la contraseña"
+                placeholder="Ingrese la contrasena"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 autoFocus
               />
@@ -1920,9 +1801,71 @@ const handlePasswordSubmit = () => {
           </div>
         </div>
       )}
+
+      {/* Galeria de Afiches - Lightbox */}
+      {isGalleryOpen && (
+        <div 
+          className="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4"
+          onClick={closeGallery}
+        >
+          {/* Boton cerrar */}
+          <button 
+            className="absolute top-4 right-4 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors z-10"
+            onClick={closeGallery}
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+
+          {/* Boton anterior */}
+          <button 
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors z-10"
+            onClick={(e) => { e.stopPropagation(); prevAfiche(); }}
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+          {/* Boton siguiente */}
+          <button 
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors z-10"
+            onClick={(e) => { e.stopPropagation(); nextAfiche(); }}
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          {/* Contenedor de la imagen */}
+          <div 
+            className="max-w-4xl max-h-[85vh] w-full flex flex-col items-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img 
+              src={"/afiches/" + afichesList[selectedAficheIndex].file}
+              alt={afichesList[selectedAficheIndex].title}
+              className="max-w-full max-h-[75vh] object-contain rounded-lg shadow-2xl"
+            />
+            <div className="mt-4 text-center">
+              <p className="text-white text-lg font-bold">{afichesList[selectedAficheIndex].title}</p>
+              <p className="text-white/60 text-sm mt-1">{selectedAficheIndex + 1} de {afichesList.length}</p>
+            </div>
+            <a 
+              href={"/afiches/" + afichesList[selectedAficheIndex].file}
+              download={afichesList[selectedAficheIndex].file}
+              className="mt-4 inline-flex items-center px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-full transition-colors"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Download className="w-4 h-4 mr-2" />
+              Descargar afiche
+            </a>
+          </div>
+        </div>
+      )}
     </div>
   )
-
 }
 
 export default App
