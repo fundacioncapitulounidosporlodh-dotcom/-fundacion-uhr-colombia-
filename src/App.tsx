@@ -219,115 +219,115 @@ function App() {
     {
       num: 21,
       title: 'Derechos Humanos - Art. 21 #3',
-      file: 'afiche-21-3.jpg',
+      file: 'afiche-21-3.png',
       subtitle: 'Art. 21 #3',
     },
     {
       num: 22,
       title: 'Derechos Humanos - Art. 22',
-      file: 'afiche-22.jpg',
+      file: 'afiche-22.png',
       subtitle: 'Art. 22',
     },
     {
       num: 23,
       title: 'Derechos Humanos - Art. 23 #1',
-      file: 'afiche-23-1.jpg',
+      file: 'afiche-23-1.png',
       subtitle: 'Art. 23 #1',
     },
     {
       num: 23,
       title: 'Derechos Humanos - Art. 23 #2',
-      file: 'afiche-23-2.jpg',
+      file: 'afiche-23-2.png',
       subtitle: 'Art. 23 #2',
     },
     {
       num: 23,
       title: 'Derechos Humanos - Art. 23 #3',
-      file: 'afiche-23-3.jpg',
+      file: 'afiche-23-3.png',
       subtitle: 'Art. 23 #3',
     },
     {
       num: 23,
       title: 'Derechos Humanos - Art. 23 #4',
-      file: 'afiche-23-4.jpg',
+      file: 'afiche-23-4.png',
       subtitle: 'Art. 23 #4',
     },
     {
       num: 24,
       title: 'Derechos Humanos - Art. 24',
-      file: 'afiche-24.jpg',
+      file: 'afiche-24.png',
       subtitle: 'Art. 24',
     },
     {
       num: 25,
       title: 'Derechos Humanos - Art. 25 #1',
-      file: 'afiche-25-1.jpg',
+      file: 'afiche-25-1.png',
       subtitle: 'Art. 25 #1',
     },
     {
       num: 25,
       title: 'Derechos Humanos - Art. 25 #2',
-      file: 'afiche-25-2.jpg',
+      file: 'afiche-25-2.png',
       subtitle: 'Art. 25 #2',
     },
     {
       num: 26,
       title: 'Derechos Humanos - Art. 26 #1',
-      file: 'afiche-26-1.jpg',
+      file: 'afiche-26-1.png',
       subtitle: 'Art. 26 #1',
     },
     {
       num: 26,
       title: 'Derechos Humanos - Art. 26 #2',
-      file: 'afiche-26-2.jpg',
+      file: 'afiche-26-2.png',
       subtitle: 'Art. 26 #2',
     },
     {
       num: 26,
       title: 'Derechos Humanos - Art. 26 #3',
-      file: 'afiche-26-3.jpg',
+      file: 'afiche-26-3.png',
       subtitle: 'Art. 26 #3',
     },
     {
       num: 27,
       title: 'Derechos Humanos - Art. 27 #1',
-      file: 'afiche-27-1.jpg',
+      file: 'afiche-27-1.png',
       subtitle: 'Art. 27 #1',
     },
     {
       num: 27,
       title: 'Derechos Humanos - Art. 27 #2',
-      file: 'afiche-27-2.jpg',
+      file: 'afiche-27-2.png',
       subtitle: 'Art. 27 #2',
     },
     {
       num: 28,
       title: 'Derechos Humanos - Art. 28',
-      file: 'afiche-28.jpg',
+      file: 'afiche-28.png',
       subtitle: 'Art. 28',
     },
     {
       num: 29,
       title: 'Derechos Humanos - Art. 29 #1',
-      file: 'afiche-29-1.jpg',
+      file: 'afiche-29-1.png',
       subtitle: 'Art. 29 #1',
     },
     {
       num: 29,
       title: 'Derechos Humanos - Art. 29 #2',
-      file: 'afiche-29-2.jpg',
+      file: 'afiche-29-2.png',
       subtitle: 'Art. 29 #2',
     },
     {
       num: 29,
       title: 'Derechos Humanos - Art. 29 #3',
-      file: 'afiche-29-3.jpg',
+      file: 'afiche-29-3.png',
       subtitle: 'Art. 29 #3',
     },
     {
       num: 30,
       title: 'Derechos Humanos - Art. 30',
-      file: 'afiche-30.jpg',
+      file: 'afiche-30.png',
       subtitle: 'Art. 30',
     },
   ];
@@ -353,7 +353,6 @@ function App() {
     );
   };
 
-  // Navegacion con teclado en la galeria
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!isGalleryOpen) return;
@@ -638,7 +637,7 @@ function App() {
       </div>
       {/* Navbar */}
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-lg' : 'bg-transparent'}`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-white/80 backdrop-blur-lg shadow-lg border-b border-white/20' : 'bg-transparent'}`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
@@ -852,7 +851,7 @@ function App() {
       </section>
 
       {/* About Section */}
-      <section id="nosotros" className="py-20 bg-white">
+      <section id="nosotros" className="py-20 bg-white animate-fade-in-up">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -929,8 +928,8 @@ function App() {
                 alt="Educación en Derechos Humanos"
                 className="rounded-2xl shadow-2xl"
               />
-              <div className="absolute -bottom-6 -left-6 bg-gradient-to-br from-yellow-500 to-yellow-600 text-white p-6 rounded-xl shadow-lg">
-                <div className="text-3xl font-bold">100%</div>
+              <div className="absolute -bottom-6 -left-6 bg-gradient-to-br from-yellow-500 to-yellow-600 text-white p-6 rounded-xl shadow-lg animate-fade-in-scale delay-500">
+                <div className="text-3xl font-bold text-white animate-countUp">100%</div>
                 <div className="text-yellow-100">Capítulo Autorizado</div>
               </div>
             </div>
@@ -941,7 +940,7 @@ function App() {
       {/* Consejo Territorial de Paz Section */}
       <section
         id="consejo-paz"
-        className="py-16 bg-gradient-to-br from-sky-400 via-sky-500 to-blue-500"
+        className="py-16 bg-gradient-to-br from-sky-400 via-sky-500 to-blue-500 animate-fade-in-up"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -1006,7 +1005,7 @@ function App() {
       </section>
 
       {/* Official Logo Section */}
-      <section className="py-16 bg-gradient-to-br from-yellow-600 via-yellow-500 to-yellow-400">
+      <section className="py-16 bg-gradient-to-br from-yellow-600 via-yellow-500 to-yellow-400 animate-fade-in-up">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="inline-block mb-6">
@@ -1085,7 +1084,7 @@ function App() {
       </section>
 
       {/* Alianzas Section */}
-      <section id="alianzas" className="py-20 bg-gray-50">
+      <section id="alianzas" className="py-20 bg-gray-50 animate-fade-in-up">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 bg-blue-100 rounded-full mb-4">
@@ -1105,7 +1104,7 @@ function App() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* ONG ARBOL FUENTE DE VIDA */}
-            <Card className="hover:shadow-xl transition-shadow border-0 shadow-md">
+            <Card className="hover:shadow-xl transition-all duration-300 border-0 shadow-md card-hover">
               <CardContent className="p-8 text-center">
                 <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
                   <img
@@ -1136,7 +1135,7 @@ function App() {
             </Card>
 
             {/* NGO CAPEHALCONES / Fundación Hawks */}
-            <Card className="hover:shadow-xl transition-shadow border-0 shadow-md">
+            <Card className="hover:shadow-xl transition-all duration-300 border-0 shadow-md card-hover">
               <CardContent className="p-8 text-center">
                 <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
                   <img
@@ -1172,7 +1171,7 @@ function App() {
             </Card>
 
             {/* Veeduría Ciudadana de la Nación Cali */}
-            <Card className="hover:shadow-xl transition-shadow border-0 shadow-md">
+            <Card className="hover:shadow-xl transition-all duration-300 border-0 shadow-md card-hover">
               <CardContent className="p-8 text-center">
                 <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
                   <img
@@ -1209,7 +1208,7 @@ function App() {
             </Card>
 
             {/* SACCOL */}
-            <Card className="hover:shadow-xl transition-shadow border-0 shadow-md">
+            <Card className="hover:shadow-xl transition-all duration-300 border-0 shadow-md card-hover">
               <CardContent className="p-8 text-center">
                 <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
                   <img
@@ -1261,7 +1260,7 @@ function App() {
             </Card>
 
             {/* Fundación El Camino de la Felicidad */}
-            <Card className="hover:shadow-xl transition-shadow border-0 shadow-md">
+            <Card className="hover:shadow-xl transition-all duration-300 border-0 shadow-md card-hover">
               <CardContent className="p-8 text-center">
                 <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
                   <img
@@ -1292,7 +1291,7 @@ function App() {
             </Card>
 
             {/* Fundación por un Mundo Libre de Drogas */}
-            <Card className="hover:shadow-xl transition-shadow border-0 shadow-md">
+            <Card className="hover:shadow-xl transition-all duration-300 border-0 shadow-md card-hover">
               <CardContent className="p-8 text-center">
                 <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
                   <img
@@ -1340,7 +1339,7 @@ function App() {
             </Card>
 
             {/* CEPDIPO */}
-            <Card className="hover:shadow-xl transition-shadow border-0 shadow-md">
+            <Card className="hover:shadow-xl transition-all duration-300 border-0 shadow-md card-hover">
               <CardContent className="p-8 text-center">
                 <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
                   <img
@@ -1371,7 +1370,7 @@ function App() {
             </Card>
 
             {/* MEVICO - Memoria Viva Colombia */}
-            <Card className="hover:shadow-xl transition-shadow border-0 shadow-md">
+            <Card className="hover:shadow-xl transition-all duration-300 border-0 shadow-md card-hover">
               <CardContent className="p-8 text-center">
                 <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
                   <img
@@ -1423,7 +1422,7 @@ function App() {
             </Card>
 
             {/* SINTRAJUSPAZ */}
-            <Card className="hover:shadow-xl transition-shadow border-0 shadow-md">
+            <Card className="hover:shadow-xl transition-all duration-300 border-0 shadow-md card-hover">
               <CardContent className="p-8 text-center">
                 <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
                   <img
@@ -1474,7 +1473,7 @@ function App() {
       </section>
 
       {/* Videos Section */}
-      <section id="videos" className="py-20 bg-white">
+      <section id="videos" className="py-20 bg-white animate-fade-in-up">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 bg-red-100 rounded-full mb-4">
@@ -1786,7 +1785,7 @@ function App() {
               Afiches de Derechos Humanos
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Articulos 1 al 21 de la Declaracion Universal de Derechos Humanos
+              Articulos 1 al 30 de la Declaracion Universal de Derechos Humanos
             </p>
           </div>
 
@@ -2142,7 +2141,7 @@ function App() {
       </section>
 
       {/* Formatos Section */}
-      <section id="formatos" className="py-20 bg-white">
+      <section id="formatos" className="py-20 bg-white animate-fade-in-up">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 bg-green-100 rounded-full mb-4">
@@ -2265,10 +2264,7 @@ function App() {
       </section>
 
       {/* Capacítate Section */}
-      <section
-        id="capacitate"
-        className="py-20 bg-gradient-to-br from-yellow-50 to-orange-50"
-      >
+      <section id="capacitate" className="py-20 bg-gradient-to-br from-yellow-50 to-orange-50 animate-fade-in-up">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 bg-yellow-100 rounded-full mb-4">
@@ -2510,10 +2506,7 @@ function App() {
       </section>
 
       {/* Recursos Section */}
-      <section
-        id="recursos"
-        className="py-20 bg-gradient-to-br from-blue-900 to-indigo-900"
-      >
+      <section id="recursos" className="py-20 bg-gradient-to-br from-blue-900 to-indigo-900 animate-fade-in-up">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 bg-white/10 rounded-full mb-4">
@@ -2585,7 +2578,7 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contacto" className="py-20 bg-white">
+      <section id="contacto" className="py-20 bg-white animate-fade-in-up">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 bg-blue-100 rounded-full mb-4">
