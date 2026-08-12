@@ -2286,6 +2286,7 @@ function App() {
       {/* Capacítate Section */}
       <section id="capacitate" className="py-20 bg-gradient-to-br from-yellow-50 to-orange-50 animate-fade-in-up">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Banner introductorio */}
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 bg-yellow-100 rounded-full mb-4">
               <GraduationCap className="w-4 h-4 text-yellow-600 mr-2" />
@@ -2293,356 +2294,360 @@ function App() {
                 Capacitación
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Capacítate
+            <h2 className="text-3xl sm:text-5xl font-bold text-gray-900 mb-4">
+              Capacítate y Certifícate
             </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Accede a cursos gratuitos sobre derechos humanos y desarrolla tus
-              habilidades
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-8">
+              Capacítate gratis con las mejores instituciones del mundo.
+              Cursos, seminarios y diplomados sin costo.
             </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <div className="bg-white px-6 py-3 rounded-xl shadow-md border-l-4 border-blue-500">
+                <div className="text-2xl font-bold text-blue-600">∞</div>
+                <div className="text-sm text-gray-500">Capacitaciones</div>
+              </div>
+              <div className="bg-white px-6 py-3 rounded-xl shadow-md border-l-4 border-green-500">
+                <div className="text-2xl font-bold text-green-600">100%</div>
+                <div className="text-sm text-gray-500">Gratuitos</div>
+              </div>
+              <div className="bg-white px-6 py-3 rounded-xl shadow-md border-l-4 border-purple-500">
+                <div className="text-2xl font-bold text-purple-600">✓</div>
+                <div className="text-sm text-gray-500">Certificados</div>
+              </div>
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Curso Unidos por los Derechos Humanos */}
-            <Card className="hover:shadow-xl transition-shadow border-0 shadow-md overflow-hidden">
-              <div className="h-48 bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center">
-                <img
-                  src="/logo-uhr.png"
-                  alt="Unidos por los Derechos Humanos"
-                  className="w-32 h-32 object-contain"
-                />
-              </div>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Curso de Derechos Humanos
-                </h3>
-                <p className="text-gray-600 text-sm mb-4">
-                  Curso gratuito de Unidos por los Derechos Humanos. Aprende
-                  sobre los 30 derechos humanos fundamentales.
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-green-600 font-medium">
-                    Gratuito
-                  </span>
+          {/* Categoría: Derechos Humanos */}
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-1 h-8 bg-blue-500 rounded-full" />
+              <h3 className="text-2xl font-bold text-gray-900">
+                Derechos Humanos
+              </h3>
+              <div className="flex-1 h-px bg-blue-200 ml-4" />
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {/* UHR */}
+              <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-md overflow-hidden hover:-translate-y-2 border-t-4 border-t-blue-500">
+                <div className="h-40 bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center p-4">
+                  <img
+                    src="/logo-uhr.png"
+                    alt="UHR"
+                    className="h-28 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <CardContent className="p-5">
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">Gratuito</span>
+                    <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-full">Español</span>
+                  </div>
+                  <h4 className="text-lg font-bold text-gray-900 mb-2">
+                    Curso de Derechos Humanos
+                  </h4>
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                    Aprende los 30 derechos humanos fundamentales de forma interactiva.
+                  </p>
                   <a
                     href="https://www.unidosporlosderechoshumanos.mx/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
+                    <Button size="sm" className="w-full bg-blue-600 hover:bg-blue-700">
                       <ExternalLink className="w-4 h-4 mr-1" />
                       Acceder
                     </Button>
                   </a>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
 
-            {/* Curso El Camino a la Felicidad */}
-            <Card className="hover:shadow-xl transition-shadow border-0 shadow-md overflow-hidden">
-              <div className="h-48 bg-gradient-to-br from-green-600 to-green-800 flex items-center justify-center">
-                <img
-                  src="/logo-camino-felicidad.jpg"
-                  alt="El Camino a la Felicidad"
-                  className="w-32 h-32 object-contain rounded-lg"
-                />
-              </div>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Curso El Camino a la Felicidad
-                </h3>
-                <p className="text-gray-600 text-sm mb-4">
-                  Curso basado en el libro de L. Ron Hubbard. Descubre los
-                  preceptos para vivir una vida feliz.
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-green-600 font-medium">
-                    Gratuito
-                  </span>
-                  <a
-                    href="https://www.elcaminoalafelicidad.mx/course/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Button
-                      size="sm"
-                      className="bg-green-600 hover:bg-green-700"
-                    >
-                      <ExternalLink className="w-4 h-4 mr-1" />
-                      Acceder
-                    </Button>
-                  </a>
+              {/* Defensoría */}
+              <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-md overflow-hidden hover:-translate-y-2 border-t-4 border-t-indigo-500">
+                <div className="h-40 bg-gradient-to-br from-indigo-600 to-purple-700 flex items-center justify-center p-4">
+                  <img
+                    src="/logo-defensoria.jpg"
+                    alt="Defensoría"
+                    className="h-28 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
+                  />
                 </div>
-              </CardContent>
-            </Card>
-
-            {/* Curso Mundo Libre de Drogas */}
-            <Card className="hover:shadow-xl transition-shadow border-0 shadow-md overflow-hidden">
-              <div className="h-48 bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center">
-                <img
-                  src="/logo-drug-free-world.jpg"
-                  alt="Mundo Libre de Drogas"
-                  className="w-32 h-32 object-contain rounded-lg"
-                />
-              </div>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Curso sobre Drogas
-                </h3>
-                <p className="text-gray-600 text-sm mb-4">
-                  Información veraz sobre los efectos de las drogas. Curso
-                  educativo gratuito.
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-green-600 font-medium">
-                    Gratuito
-                  </span>
-                  <a
-                    href="https://www.vidasindrogas.org/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Button
-                      size="sm"
-                      className="bg-orange-600 hover:bg-orange-700"
-                    >
-                      <ExternalLink className="w-4 h-4 mr-1" />
-                      Acceder
-                    </Button>
-                  </a>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Aula Virtual Defensoría del Pueblo */}
-            <Card className="hover:shadow-xl transition-shadow border-0 shadow-md overflow-hidden">
-              <div className="h-48 bg-gradient-to-br from-indigo-600 to-purple-700 flex items-center justify-center p-4">
-                <img
-                  src="/logo-defensoria.jpg"
-                  alt="Defensoría del Pueblo"
-                  className="h-32 w-auto object-contain"
-                />
-              </div>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Aula Virtual Defensoría del Pueblo
-                </h3>
-                <p className="text-gray-600 text-sm mb-4">
-                  Plataforma gratuita de la Defensoría del Pueblo de Colombia
-                  para capacitación en derechos humanos.
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-green-600 font-medium">
-                    Gratuito
-                  </span>
+                <CardContent className="p-5">
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">Gratuito</span>
+                    <span className="px-2 py-1 bg-indigo-100 text-indigo-700 text-xs font-medium rounded-full">Colombia</span>
+                  </div>
+                  <h4 className="text-lg font-bold text-gray-900 mb-2">
+                    Defensoría del Pueblo
+                  </h4>
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                    Capacitación oficial en derechos humanos de Colombia.
+                  </p>
                   <a
                     href="https://www.defensoria.gov.co/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Button
-                      size="sm"
-                      className="bg-indigo-600 hover:bg-indigo-700"
-                    >
+                    <Button size="sm" className="w-full bg-indigo-600 hover:bg-indigo-700">
                       <ExternalLink className="w-4 h-4 mr-1" />
                       Acceder
                     </Button>
                   </a>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
 
-            {/* Campus Virtual ESAP */}
-            <Card className="hover:shadow-xl transition-shadow border-0 shadow-md overflow-hidden">
-              <div className="h-48 bg-gradient-to-br from-yellow-500 to-red-600 flex items-center justify-center p-4">
-                <img
-                  src="/logo-esap.jpg"
-                  alt="ESAP"
-                  className="h-32 w-auto object-contain"
-                />
-              </div>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Campus Virtual ESAP
-                </h3>
-                <p className="text-gray-600 text-sm mb-4">
-                  Escuela Superior de Administración Pública - Cursos gratuitos
-                  de formación en derechos humanos y administración pública.
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-green-600 font-medium">
-                    Gratuito
-                  </span>
-                  <a
-                    href="https://sirecec4.esap.edu.co/inicio"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Button
-                      size="sm"
-                      className="bg-yellow-600 hover:bg-yellow-700"
-                    >
-                      <ExternalLink className="w-4 h-4 mr-1" />
-                      Acceder
-                    </Button>
-                  </a>
+              {/* Corte IDH */}
+              <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-md overflow-hidden hover:-translate-y-2 border-t-4 border-t-red-500">
+                <div className="h-40 bg-gradient-to-br from-red-700 to-red-900 flex items-center justify-center p-4">
+                  <img
+                    src="/logo-corte-idh.jpg"
+                    alt="Corte IDH"
+                    className="h-28 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
+                  />
                 </div>
-              </CardContent>
-            </Card>
-
-            {/* Corte Interamericana de Derechos Humanos */}
-            <Card className="hover:shadow-xl transition-shadow border-0 shadow-md overflow-hidden">
-              <div className="h-48 bg-gradient-to-br from-red-700 to-red-900 flex items-center justify-center p-4">
-                <img
-                  src="/logo-corte-idh.jpg"
-                  alt="Corte IDH"
-                  className="h-32 w-auto object-contain"
-                />
-              </div>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Corte Interamericana de Derechos Humanos
-                </h3>
-                <p className="text-gray-600 text-sm mb-4">
-                  Aula virtual de la Corte Interamericana de Derechos Humanos.
-                  Cursos gratuitos sobre el sistema interamericano de protección
-                  de derechos humanos.
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-green-600 font-medium">
-                    Gratuito
-                  </span>
+                <CardContent className="p-5">
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">Gratuito</span>
+                    <span className="px-2 py-1 bg-red-100 text-red-700 text-xs font-medium rounded-full">Interamericano</span>
+                  </div>
+                  <h4 className="text-lg font-bold text-gray-900 mb-2">
+                    Corte Interamericana DDHH
+                  </h4>
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                    Sistema interamericano de protección de derechos humanos.
+                  </p>
                   <a
                     href="https://www.corteidh.or.cr/cdf/aula-virtual.html"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Button
-                      size="sm"
-                      className="bg-red-700 hover:bg-red-800"
-                    >
+                    <Button size="sm" className="w-full bg-red-700 hover:bg-red-800">
                       <ExternalLink className="w-4 h-4 mr-1" />
                       Acceder
                     </Button>
                   </a>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
 
-            {/* Amnistía Internacional - Educación en Derechos Humanos */}
-            <Card className="hover:shadow-xl transition-shadow border-0 shadow-md overflow-hidden">
-              <div className="h-48 bg-gradient-to-br from-amber-600 to-yellow-700 flex items-center justify-center p-4">
-                <img
-                  src="/logo-amnistia.jpg"
-                  alt="Amnistía Internacional"
-                  className="h-32 w-auto object-contain"
-                />
-              </div>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Amnistía Internacional - Educación en DDHH
-                </h3>
-                <p className="text-gray-600 text-sm mb-4">
-                  Recursos educativos de Amnistía Internacional sobre derechos
-                  humanos. Cursos, materiales y herramientas para defensores.
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-green-600 font-medium">
-                    Gratuito
-                  </span>
+              {/* Amnistía */}
+              <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-md overflow-hidden hover:-translate-y-2 border-t-4 border-t-amber-500">
+                <div className="h-40 bg-gradient-to-br from-amber-600 to-yellow-700 flex items-center justify-center p-4">
+                  <img
+                    src="/logo-amnistia.jpg"
+                    alt="Amnistía"
+                    className="h-28 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <CardContent className="p-5">
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">Gratuito</span>
+                    <span className="px-2 py-1 bg-amber-100 text-amber-700 text-xs font-medium rounded-full">Internacional</span>
+                  </div>
+                  <h4 className="text-lg font-bold text-gray-900 mb-2">
+                    Amnistía Internacional
+                  </h4>
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                    Recursos educativos y herramientas para defensores.
+                  </p>
                   <a
                     href="https://www.amnesty.org/es/human-rights-education/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Button
-                      size="sm"
-                      className="bg-amber-600 hover:bg-amber-700"
-                    >
+                    <Button size="sm" className="w-full bg-amber-600 hover:bg-amber-700">
                       <ExternalLink className="w-4 h-4 mr-1" />
                       Acceder
                     </Button>
                   </a>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
 
-            {/* Naciones Unidas - Cursos E-Learning */}
-            <Card className="hover:shadow-xl transition-shadow border-0 shadow-md overflow-hidden">
-              <div className="h-48 bg-gradient-to-br from-blue-800 to-blue-950 flex items-center justify-center p-4">
-                <img
-                  src="/logo-onu.jpg"
-                  alt="Naciones Unidas"
-                  className="h-32 w-auto object-contain"
-                />
-              </div>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Naciones Unidas - Cursos E-Learning
-                </h3>
-                <p className="text-gray-600 text-sm mb-4">
-                  Cursos en línea de las Naciones Unidas. Fortalece tus
-                  habilidades con formación gratuita de la ONU.
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-green-600 font-medium">
-                    Gratuito
-                  </span>
+          {/* Categoría: Educación y Desarrollo */}
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-1 h-8 bg-green-500 rounded-full" />
+              <h3 className="text-2xl font-bold text-gray-900">
+                Educación y Desarrollo
+              </h3>
+              <div className="flex-1 h-px bg-green-200 ml-4" />
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* ESAP */}
+              <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-md overflow-hidden hover:-translate-y-2 border-t-4 border-t-yellow-500">
+                <div className="h-40 bg-gradient-to-br from-yellow-500 to-red-600 flex items-center justify-center p-4">
+                  <img
+                    src="/logo-esap.jpg"
+                    alt="ESAP"
+                    className="h-28 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <CardContent className="p-5">
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">Gratuito</span>
+                    <span className="px-2 py-1 bg-yellow-100 text-yellow-700 text-xs font-medium rounded-full">Certificado</span>
+                  </div>
+                  <h4 className="text-lg font-bold text-gray-900 mb-2">
+                    Campus Virtual ESAP
+                  </h4>
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                    Formación en derechos humanos y administración pública.
+                  </p>
+                  <a
+                    href="https://sirecec4.esap.edu.co/inicio"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button size="sm" className="w-full bg-yellow-600 hover:bg-yellow-700">
+                      <ExternalLink className="w-4 h-4 mr-1" />
+                      Acceder
+                    </Button>
+                  </a>
+                </CardContent>
+              </Card>
+
+              {/* ONU */}
+              <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-md overflow-hidden hover:-translate-y-2 border-t-4 border-t-blue-800">
+                <div className="h-40 bg-gradient-to-br from-blue-800 to-blue-950 flex items-center justify-center p-4">
+                  <img
+                    src="/logo-onu.jpg"
+                    alt="ONU"
+                    className="h-28 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <CardContent className="p-5">
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">Gratuito</span>
+                    <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-full">Inglés</span>
+                  </div>
+                  <h4 className="text-lg font-bold text-gray-900 mb-2">
+                    Naciones Unidas
+                  </h4>
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                    Cursos E-Learning de la ONU para fortalecer habilidades.
+                  </p>
                   <a
                     href="https://unric.org/en/sharpen-your-skills-during-lockdown-with-united-nations-e-learning-courses/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Button
-                      size="sm"
-                      className="bg-blue-800 hover:bg-blue-900"
-                    >
+                    <Button size="sm" className="w-full bg-blue-800 hover:bg-blue-900">
                       <ExternalLink className="w-4 h-4 mr-1" />
                       Acceder
                     </Button>
                   </a>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
 
-            {/* OPS/OMS - Organización Panamericana de la Salud */}
-            <Card className="hover:shadow-xl transition-shadow border-0 shadow-md overflow-hidden">
-              <div className="h-48 bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center p-4">
-                <img
-                  src="/logo-ops-oms.jpg"
-                  alt="OPS/OMS"
-                  className="h-32 w-auto object-contain"
-                />
-              </div>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  OPS/OMS - Cursos de Salud Pública
-                </h3>
-                <p className="text-gray-600 text-sm mb-4">
-                  Cursos de la Organización Panamericana de la Salud y la
-                  Organización Mundial de la Salud. Formación en salud pública
-                  y derechos humanos.
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-green-600 font-medium">
-                    Gratuito
-                  </span>
+              {/* OPS/OMS */}
+              <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-md overflow-hidden hover:-translate-y-2 border-t-4 border-t-cyan-500">
+                <div className="h-40 bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center p-4">
+                  <img
+                    src="/logo-ops-oms.jpg"
+                    alt="OPS/OMS"
+                    className="h-28 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <CardContent className="p-5">
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">Gratuito</span>
+                    <span className="px-2 py-1 bg-cyan-100 text-cyan-700 text-xs font-medium rounded-full">Salud</span>
+                  </div>
+                  <h4 className="text-lg font-bold text-gray-900 mb-2">
+                    OPS/OMS
+                  </h4>
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                    Formación en salud pública y derechos humanos.
+                  </p>
                   <a
                     href="https://www.paho.org/es/cursos"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Button
-                      size="sm"
-                      className="bg-cyan-600 hover:bg-cyan-700"
-                    >
+                    <Button size="sm" className="w-full bg-cyan-600 hover:bg-cyan-700">
                       <ExternalLink className="w-4 h-4 mr-1" />
                       Acceder
                     </Button>
                   </a>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          {/* Categoría: Bienestar Social */}
+          <div>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-1 h-8 bg-orange-500 rounded-full" />
+              <h3 className="text-2xl font-bold text-gray-900">
+                Bienestar Social
+              </h3>
+              <div className="flex-1 h-px bg-orange-200 ml-4" />
+            </div>
+            <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+              {/* Camino a la Felicidad */}
+              <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-md overflow-hidden hover:-translate-y-2 border-t-4 border-t-green-500">
+                <div className="h-40 bg-gradient-to-br from-green-600 to-green-800 flex items-center justify-center p-4">
+                  <img
+                    src="/logo-camino-felicidad.jpg"
+                    alt="Camino a la Felicidad"
+                    className="h-28 w-auto object-contain rounded-lg group-hover:scale-110 transition-transform duration-300"
+                  />
                 </div>
-              </CardContent>
-            </Card>
+                <CardContent className="p-5">
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">Gratuito</span>
+                    <span className="px-2 py-1 bg-purple-100 text-purple-700 text-xs font-medium rounded-full">Autoestudio</span>
+                  </div>
+                  <h4 className="text-lg font-bold text-gray-900 mb-2">
+                    El Camino a la Felicidad
+                  </h4>
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                    Preceptos para vivir una vida feliz y plena.
+                  </p>
+                  <a
+                    href="https://www.elcaminoalafelicidad.mx/course/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button size="sm" className="w-full bg-green-600 hover:bg-green-700">
+                      <ExternalLink className="w-4 h-4 mr-1" />
+                      Acceder
+                    </Button>
+                  </a>
+                </CardContent>
+              </Card>
+
+              {/* Mundo Libre de Drogas */}
+              <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-md overflow-hidden hover:-translate-y-2 border-t-4 border-t-orange-500">
+                <div className="h-40 bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center p-4">
+                  <img
+                    src="/logo-drug-free-world.jpg"
+                    alt="Mundo Libre de Drogas"
+                    className="h-28 w-auto object-contain rounded-lg group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <CardContent className="p-5">
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">Gratuito</span>
+                    <span className="px-2 py-1 bg-orange-100 text-orange-700 text-xs font-medium rounded-full">Educativo</span>
+                  </div>
+                  <h4 className="text-lg font-bold text-gray-900 mb-2">
+                    Mundo Libre de Drogas
+                  </h4>
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                    Información veraz sobre los efectos de las drogas.
+                  </p>
+                  <a
+                    href="https://www.vidasindrogas.org/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button size="sm" className="w-full bg-orange-600 hover:bg-orange-700">
+                      <ExternalLink className="w-4 h-4 mr-1" />
+                      Acceder
+                    </Button>
+                  </a>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
