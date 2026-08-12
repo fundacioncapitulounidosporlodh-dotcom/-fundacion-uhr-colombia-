@@ -2652,6 +2652,45 @@ function App() {
                 </div>
               </CardContent>
             </Card>
+
+            {/* OPS/OMS - Organización Panamericana de la Salud */}
+            <Card className="hover:shadow-xl transition-shadow border-0 shadow-md overflow-hidden">
+              <div className="h-48 bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center p-4">
+                <img
+                  src="/logo-ops-oms.jpg"
+                  alt="OPS/OMS"
+                  className="h-32 w-auto object-contain"
+                />
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  OPS/OMS - Cursos de Salud Pública
+                </h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  Cursos de la Organización Panamericana de la Salud y la
+                  Organización Mundial de la Salud. Formación en salud pública
+                  y derechos humanos.
+                </p>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-green-600 font-medium">
+                    Gratuito
+                  </span>
+                  <a
+                    href="https://www.paho.org/es/cursos"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button
+                      size="sm"
+                      className="bg-cyan-600 hover:bg-cyan-700"
+                    >
+                      <ExternalLink className="w-4 h-4 mr-1" />
+                      Acceder
+                    </Button>
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
