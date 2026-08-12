@@ -1597,20 +1597,6 @@ function App() {
               alt="Cuarta Vigilia - El Poder Que No Duerme"
               className="w-full h-auto object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
-              <div className="flex items-center gap-3 mb-2">
-                <span className="px-3 py-1 bg-yellow-500 text-black text-xs font-bold rounded-full">
-                  EN VIVO
-                </span>
-                <span className="text-yellow-400 text-sm font-medium">
-                  03:00 AM - La hora de la verdad
-                </span>
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-white">
-                El Poder Que No Duerme
-              </h3>
-            </div>
           </div>
 
           <Card className="border-0 shadow-xl overflow-hidden bg-gray-800/50 backdrop-blur">
@@ -2420,40 +2406,6 @@ function App() {
                       size="sm"
                       className="bg-orange-600 hover:bg-orange-700"
                     >
-                      <ExternalLink className="w-4 h-4 mr-1" />
-                      Acceder
-                    </Button>
-                  </a>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Campus Virtual OPS/OMS */}
-            <Card className="hover:shadow-xl transition-shadow border-0 shadow-md overflow-hidden">
-              <div className="h-48 bg-gradient-to-br from-cyan-600 to-blue-700 flex items-center justify-center">
-                <div className="text-center text-white">
-                  <Globe className="w-20 h-20 mx-auto mb-2" />
-                  <p className="text-lg font-bold">OPS/OMS</p>
-                </div>
-              </div>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Campus Virtual OPS/OMS
-                </h3>
-                <p className="text-gray-600 text-sm mb-4">
-                  Cursos gratuitos de la Organización Panamericana de la Salud
-                  sobre derechos humanos y salud.
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-green-600 font-medium">
-                    Gratuito
-                  </span>
-                  <a
-                    href="https://campus.paho.org/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Button size="sm" className="bg-cyan-600 hover:bg-cyan-700">
                       <ExternalLink className="w-4 h-4 mr-1" />
                       Acceder
                     </Button>
