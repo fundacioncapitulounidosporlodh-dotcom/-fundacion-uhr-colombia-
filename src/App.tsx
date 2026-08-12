@@ -2539,6 +2539,43 @@ function App() {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Amnistía Internacional - Educación en Derechos Humanos */}
+            <Card className="hover:shadow-xl transition-shadow border-0 shadow-md overflow-hidden">
+              <div className="h-48 bg-gradient-to-br from-amber-600 to-yellow-700 flex items-center justify-center">
+                <div className="text-center text-white">
+                  <Globe className="w-20 h-20 mx-auto mb-2" />
+                  <p className="text-lg font-bold">Amnistía Internacional</p>
+                </div>
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  Amnistía Internacional - Educación en DDHH
+                </h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  Recursos educativos de Amnistía Internacional sobre derechos
+                  humanos. Cursos, materiales y herramientas para defensores.
+                </p>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-green-600 font-medium">
+                    Gratuito
+                  </span>
+                  <a
+                    href="https://www.amnesty.org/es/human-rights-education/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button
+                      size="sm"
+                      className="bg-amber-600 hover:bg-amber-700"
+                    >
+                      <ExternalLink className="w-4 h-4 mr-1" />
+                      Acceder
+                    </Button>
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
