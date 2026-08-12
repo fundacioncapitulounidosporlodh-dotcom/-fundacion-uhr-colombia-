@@ -2501,6 +2501,44 @@ function App() {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Corte Interamericana de Derechos Humanos */}
+            <Card className="hover:shadow-xl transition-shadow border-0 shadow-md overflow-hidden">
+              <div className="h-48 bg-gradient-to-br from-red-700 to-red-900 flex items-center justify-center">
+                <div className="text-center text-white">
+                  <Scale className="w-20 h-20 mx-auto mb-2" />
+                  <p className="text-lg font-bold">Corte IDH</p>
+                </div>
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  Corte Interamericana de Derechos Humanos
+                </h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  Aula virtual de la Corte Interamericana de Derechos Humanos.
+                  Cursos gratuitos sobre el sistema interamericano de protección
+                  de derechos humanos.
+                </p>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-green-600 font-medium">
+                    Gratuito
+                  </span>
+                  <a
+                    href="https://www.corteidh.or.cr/cdf/aula-virtual.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button
+                      size="sm"
+                      className="bg-red-700 hover:bg-red-800"
+                    >
+                      <ExternalLink className="w-4 h-4 mr-1" />
+                      Acceder
+                    </Button>
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
