@@ -2430,11 +2430,12 @@ function App() {
 
             {/* Aula Virtual Defensoría del Pueblo */}
             <Card className="hover:shadow-xl transition-shadow border-0 shadow-md overflow-hidden">
-              <div className="h-48 bg-gradient-to-br from-indigo-600 to-purple-700 flex items-center justify-center">
-                <div className="text-center text-white">
-                  <Scale className="w-20 h-20 mx-auto mb-2" />
-                  <p className="text-lg font-bold">Defensoría del Pueblo</p>
-                </div>
+              <div className="h-48 bg-gradient-to-br from-indigo-600 to-purple-700 flex items-center justify-center p-4">
+                <img
+                  src="/logo-defensoria.jpg"
+                  alt="Defensoría del Pueblo"
+                  className="h-32 w-auto object-contain"
+                />
               </div>
               <CardContent className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">
@@ -2467,11 +2468,12 @@ function App() {
 
             {/* Campus Virtual ESAP */}
             <Card className="hover:shadow-xl transition-shadow border-0 shadow-md overflow-hidden">
-              <div className="h-48 bg-gradient-to-br from-yellow-500 to-red-600 flex items-center justify-center">
-                <div className="text-center text-white">
-                  <GraduationCap className="w-20 h-20 mx-auto mb-2" />
-                  <p className="text-lg font-bold">ESAP</p>
-                </div>
+              <div className="h-48 bg-gradient-to-br from-yellow-500 to-red-600 flex items-center justify-center p-4">
+                <img
+                  src="/logo-esap.jpg"
+                  alt="ESAP"
+                  className="h-32 w-auto object-contain"
+                />
               </div>
               <CardContent className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">
@@ -2504,11 +2506,12 @@ function App() {
 
             {/* Corte Interamericana de Derechos Humanos */}
             <Card className="hover:shadow-xl transition-shadow border-0 shadow-md overflow-hidden">
-              <div className="h-48 bg-gradient-to-br from-red-700 to-red-900 flex items-center justify-center">
-                <div className="text-center text-white">
-                  <Scale className="w-20 h-20 mx-auto mb-2" />
-                  <p className="text-lg font-bold">Corte IDH</p>
-                </div>
+              <div className="h-48 bg-gradient-to-br from-red-700 to-red-900 flex items-center justify-center p-4">
+                <img
+                  src="/logo-corte-idh.jpg"
+                  alt="Corte IDH"
+                  className="h-32 w-auto object-contain"
+                />
               </div>
               <CardContent className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">
@@ -2542,11 +2545,12 @@ function App() {
 
             {/* Amnistía Internacional - Educación en Derechos Humanos */}
             <Card className="hover:shadow-xl transition-shadow border-0 shadow-md overflow-hidden">
-              <div className="h-48 bg-gradient-to-br from-amber-600 to-yellow-700 flex items-center justify-center">
-                <div className="text-center text-white">
-                  <Globe className="w-20 h-20 mx-auto mb-2" />
-                  <p className="text-lg font-bold">Amnistía Internacional</p>
-                </div>
+              <div className="h-48 bg-gradient-to-br from-amber-600 to-yellow-700 flex items-center justify-center p-4">
+                <img
+                  src="/logo-amnistia.jpg"
+                  alt="Amnistía Internacional"
+                  className="h-32 w-auto object-contain"
+                />
               </div>
               <CardContent className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">
@@ -2579,11 +2583,12 @@ function App() {
 
             {/* Naciones Unidas - Cursos E-Learning */}
             <Card className="hover:shadow-xl transition-shadow border-0 shadow-md overflow-hidden">
-              <div className="h-48 bg-gradient-to-br from-blue-800 to-blue-950 flex items-center justify-center">
-                <div className="text-center text-white">
-                  <Globe className="w-20 h-20 mx-auto mb-2" />
-                  <p className="text-lg font-bold">Naciones Unidas</p>
-                </div>
+              <div className="h-48 bg-gradient-to-br from-blue-800 to-blue-950 flex items-center justify-center p-4">
+                <img
+                  src="/logo-onu.jpg"
+                  alt="Naciones Unidas"
+                  className="h-32 w-auto object-contain"
+                />
               </div>
               <CardContent className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">
