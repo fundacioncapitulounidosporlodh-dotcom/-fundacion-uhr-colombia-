@@ -850,6 +850,140 @@ function App() {
         </div>
       </section>
 
+      {/* Noticias - Cuarta Vigilia */}
+      <section
+        id="noticias"
+        className="py-20 bg-gradient-to-br from-gray-900 to-black"
+      >
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center px-4 py-2 bg-red-900/50 border border-red-500/30 rounded-full mb-4">
+              <svg
+                className="w-4 h-4 text-red-400 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                strokeWidth="2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
+                />
+              </svg>
+              <span className="text-red-400 text-sm font-medium">Noticias</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-bold text-white mb-4">
+              Cuarta Vigilia
+            </h2>
+            <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+              El poder que no duerme - Informacion y actualizaciones de nuestra
+              fundacion.
+            </p>
+          </div>
+
+          {/* Imagen grande e impactante */}
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-yellow-500/20 mb-8">
+            <img
+              src="/cuarta-vigilia-banner.jpg"
+              alt="Cuarta Vigilia - El Poder Que No Duerme"
+              className="w-full h-auto object-cover"
+            />
+          </div>
+
+          {/* Nota de solidaridad */}
+          <div className="bg-gradient-to-r from-blue-900/80 to-red-900/80 backdrop-blur-sm border border-yellow-500/30 rounded-2xl p-6 sm:p-8 mb-8 shadow-xl">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-3xl">🇨🇴</span>
+              <h3 className="text-xl sm:text-2xl font-bold text-white">
+                Solidaridad con Colombia
+              </h3>
+            </div>
+            <p className="text-gray-200 leading-relaxed mb-4">
+              El 12 de agosto, en medio de la emergencia ocasionada por el terremoto en Colombia, recibimos ayudas provenientes de El Salvador, un gesto que nos llena de gratitud y esperanza.
+            </p>
+            <p className="text-gray-200 leading-relaxed mb-4">
+              Desde la Fundación Capítulo Unidos por los Derechos Humanos Colombia, agradecemos profundamente al Presidente Nayib Bukele y al pueblo salvadoreño por su solidaridad y apoyo a las familias afectadas.
+            </p>
+            <div className="flex items-center gap-2 text-yellow-300 font-bold text-lg">
+              <span>🇸🇻</span>
+              <span>🤝</span>
+              <span>🇨🇴</span>
+              <span>La solidaridad no conoce fronteras. ¡Gracias, El Salvador!</span>
+            </div>
+            <div className="flex flex-wrap gap-2 mt-4">
+              <span className="px-3 py-1 bg-white/10 rounded-full text-sm text-gray-300">#Colombia</span>
+              <span className="px-3 py-1 bg-white/10 rounded-full text-sm text-gray-300">#ElSalvador</span>
+              <span className="px-3 py-1 bg-white/10 rounded-full text-sm text-gray-300">#Solidaridad</span>
+              <span className="px-3 py-1 bg-white/10 rounded-full text-sm text-gray-300">#Terremoto</span>
+              <span className="px-3 py-1 bg-white/10 rounded-full text-sm text-gray-300">#AyudaHumanitaria</span>
+              <span className="px-3 py-1 bg-white/10 rounded-full text-sm text-gray-300">#DerechosHumanos</span>
+            </div>
+          </div>
+
+          {/* Video de actividad de voluntarios */}
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-blue-500/20 mb-8">
+            <video
+              controls
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-auto max-h-[600px] object-cover"
+            >
+              <source src="/voluntarios-donaciones.mp4" type="video/mp4" />
+              Tu navegador no soporta videos HTML5.
+            </video>
+          </div>
+
+          <Card className="border-0 shadow-xl overflow-hidden bg-gray-800/50 backdrop-blur">
+            <CardContent className="p-6 sm:p-8">
+              <p className="text-gray-300 mb-6 text-lg leading-relaxed">
+                Mantente informado sobre nuestras actividades, eventos y logros
+                en defensa de los derechos humanos. La Cuarta Vigilia representa
+                nuestro compromiso inquebrantable con la justicia y la verdad.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="https://www.instagram.com/capitulounidosddhhcol/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-400 hover:to-yellow-500 text-black font-bold w-full sm:w-auto">
+                    <svg
+                      className="w-5 h-5 mr-2"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                    </svg>
+                    Ver en Instagram
+                  </Button>
+                </a>
+                <a
+                  href="https://www.tiktok.com/@capitulounidosddhhcol"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button
+                    variant="outline"
+                    className="border-gray-600 text-white hover:bg-gray-700 w-full sm:w-auto"
+                  >
+                    <svg
+                      className="w-5 h-5 mr-2"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.57-4.96 2.03-1.83 5.21-2.31 7.73-1.13.01 1.73.01 3.47.01 5.2-.71-.32-1.53-.51-2.36-.42-.78.09-1.51.47-2.02 1.07-.92 1.07-.97 2.88-.1 3.99.53.67 1.36 1.08 2.24 1.13.91.05 1.82-.22 2.52-.76.88-.69 1.39-1.75 1.4-2.84.02-2.37.01-4.74.02-7.11-1.76.01-3.52 0-5.28.02-.02-1.35.01-2.7.04-4.05z" />
+                    </svg>
+                    Ver en TikTok
+                  </Button>
+                </a>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
       {/* About Section */}
       <section id="nosotros" className="py-20 bg-white animate-fade-in-up">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1558,140 +1692,6 @@ function App() {
         </div>
       </section>
 
-      {/* Noticias - Cuarta Vigilia */}
-      <section
-        id="noticias"
-        className="py-20 bg-gradient-to-br from-gray-900 to-black"
-      >
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center px-4 py-2 bg-red-900/50 border border-red-500/30 rounded-full mb-4">
-              <svg
-                className="w-4 h-4 text-red-400 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
-                />
-              </svg>
-              <span className="text-red-400 text-sm font-medium">Noticias</span>
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-bold text-white mb-4">
-              Cuarta Vigilia
-            </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-              El poder que no duerme - Informacion y actualizaciones de nuestra
-              fundacion.
-            </p>
-          </div>
-
-          {/* Imagen grande e impactante */}
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-yellow-500/20 mb-8">
-            <img
-              src="/cuarta-vigilia-banner.jpg"
-              alt="Cuarta Vigilia - El Poder Que No Duerme"
-              className="w-full h-auto object-cover"
-            />
-          </div>
-
-          {/* Nota de solidaridad */}
-          <div className="bg-gradient-to-r from-blue-900/80 to-red-900/80 backdrop-blur-sm border border-yellow-500/30 rounded-2xl p-6 sm:p-8 mb-8 shadow-xl">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="text-3xl">🇨🇴</span>
-              <h3 className="text-xl sm:text-2xl font-bold text-white">
-                Solidaridad con Colombia
-              </h3>
-            </div>
-            <p className="text-gray-200 leading-relaxed mb-4">
-              El 12 de agosto, en medio de la emergencia ocasionada por el terremoto en Colombia, recibimos ayudas provenientes de El Salvador, un gesto que nos llena de gratitud y esperanza.
-            </p>
-            <p className="text-gray-200 leading-relaxed mb-4">
-              Desde la Fundación Capítulo Unidos por los Derechos Humanos Colombia, agradecemos profundamente al Presidente Nayib Bukele y al pueblo salvadoreño por su solidaridad y apoyo a las familias afectadas.
-            </p>
-            <div className="flex items-center gap-2 text-yellow-300 font-bold text-lg">
-              <span>🇸🇻</span>
-              <span>🤝</span>
-              <span>🇨🇴</span>
-              <span>La solidaridad no conoce fronteras. ¡Gracias, El Salvador!</span>
-            </div>
-            <div className="flex flex-wrap gap-2 mt-4">
-              <span className="px-3 py-1 bg-white/10 rounded-full text-sm text-gray-300">#Colombia</span>
-              <span className="px-3 py-1 bg-white/10 rounded-full text-sm text-gray-300">#ElSalvador</span>
-              <span className="px-3 py-1 bg-white/10 rounded-full text-sm text-gray-300">#Solidaridad</span>
-              <span className="px-3 py-1 bg-white/10 rounded-full text-sm text-gray-300">#Terremoto</span>
-              <span className="px-3 py-1 bg-white/10 rounded-full text-sm text-gray-300">#AyudaHumanitaria</span>
-              <span className="px-3 py-1 bg-white/10 rounded-full text-sm text-gray-300">#DerechosHumanos</span>
-            </div>
-          </div>
-
-          {/* Video de actividad de voluntarios */}
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-blue-500/20 mb-8">
-            <video
-              controls
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full h-auto max-h-[600px] object-cover"
-            >
-              <source src="/voluntarios-donaciones.mp4" type="video/mp4" />
-              Tu navegador no soporta videos HTML5.
-            </video>
-          </div>
-
-          <Card className="border-0 shadow-xl overflow-hidden bg-gray-800/50 backdrop-blur">
-            <CardContent className="p-6 sm:p-8">
-              <p className="text-gray-300 mb-6 text-lg leading-relaxed">
-                Mantente informado sobre nuestras actividades, eventos y logros
-                en defensa de los derechos humanos. La Cuarta Vigilia representa
-                nuestro compromiso inquebrantable con la justicia y la verdad.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href="https://www.instagram.com/capitulounidosddhhcol/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-400 hover:to-yellow-500 text-black font-bold w-full sm:w-auto">
-                    <svg
-                      className="w-5 h-5 mr-2"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                    </svg>
-                    Ver en Instagram
-                  </Button>
-                </a>
-                <a
-                  href="https://www.tiktok.com/@capitulounidosddhhcol"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button
-                    variant="outline"
-                    className="border-gray-600 text-white hover:bg-gray-700 w-full sm:w-auto"
-                  >
-                    <svg
-                      className="w-5 h-5 mr-2"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.57-4.96 2.03-1.83 5.21-2.31 7.73-1.13.01 1.73.01 3.47.01 5.2-.71-.32-1.53-.51-2.36-.42-.78.09-1.51.47-2.02 1.07-.92 1.07-.97 2.88-.1 3.99.53.67 1.36 1.08 2.24 1.13.91.05 1.82-.22 2.52-.76.88-.69 1.39-1.75 1.4-2.84.02-2.37.01-4.74.02-7.11-1.76.01-3.52 0-5.28.02-.02-1.35.01-2.7.04-4.05z" />
-                    </svg>
-                    Ver en TikTok
-                  </Button>
-                </a>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
 
       {/* Descargas Section */}
       <section
