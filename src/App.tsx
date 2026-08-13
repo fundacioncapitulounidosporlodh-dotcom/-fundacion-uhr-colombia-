@@ -1599,6 +1599,51 @@ function App() {
             />
           </div>
 
+          {/* Nota de solidaridad */}
+          <div className="bg-gradient-to-r from-blue-900/80 to-red-900/80 backdrop-blur-sm border border-yellow-500/30 rounded-2xl p-6 sm:p-8 mb-8 shadow-xl">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-3xl">🇨🇴</span>
+              <h3 className="text-xl sm:text-2xl font-bold text-white">
+                Solidaridad con Colombia
+              </h3>
+            </div>
+            <p className="text-gray-200 leading-relaxed mb-4">
+              El 12 de agosto, en medio de la emergencia ocasionada por el terremoto en Colombia, recibimos ayudas provenientes de El Salvador, un gesto que nos llena de gratitud y esperanza.
+            </p>
+            <p className="text-gray-200 leading-relaxed mb-4">
+              Desde la Fundación Capítulo Unidos por los Derechos Humanos Colombia, agradecemos profundamente al Presidente Nayib Bukele y al pueblo salvadoreño por su solidaridad y apoyo a las familias afectadas.
+            </p>
+            <div className="flex items-center gap-2 text-yellow-300 font-bold text-lg">
+              <span>🇸🇻</span>
+              <span>🤝</span>
+              <span>🇨🇴</span>
+              <span>La solidaridad no conoce fronteras. ¡Gracias, El Salvador!</span>
+            </div>
+            <div className="flex flex-wrap gap-2 mt-4">
+              <span className="px-3 py-1 bg-white/10 rounded-full text-sm text-gray-300">#Colombia</span>
+              <span className="px-3 py-1 bg-white/10 rounded-full text-sm text-gray-300">#ElSalvador</span>
+              <span className="px-3 py-1 bg-white/10 rounded-full text-sm text-gray-300">#Solidaridad</span>
+              <span className="px-3 py-1 bg-white/10 rounded-full text-sm text-gray-300">#Terremoto</span>
+              <span className="px-3 py-1 bg-white/10 rounded-full text-sm text-gray-300">#AyudaHumanitaria</span>
+              <span className="px-3 py-1 bg-white/10 rounded-full text-sm text-gray-300">#DerechosHumanos</span>
+            </div>
+          </div>
+
+          {/* Video de actividad de voluntarios */}
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-blue-500/20 mb-8">
+            <video
+              controls
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-auto max-h-[600px] object-cover"
+            >
+              <source src="/voluntarios-donaciones.mp4" type="video/mp4" />
+              Tu navegador no soporta videos HTML5.
+            </video>
+          </div>
+
           <Card className="border-0 shadow-xl overflow-hidden bg-gray-800/50 backdrop-blur">
             <CardContent className="p-6 sm:p-8">
               <p className="text-gray-300 mb-6 text-lg leading-relaxed">
