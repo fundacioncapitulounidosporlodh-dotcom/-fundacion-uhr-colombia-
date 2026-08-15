@@ -896,7 +896,7 @@ function App() {
             <div className="flex flex-col sm:flex-row gap-6 items-start">
               <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-full overflow-hidden shadow-lg border-2 border-white/20 flex-shrink-0 mx-auto sm:mx-0">
                 <img
-                  src="/asocolcul.jpg"
+                  src="/asocolcul.png"
                   alt="ASOCOLCUL"
                   className="w-full h-full object-cover"
                 />
@@ -1597,7 +1597,7 @@ function App() {
               <CardContent className="p-8 text-center">
                 <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
                   <img
-                    src="/asocolcul.jpg"
+                    src="/asocolcul.png"
                     alt="ASOCOLCUL"
                     className="w-28 h-28 object-contain"
                   />
