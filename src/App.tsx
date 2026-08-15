@@ -383,6 +383,26 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Scroll animations - reveal sections on scroll
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.05, rootMargin: '0px 0px -30px 0px' }
+    );
+
+    const sections = document.querySelectorAll('.scroll-animate');
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -1022,7 +1042,7 @@ function App() {
         </div>
       </section>
       {/* About Section */}
-      <section id="nosotros" className="py-20 bg-white animate-fade-in-up">
+      <section id="nosotros" className="py-20 bg-white scroll-animate opacity-0 translate-y-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -1111,7 +1131,7 @@ function App() {
       {/* Consejo Territorial de Paz Section */}
       <section
         id="consejo-paz"
-        className="py-16 bg-gradient-to-br from-sky-400 via-sky-500 to-blue-500 animate-fade-in-up"
+        className="py-16 bg-gradient-to-br from-sky-400 via-sky-500 to-blue-500 scroll-animate opacity-0 translate-y-10"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -1176,7 +1196,7 @@ function App() {
       </section>
 
       {/* Official Logo Section */}
-      <section className="py-16 bg-gradient-to-br from-yellow-600 via-yellow-500 to-yellow-400 animate-fade-in-up">
+      <section className="py-16 bg-gradient-to-br from-yellow-600 via-yellow-500 to-yellow-400 scroll-animate opacity-0 translate-y-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="inline-block mb-6">
@@ -1255,7 +1275,7 @@ function App() {
       </section>
 
       {/* Alianzas Section */}
-      <section id="alianzas" className="py-20 bg-gray-50 animate-fade-in-up">
+      <section id="alianzas" className="py-20 bg-gray-50 scroll-animate opacity-0 translate-y-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 bg-blue-100 rounded-full mb-4">
@@ -1698,7 +1718,7 @@ function App() {
       </section>
 
       {/* Videos Section */}
-      <section id="videos" className="py-20 bg-white animate-fade-in-up">
+      <section id="videos" className="py-20 bg-white scroll-animate opacity-0 translate-y-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 bg-red-100 rounded-full mb-4">
@@ -2297,7 +2317,7 @@ function App() {
       </section>
 
       {/* Formatos Section */}
-      <section id="formatos" className="py-20 bg-white animate-fade-in-up">
+      <section id="formatos" className="py-20 bg-white scroll-animate opacity-0 translate-y-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 bg-green-100 rounded-full mb-4">
@@ -2420,7 +2440,7 @@ function App() {
       </section>
 
       {/* Capacítate Section */}
-      <section id="capacitate" className="py-20 bg-gradient-to-br from-yellow-50 to-orange-50 animate-fade-in-up">
+      <section id="capacitate" className="py-20 bg-gradient-to-br from-yellow-50 to-orange-50 scroll-animate opacity-0 translate-y-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Banner introductorio */}
           <div className="text-center mb-16">
@@ -2789,7 +2809,7 @@ function App() {
       </section>
 
       {/* Recursos Section */}
-      <section id="recursos" className="py-20 bg-gradient-to-br from-blue-900 to-indigo-900 animate-fade-in-up">
+      <section id="recursos" className="py-20 bg-gradient-to-br from-blue-900 to-indigo-900 scroll-animate opacity-0 translate-y-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 bg-white/10 rounded-full mb-4">
@@ -2861,7 +2881,7 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contacto" className="py-20 bg-white animate-fade-in-up">
+      <section id="contacto" className="py-20 bg-white scroll-animate opacity-0 translate-y-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 bg-blue-100 rounded-full mb-4">
