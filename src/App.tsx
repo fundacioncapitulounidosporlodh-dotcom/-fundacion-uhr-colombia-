@@ -1971,7 +1971,7 @@ function App() {
                 type: 'PDF',
                 size: '13.7 MB',
                 color: 'bg-purple-600',
-                url: '/manual-veedurias.pdf',
+                url: '/descargar-manual-veedurias',
               },
             ].map((item, index) => (
               <Card
@@ -2000,18 +2000,46 @@ function App() {
                           href={item.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          onClick={(event) => {
+                          onClick={async (event) => {
                             if (item.title !== 'Manual de Veedurías') return;
+
+                            event.preventDefault();
 
                             const clave = window.prompt(
                               'Ingrese la clave para descargar el Manual de Veedurías:',
                             );
 
-                            if (clave !== 'DDHH2026') {
-                              event.preventDefault();
-                              if (clave !== null) {
+                            if (clave === null) return;
+
+                            try {
+                              const response = await fetch('/descargar-manual-veedurias', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ clave }),
+                              });
+
+                              if (response.status === 401) {
                                 window.alert('Clave incorrecta.');
+                                return;
                               }
+
+                              if (!response.ok) {
+                                throw new Error('No fue posible descargar el manual.');
+                              }
+
+                              const archivo = await response.blob();
+                              const descargaUrl = URL.createObjectURL(archivo);
+                              const enlace = document.createElement('a');
+                              enlace.href = descargaUrl;
+                              enlace.download = 'manual-veedurias.pdf';
+                              document.body.appendChild(enlace);
+                              enlace.click();
+                              enlace.remove();
+                              window.setTimeout(() => URL.revokeObjectURL(descargaUrl), 1000);
+                            } catch {
+                              window.alert(
+                                'No fue posible descargar el manual. Inténtelo nuevamente.',
+                              );
                             }
                           }}
                         >
