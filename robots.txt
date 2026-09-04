@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://fundacioncapitulounidosporlos-ddhh.netlify.app/sitemap.xml
