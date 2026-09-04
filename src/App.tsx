@@ -983,8 +983,21 @@ function App() {
           </div>
 
           {/* Publicaciones de Instagram */}
-          <div className="bg-white rounded-2xl p-4 sm:p-6 mb-8 shadow-xl overflow-hidden">
-            <div id="instagram-widget-slot"></div>
+          <div className="mb-8 overflow-hidden rounded-2xl border border-red-500/30 bg-gradient-to-br from-gray-900 via-red-950/60 to-black p-4 shadow-2xl sm:p-6">
+            <div className="mb-5 text-center">
+              <span className="mb-3 inline-flex items-center rounded-full border border-red-500/30 bg-red-900/50 px-4 py-2 text-sm font-medium text-red-400">
+                Instagram
+              </span>
+              <h3 className="text-2xl font-bold text-white sm:text-3xl">
+                Noticias en Instagram
+              </h3>
+              <p className="mt-2 text-sm text-gray-400 sm:text-base">
+                Actualizaciones de @capitulounidosddhhcol
+              </p>
+            </div>
+            <div className="overflow-hidden rounded-xl bg-white p-2 sm:p-4">
+              <div id="instagram-widget-slot"></div>
+            </div>
           </div>
 
           {/* Noticia: ASOCOLCUL se une como aliado */}
