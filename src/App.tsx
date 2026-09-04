@@ -727,13 +727,13 @@ function App() {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-white/80 backdrop-blur-lg shadow-lg border-b border-white/20' : 'bg-transparent'}`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
+          <div className="flex h-16 items-center justify-between sm:h-20">
             {/* Logo */}
             <div className="flex items-center space-x-3">
               <img loading="lazy" decoding="async"
                 src="/logo-uhr.png"
                 alt="United for Human Rights Logo"
-                className="w-14 h-14 object-contain"
+                className="h-11 w-11 object-contain sm:h-14 sm:w-14"
               />
               <div className="hidden sm:block">
                 <p
@@ -747,7 +747,7 @@ function App() {
             </div>
 
             {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden items-center gap-3 2xl:flex">
               {[
                 { name: 'Inicio', id: 'inicio' },
                 { name: 'Nosotros', id: 'nosotros' },
@@ -767,7 +767,7 @@ function App() {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`font-medium hover:text-blue-400 transition-colors ${scrolled ? 'text-gray-700' : 'text-white'}`}
+                  className={`text-sm font-medium transition-colors hover:text-blue-400 ${scrolled ? 'text-gray-700' : 'text-white'}`}
                 >
                   {item.name}
                 </button>
@@ -776,7 +776,7 @@ function App() {
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden p-2"
+              className={`inline-flex h-11 w-11 items-center justify-center rounded-lg border 2xl:hidden ${scrolled ? 'border-gray-200 bg-white shadow-sm' : 'border-white/30 bg-black/20'}`}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
               aria-expanded={isMenuOpen}
@@ -784,11 +784,11 @@ function App() {
             >
               {isMenuOpen ? (
                 <X
-                  className={`w-6 h-6 ${scrolled ? 'text-gray-900' : 'text-white'}`}
+                  className={`h-7 w-7 ${scrolled ? 'text-gray-900' : 'text-white'}`}
                 />
               ) : (
                 <Menu
-                  className={`w-6 h-6 ${scrolled ? 'text-gray-900' : 'text-white'}`}
+                  className={`h-7 w-7 ${scrolled ? 'text-gray-900' : 'text-white'}`}
                 />
               )}
             </button>
@@ -797,8 +797,11 @@ function App() {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div id="menu-movil" className="md:hidden bg-white shadow-lg">
-            <div className="px-4 py-4 space-y-3">
+          <div
+            id="menu-movil"
+            className="max-h-[calc(100vh-4rem)] overflow-y-auto border-t border-gray-200 bg-white shadow-2xl sm:max-h-[calc(100vh-5rem)] 2xl:hidden"
+          >
+            <div className="grid grid-cols-2 gap-2 px-3 py-3 sm:px-5 sm:py-4">
               {[
                 { name: 'Inicio', id: 'inicio' },
                 { name: 'Nosotros', id: 'nosotros' },
@@ -818,7 +821,7 @@ function App() {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-md font-medium"
+                  className="min-h-11 w-full rounded-lg border border-gray-100 px-3 py-2 text-left text-sm font-medium leading-tight text-gray-700 transition-colors hover:bg-blue-50 hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                 >
                   {item.name}
                 </button>
