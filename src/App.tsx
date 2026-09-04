@@ -32,6 +32,12 @@ function App() {
   const [contactoError, setContactoError] = useState('');
   const [contactoSubmitting, setContactoSubmitting] = useState(false);
 
+  useEffect(() => {
+    const widget = document.getElementById('elfsight-instagram-root');
+    const slot = document.getElementById('instagram-widget-slot');
+    if (widget && slot) slot.appendChild(widget);
+  }, []);
+
   // Galería de Afiches - Lightbox
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [selectedAficheIndex, setSelectedAficheIndex] = useState(0);
@@ -978,9 +984,7 @@ function App() {
 
           {/* Publicaciones de Instagram */}
           <div className="bg-white rounded-2xl p-4 sm:p-6 mb-8 shadow-xl overflow-hidden">
-            <div
-              className="elfsight-app-9d4de514-a267-4c66-8992-baf0b59d7600"
-            ></div>
+            <div id="instagram-widget-slot"></div>
           </div>
 
           {/* Noticia: ASOCOLCUL se une como aliado */}
