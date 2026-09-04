@@ -976,6 +976,14 @@ function App() {
             />
           </div>
 
+          {/* Publicaciones de Instagram */}
+          <div className="bg-white rounded-2xl p-4 sm:p-6 mb-8 shadow-xl overflow-hidden">
+            <div
+              className="elfsight-app-9d4de514-a267-4c66-8992-baf0b59d7600"
+              data-elfsight-app-lazy
+            ></div>
+          </div>
+
           {/* Noticia: ASOCOLCUL se une como aliado */}
           <div className="bg-gradient-to-r from-green-900/80 to-blue-900/80 backdrop-blur-sm border border-green-500/30 rounded-2xl p-6 sm:p-8 mb-8 shadow-xl">
             <div className="flex flex-col sm:flex-row gap-6 items-start">
