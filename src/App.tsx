@@ -991,7 +991,6 @@ function App() {
           <div className="bg-white rounded-2xl p-4 sm:p-6 mb-8 shadow-xl overflow-hidden">
             <div
               className="elfsight-app-9d4de514-a267-4c66-8992-baf0b59d7600"
-              data-elfsight-app-lazy
             ></div>
           </div>
 
