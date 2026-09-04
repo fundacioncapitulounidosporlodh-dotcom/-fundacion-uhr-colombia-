@@ -32,17 +32,6 @@ function App() {
   const [contactoError, setContactoError] = useState('');
   const [contactoSubmitting, setContactoSubmitting] = useState(false);
 
-  useEffect(() => {
-    const scriptId = 'elfsight-platform-script';
-    if (document.getElementById(scriptId)) return;
-
-    const script = document.createElement('script');
-    script.id = scriptId;
-    script.src = 'https://elfsightcdn.com/platform.js';
-    script.async = true;
-    document.body.appendChild(script);
-  }, []);
-
   // Galería de Afiches - Lightbox
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [selectedAficheIndex, setSelectedAficheIndex] = useState(0);
