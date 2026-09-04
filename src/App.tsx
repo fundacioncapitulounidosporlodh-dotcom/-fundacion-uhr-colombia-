@@ -1973,6 +1973,20 @@ function App() {
                           href={item.url}
                           target="_blank"
                           rel="noopener noreferrer"
+                          onClick={(event) => {
+                            if (item.title !== 'Manual de Veedurías') return;
+
+                            const clave = window.prompt(
+                              'Ingrese la clave para descargar el Manual de Veedurías:',
+                            );
+
+                            if (clave !== 'DDHH2026') {
+                              event.preventDefault();
+                              if (clave !== null) {
+                                window.alert('Clave incorrecta.');
+                              }
+                            }
+                          }}
                         >
                           <Button
                             size="sm"
