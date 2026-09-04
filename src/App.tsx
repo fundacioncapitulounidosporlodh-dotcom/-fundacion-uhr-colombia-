@@ -856,50 +856,37 @@ function App() {
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                Unidos por los
+                Conoce tus derechos.
                 <br />
-                <span className="text-yellow-400">Derechos Humanos</span>
-                <br />
-                Capítulo Colombia
+                <span className="text-yellow-400">Aprende a defenderlos.</span>
               </h1>
 
               <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-                Educando y empoderando a las comunidades colombianas sobre sus
-                derechos fundamentales. Parte de la organización internacional
-                con sede en Estados Unidos.
+                Educación, herramientas y acciones para promover y proteger los
+                derechos humanos en Colombia.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="grid gap-3 sm:grid-cols-3">
                 <Button
-                  onClick={() => scrollToSection('recursos')}
-                  className="bg-gradient-to-r from-yellow-500 to-yellow-400 hover:from-yellow-400 hover:to-yellow-300 text-blue-900 font-bold px-8 py-6 text-lg shadow-lg"
+                  onClick={() => scrollToSection('afiches')}
+                  className="h-auto min-h-14 bg-gradient-to-r from-yellow-500 to-yellow-400 px-4 py-3 text-base font-bold leading-tight text-blue-950 shadow-lg hover:from-yellow-400 hover:to-yellow-300"
                 >
-                  <BookOpen className="w-5 h-5 mr-2" />
-                  Explorar Recursos
+                  <Scale className="mr-2 h-5 w-5 flex-shrink-0" />
+                  Conoce los 30 derechos
                 </Button>
                 <Button
-                  onClick={() => scrollToSection('donaciones')}
-                  className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 text-white font-bold px-8 py-6 text-lg shadow-lg"
+                  onClick={() => scrollToSection('descargas')}
+                  className="h-auto min-h-14 bg-gradient-to-r from-blue-600 to-blue-500 px-4 py-3 text-base font-bold leading-tight text-white shadow-lg hover:from-blue-500 hover:to-blue-400"
                 >
-                  <Heart className="w-5 h-5 mr-2" />
-                  Donaciones
+                  <Download className="mr-2 h-5 w-5 flex-shrink-0" />
+                  Descarga material gratuito
                 </Button>
                 <Button
-                  onClick={() => scrollToSection('contacto')}
-                  className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold px-8 py-6 text-lg shadow-lg"
+                  onClick={() => scrollToSection('afiliacion')}
+                  className="h-auto min-h-14 bg-gradient-to-r from-green-600 to-emerald-500 px-4 py-3 text-base font-bold leading-tight text-white shadow-lg hover:from-green-500 hover:to-emerald-400"
                 >
-                  <Phone className="w-5 h-5 mr-2" />
-                  Contáctanos
-                </Button>
-              </div>
-
-              <div className="mt-4">
-                <Button
-                  onClick={() => scrollToSection('capacitate')}
-                  className="bg-gradient-to-r from-green-500 to-emerald-400 hover:from-green-400 hover:to-emerald-300 text-white font-bold px-8 py-6 text-lg shadow-lg w-full sm:w-auto animate-pulse"
-                >
-                  <GraduationCap className="w-5 h-5 mr-2" />
-                  Capacítate y Certifícate sin Costo
+                  <Users className="mr-2 h-5 w-5 flex-shrink-0" />
+                  Únete a la Fundación
                 </Button>
               </div>
 
@@ -940,6 +927,70 @@ function App() {
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
           <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
             <div className="w-1.5 h-3 bg-white/70 rounded-full mt-2"></div>
+          </div>
+        </div>
+      </section>
+
+      {/* Accesos principales */}
+      <section className="relative z-10 bg-gradient-to-b from-blue-50 to-white py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 text-center">
+            <span className="mb-3 inline-flex rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
+              Empieza aquí
+            </span>
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
+              ¿Qué necesitas encontrar?
+            </h2>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-3">
+            <button
+              type="button"
+              onClick={() => scrollToSection('afiches')}
+              className="group rounded-2xl border border-yellow-200 bg-white p-6 text-left shadow-lg transition-all hover:-translate-y-1 hover:border-yellow-400 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500"
+            >
+              <span className="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-yellow-100 text-yellow-700 transition-transform group-hover:scale-105">
+                <Scale className="h-7 w-7" />
+              </span>
+              <span className="block text-xl font-bold text-gray-900">
+                Quiero conocer mis derechos
+              </span>
+              <span className="mt-2 block text-base leading-relaxed text-gray-600">
+                Explora los 30 derechos humanos mediante nuestros afiches educativos.
+              </span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => scrollToSection('formatos')}
+              className="group rounded-2xl border border-blue-200 bg-white p-6 text-left shadow-lg transition-all hover:-translate-y-1 hover:border-blue-400 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            >
+              <span className="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-blue-100 text-blue-700 transition-transform group-hover:scale-105">
+                <FileText className="h-7 w-7" />
+              </span>
+              <span className="block text-xl font-bold text-gray-900">
+                Necesito un formato jurídico
+              </span>
+              <span className="mt-2 block text-base leading-relaxed text-gray-600">
+                Consulta los formatos disponibles para orientar tus actuaciones.
+              </span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => scrollToSection('afiliacion')}
+              className="group rounded-2xl border border-green-200 bg-white p-6 text-left shadow-lg transition-all hover:-translate-y-1 hover:border-green-400 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500"
+            >
+              <span className="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-green-100 text-green-700 transition-transform group-hover:scale-105">
+                <Users className="h-7 w-7" />
+              </span>
+              <span className="block text-xl font-bold text-gray-900">
+                Quiero participar o ser voluntario
+              </span>
+              <span className="mt-2 block text-base leading-relaxed text-gray-600">
+                Conoce cómo unirte y participar en las actividades de la Fundación.
+              </span>
+            </button>
           </div>
         </div>
       </section>
