@@ -3152,7 +3152,7 @@ function App() {
                 <Card className="border-0 shadow-md">
                   <CardContent className="p-4 text-center">
                     <a
-                      href="https://fundacioncapitulounidosporlosddhh.netlify.app/"
+                      href="https://fundacioncapitulounidosporlos-ddhh.netlify.app/"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
