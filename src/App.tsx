@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import './App.css';
 import {
   Menu,
@@ -26,10 +26,11 @@ function App() {
   const [scrolled, setScrolled] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [formEnviado, setFormEnviado] = useState(false);
-  const [showPasswordModal, setShowPasswordModal] = useState(false);
-  const [passwordInput, setPasswordInput] = useState('');
-  const [passwordError, setPasswordError] = useState('');
-  const VEEDURIAS_PASSWORD = 'DDHH2024';
+  const [formError, setFormError] = useState('');
+  const [formSubmitting, setFormSubmitting] = useState(false);
+  const [contactoEnviado, setContactoEnviado] = useState(false);
+  const [contactoError, setContactoError] = useState('');
+  const [contactoSubmitting, setContactoSubmitting] = useState(false);
 
   // Galería de Afiches - Lightbox
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
@@ -338,20 +339,20 @@ function App() {
     document.body.style.overflow = 'hidden';
   };
 
-  const closeGallery = () => {
+  const closeGallery = useCallback(() => {
     setIsGalleryOpen(false);
     document.body.style.overflow = 'auto';
-  };
+  }, []);
 
-  const nextAfiche = () => {
+  const nextAfiche = useCallback(() => {
     setSelectedAficheIndex((prev) => (prev + 1) % afichesList.length);
-  };
+  }, [afichesList.length]);
 
-  const prevAfiche = () => {
+  const prevAfiche = useCallback(() => {
     setSelectedAficheIndex(
       (prev) => (prev - 1 + afichesList.length) % afichesList.length
     );
-  };
+  }, [afichesList.length]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -362,7 +363,7 @@ function App() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isGalleryOpen]);
+  }, [isGalleryOpen, closeGallery, nextAfiche, prevAfiche]);
   const [formData, setFormData] = useState({
     nombre: '',
     documento: '',
@@ -373,6 +374,15 @@ function App() {
     departamento: '',
     ocupacion: '',
     motivo: '',
+    autorizacionDatos: false,
+  });
+
+  const [contactoData, setContactoData] = useState({
+    nombre: '',
+    email: '',
+    asunto: '',
+    mensaje: '',
+    autorizacionDatos: false,
   });
 
   useEffect(() => {
@@ -607,49 +617,100 @@ function App() {
     setSearchQuery('');
   };
 
-  const handlePasswordSubmit = () => {
-    if (passwordInput === VEEDURIAS_PASSWORD) {
-      setShowPasswordModal(false);
-      setPasswordInput('');
-      setPasswordError('');
-      window.open('/manual-veedurias.pdf', '_blank');
-    } else {
-      setPasswordError('Contraseña incorrecta. Intente nuevamente.');
-    }
-  };
-
   const handleFormChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
     >
   ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const value =
+      e.target instanceof HTMLInputElement && e.target.type === 'checkbox'
+        ? e.target.checked
+        : e.target.value;
+    setFormData({ ...formData, [e.target.name]: value });
   };
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = `Nueva Afiliacion - ${formData.nombre}`;
-    const body = `Nombre: ${formData.nombre}%0D%0ATipo de Documento: ${formData.tipoDocumento}%0D%0ADocumento: ${formData.documento}%0D%0AEmail: ${formData.email}%0D%0ATelefono: ${formData.telefono}%0D%0ACiudad: ${formData.ciudad}%0D%0ADepartamento: ${formData.departamento}%0D%0AOcupacion: ${formData.ocupacion}%0D%0AMotivo: ${formData.motivo}`;
-    window.location.href = `mailto:fundacioncapitulounidosporlodh@gmail.com?subject=${subject}&body=${body}`;
-    setFormEnviado(true);
-    setFormData({
-      nombre: '',
-      documento: '',
-      tipoDocumento: 'CC',
-      email: '',
-      telefono: '',
-      ciudad: '',
-      departamento: '',
-      ocupacion: '',
-      motivo: '',
-    });
+    setFormError('');
+    setFormSubmitting(true);
+
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          'form-name': 'afiliacion',
+          ...Object.fromEntries(
+            Object.entries(formData).map(([key, value]) => [key, String(value)])
+          ),
+        }).toString(),
+      });
+
+      if (!response.ok) throw new Error('No fue posible enviar la solicitud.');
+
+      setFormEnviado(true);
+      setFormData({
+        nombre: '',
+        documento: '',
+        tipoDocumento: 'CC',
+        email: '',
+        telefono: '',
+        ciudad: '',
+        departamento: '',
+        ocupacion: '',
+        motivo: '',
+        autorizacionDatos: false,
+      });
+    } catch {
+      setFormError(
+        'No pudimos enviar la solicitud. Inténtalo nuevamente o escríbenos por WhatsApp.'
+      );
+    } finally {
+      setFormSubmitting(false);
+    }
+  };
+
+  const handleContactoSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setContactoError('');
+    setContactoSubmitting(true);
+
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          'form-name': 'contacto',
+          ...Object.fromEntries(
+            Object.entries(contactoData).map(([key, value]) => [key, String(value)])
+          ),
+        }).toString(),
+      });
+
+      if (!response.ok) throw new Error('No fue posible enviar el mensaje.');
+
+      setContactoEnviado(true);
+      setContactoData({
+        nombre: '',
+        email: '',
+        asunto: '',
+        mensaje: '',
+        autorizacionDatos: false,
+      });
+    } catch {
+      setContactoError(
+        'No pudimos enviar el mensaje. Inténtalo nuevamente o escríbenos por WhatsApp.'
+      );
+    } finally {
+      setContactoSubmitting(false);
+    }
   };
 
   return (
     <div className="min-h-screen bg-white relative">
       {/* Marca de agua fondo - Logo Fundacion Capitulo UHR Colombia */}
       <div className="fixed inset-0 z-0 opacity-[0.05] pointer-events-none flex items-center justify-center">
-        <img
+        <img loading="lazy" decoding="async"
           src="/logo-fundacion-capitulo.jpg"
           alt=""
           className="w-[500px] h-[500px] object-contain"
@@ -663,19 +724,19 @@ function App() {
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <div className="flex items-center space-x-3">
-              <img
+              <img loading="lazy" decoding="async"
                 src="/logo-uhr.png"
                 alt="United for Human Rights Logo"
                 className="w-14 h-14 object-contain"
               />
               <div className="hidden sm:block">
-                <h1
+                <p
                   className={`font-bold text-lg leading-tight ${scrolled ? 'text-gray-900' : 'text-white'}`}
                 >
                   Unidos por los
                   <br />
                   Derechos Humanos
-                </h1>
+                </p>
               </div>
             </div>
 
@@ -711,6 +772,9 @@ function App() {
             <button
               className="md:hidden p-2"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+              aria-expanded={isMenuOpen}
+              aria-controls="menu-movil"
             >
               {isMenuOpen ? (
                 <X
@@ -727,7 +791,7 @@ function App() {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden bg-white shadow-lg">
+          <div id="menu-movil" className="md:hidden bg-white shadow-lg">
             <div className="px-4 py-4 space-y-3">
               {[
                 { name: 'Inicio', id: 'inicio' },
@@ -764,7 +828,7 @@ function App() {
         className="relative min-h-screen flex items-center justify-center"
       >
         <div className="absolute inset-0">
-          <img
+          <img loading="eager" decoding="async" fetchPriority="high"
             src="/hero-image.jpg"
             alt="Derechos Humanos Colombia"
             className="w-full h-full object-cover"
@@ -776,9 +840,9 @@ function App() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="max-w-2xl">
               <div className="inline-flex items-center px-4 py-2 bg-yellow-500/30 border-2 border-yellow-400 rounded-full mb-6">
-                <img src="/logo-uhr.png" alt="" className="w-6 h-6 mr-2" />
+                <img loading="lazy" decoding="async" src="/logo-uhr.png" alt="" className="w-6 h-6 mr-2" />
                 <span className="text-yellow-300 text-sm font-medium">
-                  CAPITULO AUTORIZADO EN COLOMBIA
+                  CAPÍTULO AUTORIZADO EN COLOMBIA
                 </span>
               </div>
 
@@ -836,6 +900,7 @@ function App() {
                   <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                   <input
                     type="text"
+                    aria-label="Buscar en el sitio"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Buscar secciones, alianzas, formatos..."
@@ -853,7 +918,7 @@ function App() {
 
             {/* Logo Fundacion Capitulo UHR Colombia */}
             <div className="hidden lg:flex justify-center">
-              <img
+              <img loading="lazy" decoding="async"
                 src="/logo-fundacion-capitulo.jpg"
                 alt="Fundacion Capitulo Unidos por los Derechos Humanos Colombia"
                 className="w-80 h-80 object-contain rounded-full shadow-2xl border-4 border-yellow-400/50"
@@ -897,14 +962,14 @@ function App() {
               Cuarta Vigilia
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-              El poder que no duerme - Informacion y actualizaciones de nuestra
-              fundacion.
+              El poder que no duerme - Información y actualizaciones de nuestra
+              fundación.
             </p>
           </div>
 
           {/* Imagen grande e impactante */}
           <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-yellow-500/20 mb-8">
-            <img
+            <img loading="lazy" decoding="async"
               src="/cuarta-vigilia-banner.jpg"
               alt="Cuarta Vigilia - El Poder Que No Duerme"
               className="w-full h-auto object-cover"
@@ -915,7 +980,7 @@ function App() {
           <div className="bg-gradient-to-r from-green-900/80 to-blue-900/80 backdrop-blur-sm border border-green-500/30 rounded-2xl p-6 sm:p-8 mb-8 shadow-xl">
             <div className="flex flex-col sm:flex-row gap-6 items-start">
               <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-full overflow-hidden shadow-lg border-2 border-white/20 flex-shrink-0 mx-auto sm:mx-0">
-                <img
+                <img loading="lazy" decoding="async"
                   src="/asocolcul.png"
                   alt="ASOCOLCUL"
                   className="w-full h-full object-cover"
@@ -1047,7 +1112,7 @@ function App() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="inline-flex items-center px-4 py-2 bg-yellow-100 rounded-full mb-6">
-                <img src="/logo-uhr.png" alt="" className="w-5 h-5 mr-2" />
+                <img loading="lazy" decoding="async" src="/logo-uhr.png" alt="" className="w-5 h-5 mr-2" />
                 <span className="text-yellow-700 text-sm font-medium">
                   Sobre Nosotros
                 </span>
@@ -1114,7 +1179,7 @@ function App() {
             </div>
 
             <div className="relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="/educacion-image.jpg"
                 alt="Educación en Derechos Humanos"
                 className="rounded-2xl shadow-2xl"
@@ -1178,7 +1243,7 @@ function App() {
             <div className="flex justify-center">
               <div className="relative">
                 <div className="w-64 h-64 md:w-80 md:h-80 bg-white rounded-full p-4 shadow-2xl flex items-center justify-center">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src="/escudo-consejo-paz-cali.jpg"
                     alt="Escudo Consejo Territorial de Paz, Reconciliación y Convivencia de Santiago de Cali"
                     className="w-full h-full object-contain rounded-full"
@@ -1200,7 +1265,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="inline-block mb-6">
-              <img
+              <img loading="lazy" decoding="async"
                 src="/logo-uhr.png"
                 alt="United for Human Rights - Logo Oficial"
                 className="w-48 h-48 md:w-64 md:h-64 object-contain drop-shadow-2xl"
@@ -1298,7 +1363,7 @@ function App() {
             <Card className="hover:shadow-xl transition-all duration-300 border-0 shadow-md card-hover">
               <CardContent className="p-8 text-center">
                 <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src="/logo-arbol-fuente-vida.png"
                     alt="ONG ARBOL FUENTE DE VIDA"
                     className="w-28 h-28 object-contain"
@@ -1329,7 +1394,7 @@ function App() {
             <Card className="hover:shadow-xl transition-all duration-300 border-0 shadow-md card-hover">
               <CardContent className="p-8 text-center">
                 <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src="/logo-hawks.jpg"
                     alt="NGO CAPEHALCONES"
                     className="w-28 h-28 object-contain"
@@ -1365,7 +1430,7 @@ function App() {
             <Card className="hover:shadow-xl transition-all duration-300 border-0 shadow-md card-hover">
               <CardContent className="p-8 text-center">
                 <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src="/logo-veeduria-nacion.jpg"
                     alt="Veeduría Ciudadana de la Nación Cali"
                     className="w-28 h-28 object-contain"
@@ -1402,7 +1467,7 @@ function App() {
             <Card className="hover:shadow-xl transition-all duration-300 border-0 shadow-md card-hover">
               <CardContent className="p-8 text-center">
                 <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src="/logo-saccol.png"
                     alt="SACCOL"
                     className="w-28 h-28 object-contain"
@@ -1454,7 +1519,7 @@ function App() {
             <Card className="hover:shadow-xl transition-all duration-300 border-0 shadow-md card-hover">
               <CardContent className="p-8 text-center">
                 <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src="/logo-camino-felicidad.jpg"
                     alt="Fundación El Camino de la Felicidad"
                     className="w-28 h-28 object-contain"
@@ -1485,7 +1550,7 @@ function App() {
             <Card className="hover:shadow-xl transition-all duration-300 border-0 shadow-md card-hover">
               <CardContent className="p-8 text-center">
                 <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src="/logo-drug-free-world.jpg"
                     alt="Fundación por un Mundo Libre de Drogas"
                     className="w-28 h-28 object-contain"
@@ -1533,7 +1598,7 @@ function App() {
             <Card className="hover:shadow-xl transition-all duration-300 border-0 shadow-md card-hover">
               <CardContent className="p-8 text-center">
                 <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src="/logo-cepdipo.jpg"
                     alt="CEPDIPO"
                     className="w-28 h-28 object-contain"
@@ -1564,7 +1629,7 @@ function App() {
             <Card className="hover:shadow-xl transition-all duration-300 border-0 shadow-md card-hover">
               <CardContent className="p-8 text-center">
                 <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src="/logo-memoria-viva-colombia.jpg"
                     alt="MEVICO - Memoria Viva Colombia"
                     className="w-28 h-28 object-contain"
@@ -1616,7 +1681,7 @@ function App() {
             <Card className="hover:shadow-xl transition-all duration-300 border-0 shadow-md card-hover">
               <CardContent className="p-8 text-center">
                 <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src="/asocolcul.png"
                     alt="ASOCOLCUL"
                     className="w-28 h-28 object-contain"
@@ -1670,7 +1735,7 @@ function App() {
             <Card className="hover:shadow-xl transition-all duration-300 border-0 shadow-md card-hover">
               <CardContent className="p-8 text-center">
                 <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src="/logo-sintrajuspaz.jpg"
                     alt="SINTRAJUSPAZ"
                     className="w-28 h-28 object-contain"
@@ -1780,7 +1845,7 @@ function App() {
                 className="overflow-hidden hover:shadow-xl transition-shadow border-0 shadow-md"
               >
                 <div className="aspect-video bg-gray-100">
-                  <iframe
+                  <iframe loading="lazy"
                     width="100%"
                     height="100%"
                     src={`https://www.youtube.com/embed/${video.videoId}`}
@@ -1904,36 +1969,20 @@ function App() {
                         <span className="text-xs text-gray-500">
                           {item.type} • {item.size}
                         </span>
-                        {item.title === 'Manual de Veedurías' ? (
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           <Button
                             size="sm"
                             variant="outline"
-                            className="text-purple-600 border-purple-600 hover:bg-purple-50"
-                            onClick={() => {
-                              setShowPasswordModal(true);
-                              setPasswordInput('');
-                              setPasswordError('');
-                            }}
+                            className="text-blue-600 border-blue-600 hover:bg-blue-50"
                           >
                             <Download className="w-4 h-4 mr-1" />
                             Descargar
                           </Button>
-                        ) : (
-                          <a
-                            href={item.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              className="text-blue-600 border-blue-600 hover:bg-blue-50"
-                            >
-                              <Download className="w-4 h-4 mr-1" />
-                              Descargar
-                            </Button>
-                          </a>
-                        )}
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -1973,8 +2022,11 @@ function App() {
                 onClick={() => openGallery(index)}
               >
                 <div className="aspect-[3/4] bg-gray-100 overflow-hidden relative">
-                  <img
-                    src={'/afiches/' + afiche.file}
+                  <img loading="lazy" decoding="async"
+                    src={
+                      '/afiches/previews/' +
+                      afiche.file.replace(/\.(jpg|png)$/i, '.webp')
+                    }
                     alt={afiche.subtitle}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
@@ -2124,7 +2176,7 @@ function App() {
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Formulario de Afiliacion
+              Formulario de Afiliación
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
               Completa tus datos para ser parte de Unidos por los Derechos
@@ -2140,28 +2192,35 @@ function App() {
                     <Heart className="w-8 h-8 text-green-600" />
                   </div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                    ¡Gracias por tu interes!
+                    ¡Gracias por tu interés!
                   </h3>
                   <p className="text-gray-600 mb-6">
-                    Se ha abierto tu correo con los datos. Envia el mensaje para
-                    completar tu afiliacion.
+                    Tu solicitud de afiliación fue enviada correctamente.
                   </p>
                   <Button
                     onClick={() => setFormEnviado(false)}
                     variant="outline"
                     className="text-blue-600 border-blue-600"
                   >
-                    Enviar otra afiliacion
+                    Enviar otra afiliación
                   </Button>
                 </div>
               ) : (
-                <form onSubmit={handleFormSubmit} className="space-y-5">
+                <form
+                  name="afiliacion"
+                  method="POST"
+                  data-netlify="true"
+                  onSubmit={handleFormSubmit}
+                  className="space-y-5"
+                >
+                  <input type="hidden" name="form-name" value="afiliacion" />
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label htmlFor="afiliacion-nombre" className="block text-sm font-medium text-gray-700 mb-1">
                         Nombres y Apellidos *
                       </label>
                       <input
+                        id="afiliacion-nombre"
                         type="text"
                         name="nombre"
                         value={formData.nombre}
@@ -2172,10 +2231,11 @@ function App() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Correo Electronico *
+                      <label htmlFor="afiliacion-email" className="block text-sm font-medium text-gray-700 mb-1">
+                        Correo electrónico *
                       </label>
                       <input
+                        id="afiliacion-email"
                         type="email"
                         name="email"
                         value={formData.email}
@@ -2189,27 +2249,29 @@ function App() {
 
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label htmlFor="afiliacion-tipo-documento" className="block text-sm font-medium text-gray-700 mb-1">
                         Tipo de Documento *
                       </label>
                       <select
+                        id="afiliacion-tipo-documento"
                         name="tipoDocumento"
                         value={formData.tipoDocumento}
                         onChange={handleFormChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       >
-                        <option value="CC">Cedula de Ciudadania</option>
-                        <option value="CE">Cedula de Extranjeria</option>
+                        <option value="CC">Cédula de ciudadanía</option>
+                        <option value="CE">Cédula de extranjería</option>
                         <option value="PA">Pasaporte</option>
                         <option value="TI">Tarjeta de Identidad</option>
                         <option value="PEP">PEP</option>
                       </select>
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Numero de Documento *
+                      <label htmlFor="afiliacion-documento" className="block text-sm font-medium text-gray-700 mb-1">
+                        Número de documento *
                       </label>
                       <input
+                        id="afiliacion-documento"
                         type="text"
                         name="documento"
                         value={formData.documento}
@@ -2223,10 +2285,11 @@ function App() {
 
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Telefono / WhatsApp *
+                      <label htmlFor="afiliacion-telefono" className="block text-sm font-medium text-gray-700 mb-1">
+                        Teléfono / WhatsApp *
                       </label>
                       <input
+                        id="afiliacion-telefono"
                         type="tel"
                         name="telefono"
                         value={formData.telefono}
@@ -2237,10 +2300,11 @@ function App() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label htmlFor="afiliacion-ciudad" className="block text-sm font-medium text-gray-700 mb-1">
                         Ciudad *
                       </label>
                       <input
+                        id="afiliacion-ciudad"
                         type="text"
                         name="ciudad"
                         value={formData.ciudad}
@@ -2254,10 +2318,11 @@ function App() {
 
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label htmlFor="afiliacion-departamento" className="block text-sm font-medium text-gray-700 mb-1">
                         Departamento *
                       </label>
                       <input
+                        id="afiliacion-departamento"
                         type="text"
                         name="departamento"
                         value={formData.departamento}
@@ -2268,10 +2333,11 @@ function App() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Ocupacion / Profesion
+                      <label htmlFor="afiliacion-ocupacion" className="block text-sm font-medium text-gray-700 mb-1">
+                        Ocupación / profesión
                       </label>
                       <input
+                        id="afiliacion-ocupacion"
                         type="text"
                         name="ocupacion"
                         value={formData.ocupacion}
@@ -2283,31 +2349,55 @@ function App() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      ¿Por que deseas afiliarte? *
+                    <label htmlFor="afiliacion-motivo" className="block text-sm font-medium text-gray-700 mb-1">
+                      ¿Por qué deseas afiliarte? *
                     </label>
                     <textarea
+                      id="afiliacion-motivo"
                       name="motivo"
                       value={formData.motivo}
                       onChange={handleFormChange}
                       required
                       rows={3}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="Cuéntanos tu motivacion para unirte..."
+                      placeholder="Cuéntanos tu motivación para unirte..."
                     ></textarea>
                   </div>
 
+                  <div className="flex items-start gap-3 rounded-lg bg-blue-50 p-4">
+                    <input
+                      id="afiliacion-autorizacion"
+                      type="checkbox"
+                      name="autorizacionDatos"
+                      checked={formData.autorizacionDatos}
+                      onChange={handleFormChange}
+                      required
+                      className="mt-1 h-4 w-4"
+                    />
+                    <label htmlFor="afiliacion-autorizacion" className="text-sm text-gray-700">
+                      Autorizo el tratamiento de mis datos para gestionar esta solicitud, conforme a la{' '}
+                      <a href="/politica-tratamiento-datos.html" target="_blank" rel="noopener noreferrer" className="font-medium text-blue-700 underline">
+                        política de tratamiento de datos
+                      </a>.
+                    </label>
+                  </div>
+
+                  {formError && (
+                    <p role="alert" className="text-center text-sm text-red-600">{formError}</p>
+                  )}
+
                   <Button
                     type="submit"
+                    disabled={formSubmitting}
                     className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-4 text-lg font-bold"
                   >
                     <Mail className="w-5 h-5 mr-2" />
-                    Enviar Solicitud de Afiliacion
+                    {formSubmitting ? 'Enviando…' : 'Enviar solicitud de afiliación'}
                   </Button>
 
                   <p className="text-center text-xs text-gray-500 mt-4">
-                    Al enviar, se abrira tu correo con los datos. El correo se
-                    enviara a: fundacioncapitulounidosporlodh@gmail.com
+                    La información será recibida por la Fundación para gestionar
+                    tu solicitud de afiliación.
                   </p>
                 </form>
               )}
@@ -2330,7 +2420,7 @@ function App() {
               Formatos
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Formularios y documentos oficiales para tramites y solicitudes
+              Formularios y documentos oficiales para trámites y solicitudes
             </p>
           </div>
 
@@ -2486,7 +2576,7 @@ function App() {
               {/* UHR */}
               <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-md overflow-hidden hover:-translate-y-2 border-t-4 border-t-blue-500">
                 <div className="h-40 bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center p-4">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src="/logo-uhr.png"
                     alt="UHR"
                     className="h-28 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
@@ -2519,7 +2609,7 @@ function App() {
               {/* Defensoría */}
               <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-md overflow-hidden hover:-translate-y-2 border-t-4 border-t-indigo-500">
                 <div className="h-40 bg-gradient-to-br from-indigo-600 to-purple-700 flex items-center justify-center p-4">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src="/logo-defensoria.jpg"
                     alt="Defensoría"
                     className="h-28 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
@@ -2552,7 +2642,7 @@ function App() {
               {/* Corte IDH */}
               <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-md overflow-hidden hover:-translate-y-2 border-t-4 border-t-red-500">
                 <div className="h-40 bg-gradient-to-br from-red-700 to-red-900 flex items-center justify-center p-4">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src="/logo-corte-idh.jpg"
                     alt="Corte IDH"
                     className="h-28 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
@@ -2585,7 +2675,7 @@ function App() {
               {/* Amnistía */}
               <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-md overflow-hidden hover:-translate-y-2 border-t-4 border-t-amber-500">
                 <div className="h-40 bg-gradient-to-br from-amber-600 to-yellow-700 flex items-center justify-center p-4">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src="/logo-amnistia.jpg"
                     alt="Amnistía"
                     className="h-28 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
@@ -2630,7 +2720,7 @@ function App() {
               {/* ESAP */}
               <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-md overflow-hidden hover:-translate-y-2 border-t-4 border-t-yellow-500">
                 <div className="h-40 bg-gradient-to-br from-yellow-500 to-red-600 flex items-center justify-center p-4">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src="/logo-esap.jpg"
                     alt="ESAP"
                     className="h-28 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
@@ -2663,7 +2753,7 @@ function App() {
               {/* ONU */}
               <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-md overflow-hidden hover:-translate-y-2 border-t-4 border-t-blue-800">
                 <div className="h-40 bg-gradient-to-br from-blue-800 to-blue-950 flex items-center justify-center p-4">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src="/logo-onu.jpg"
                     alt="ONU"
                     className="h-28 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
@@ -2696,7 +2786,7 @@ function App() {
               {/* OPS/OMS */}
               <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-md overflow-hidden hover:-translate-y-2 border-t-4 border-t-cyan-500">
                 <div className="h-40 bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center p-4">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src="/logo-ops-oms.jpg"
                     alt="OPS/OMS"
                     className="h-28 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
@@ -2741,7 +2831,7 @@ function App() {
               {/* Camino a la Felicidad */}
               <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-md overflow-hidden hover:-translate-y-2 border-t-4 border-t-green-500">
                 <div className="h-40 bg-gradient-to-br from-green-600 to-green-800 flex items-center justify-center p-4">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src="/logo-camino-felicidad.jpg"
                     alt="Camino a la Felicidad"
                     className="h-28 w-auto object-contain rounded-lg group-hover:scale-110 transition-transform duration-300"
@@ -2774,7 +2864,7 @@ function App() {
               {/* Mundo Libre de Drogas */}
               <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-md overflow-hidden hover:-translate-y-2 border-t-4 border-t-orange-500">
                 <div className="h-40 bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center p-4">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src="/logo-drug-free-world.jpg"
                     alt="Mundo Libre de Drogas"
                     className="h-28 w-auto object-contain rounded-lg group-hover:scale-110 transition-transform duration-300"
@@ -3034,7 +3124,7 @@ function App() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <img
+                      <img loading="lazy" decoding="async"
                         src="/qr-instagram.jpg"
                         alt="QR Instagram"
                         className="w-24 h-24 mx-auto mb-2 hover:scale-105 transition-transform"
@@ -3050,7 +3140,7 @@ function App() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <img
+                      <img loading="lazy" decoding="async"
                         src="/qr-tiktok.png"
                         alt="QR TikTok"
                         className="w-24 h-24 mx-auto mb-2 hover:scale-105 transition-transform"
@@ -3062,11 +3152,11 @@ function App() {
                 <Card className="border-0 shadow-md">
                   <CardContent className="p-4 text-center">
                     <a
-                      href="https://fundacioncapitulounidosporlos-ddhh.netlify.app/"
+                      href="https://fundacioncapitulounidosporlosddhh.netlify.app/"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <img
+                      <img loading="lazy" decoding="async"
                         src="/qr-code-sitio-web.png"
                         alt="QR Sitio Web"
                         className="w-24 h-24 mx-auto mb-2 hover:scale-105 transition-transform"
@@ -3084,52 +3174,110 @@ function App() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">
                   Envíanos un mensaje
                 </h3>
-                <form className="space-y-4">
+                {contactoEnviado ? (
+                  <div className="py-10 text-center" role="status">
+                    <Heart className="mx-auto mb-4 h-12 w-12 text-green-600" />
+                    <h4 className="mb-2 text-xl font-bold text-gray-900">Mensaje enviado</h4>
+                    <p className="mb-6 text-gray-600">Gracias por contactarnos. Hemos recibido tu mensaje.</p>
+                    <Button type="button" variant="outline" onClick={() => setContactoEnviado(false)}>
+                      Enviar otro mensaje
+                    </Button>
+                  </div>
+                ) : (
+                <form
+                  name="contacto"
+                  method="POST"
+                  data-netlify="true"
+                  onSubmit={handleContactoSubmit}
+                  className="space-y-4"
+                >
+                  <input type="hidden" name="form-name" value="contacto" />
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="contacto-nombre" className="block text-sm font-medium text-gray-700 mb-1">
                       Nombre completo
                     </label>
                     <input
+                      id="contacto-nombre"
                       type="text"
+                      name="nombre"
+                      value={contactoData.nombre}
+                      onChange={(e) => setContactoData({ ...contactoData, nombre: e.target.value })}
+                      required
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="Tu nombre"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="contacto-email" className="block text-sm font-medium text-gray-700 mb-1">
                       Correo electrónico
                     </label>
                     <input
+                      id="contacto-email"
                       type="email"
+                      name="email"
+                      value={contactoData.email}
+                      onChange={(e) => setContactoData({ ...contactoData, email: e.target.value })}
+                      required
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="tu@email.com"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="contacto-asunto" className="block text-sm font-medium text-gray-700 mb-1">
                       Asunto
                     </label>
                     <input
+                      id="contacto-asunto"
                       type="text"
+                      name="asunto"
+                      value={contactoData.asunto}
+                      onChange={(e) => setContactoData({ ...contactoData, asunto: e.target.value })}
+                      required
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="¿Sobre qué nos quieres contactar?"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="contacto-mensaje" className="block text-sm font-medium text-gray-700 mb-1">
                       Mensaje
                     </label>
                     <textarea
+                      id="contacto-mensaje"
+                      name="mensaje"
+                      value={contactoData.mensaje}
+                      onChange={(e) => setContactoData({ ...contactoData, mensaje: e.target.value })}
+                      required
                       rows={4}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="Escribe tu mensaje aquí..."
                     ></textarea>
                   </div>
-                  <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-3">
+                  <div className="flex items-start gap-3 rounded-lg bg-blue-50 p-4">
+                    <input
+                      id="contacto-autorizacion"
+                      type="checkbox"
+                      name="autorizacionDatos"
+                      checked={contactoData.autorizacionDatos}
+                      onChange={(e) => setContactoData({ ...contactoData, autorizacionDatos: e.target.checked })}
+                      required
+                      className="mt-1 h-4 w-4"
+                    />
+                    <label htmlFor="contacto-autorizacion" className="text-sm text-gray-700">
+                      Autorizo el tratamiento de mis datos para responder este mensaje, conforme a la{' '}
+                      <a href="/politica-tratamiento-datos.html" target="_blank" rel="noopener noreferrer" className="font-medium text-blue-700 underline">
+                        política de tratamiento de datos
+                      </a>.
+                    </label>
+                  </div>
+                  {contactoError && (
+                    <p role="alert" className="text-center text-sm text-red-600">{contactoError}</p>
+                  )}
+                  <Button type="submit" disabled={contactoSubmitting} className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-3">
                     <Mail className="w-5 h-5 mr-2" />
-                    Enviar mensaje
+                    {contactoSubmitting ? 'Enviando…' : 'Enviar mensaje'}
                   </Button>
                 </form>
+                )}
               </CardContent>
             </Card>
           </div>
@@ -3142,7 +3290,7 @@ function App() {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div className="md:col-span-2">
               <div className="flex items-center space-x-3 mb-4">
-                <img
+                <img loading="lazy" decoding="async"
                   src="/logo-uhr.png"
                   alt="United for Human Rights"
                   className="w-12 h-12 object-contain"
@@ -3246,79 +3394,15 @@ function App() {
               © {new Date().getFullYear()} Unidos por los Derechos Humanos -
               Capítulo Colombia. Todos los derechos reservados.
             </p>
+            <a
+              href="/politica-tratamiento-datos.html"
+              className="mt-3 inline-block text-sm text-gray-400 hover:text-white"
+            >
+              Política de tratamiento de datos
+            </a>
           </div>
         </div>
       </footer>
-
-      {/* Modal de Contraseña - Manual de Veedurías */}
-      {showPasswordModal && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6">
-            <div className="text-center mb-6">
-              <div className="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg
-                  className="w-7 h-7 text-purple-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  strokeWidth="2"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-1">
-                Acceso Restringido
-              </h3>
-              <p className="text-gray-600 text-sm">
-                Este documento requiere contraseña para descargar.
-              </p>
-            </div>
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Contraseña
-              </label>
-              <input
-                type="password"
-                value={passwordInput}
-                onChange={(e) => {
-                  setPasswordInput(e.target.value);
-                  setPasswordError('');
-                }}
-                onKeyDown={(e) => e.key === 'Enter' && handlePasswordSubmit()}
-                placeholder="Ingrese la contraseña"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                autoFocus
-              />
-              {passwordError && (
-                <p className="text-red-500 text-sm mt-2">{passwordError}</p>
-              )}
-            </div>
-            <div className="flex gap-3">
-              <Button
-                variant="outline"
-                className="flex-1"
-                onClick={() => {
-                  setShowPasswordModal(false);
-                  setPasswordInput('');
-                  setPasswordError('');
-                }}
-              >
-                Cancelar
-              </Button>
-              <Button
-                className="flex-1 bg-purple-600 hover:bg-purple-700 text-white"
-                onClick={handlePasswordSubmit}
-              >
-                Acceder
-              </Button>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Galeria de Afiches - Lightbox */}
       {isGalleryOpen && (
@@ -3330,6 +3414,7 @@ function App() {
           <button
             className="absolute top-4 right-4 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors z-10"
             onClick={closeGallery}
+            aria-label="Cerrar galería"
           >
             <svg
               className="w-6 h-6"
@@ -3349,6 +3434,7 @@ function App() {
           {/* Boton anterior */}
           <button
             className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors z-10"
+            aria-label="Afiche anterior"
             onClick={(e) => {
               e.stopPropagation();
               prevAfiche();
@@ -3372,6 +3458,7 @@ function App() {
           {/* Boton siguiente */}
           <button
             className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors z-10"
+            aria-label="Afiche siguiente"
             onClick={(e) => {
               e.stopPropagation();
               nextAfiche();
@@ -3397,7 +3484,7 @@ function App() {
             className="max-w-4xl max-h-[85vh] w-full flex flex-col items-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <img
+            <img loading="lazy" decoding="async"
               src={'/afiches/' + afichesList[selectedAficheIndex].file}
               alt={afichesList[selectedAficheIndex].title}
               className="max-w-full max-h-[75vh] object-contain rounded-lg shadow-2xl"
