@@ -17,9 +17,43 @@ import {
   Download,
   GraduationCap,
   Search,
+  ChevronDown,
+  MessageCircle,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+
+const menuGroups = [
+  {
+    name: 'Quiénes somos',
+    items: [
+      { name: 'Nosotros', id: 'nosotros' },
+      { name: 'Consejo de Paz', id: 'consejo-paz' },
+      { name: 'Alianzas', id: 'alianzas' },
+    ],
+  },
+  {
+    name: 'Qué hacemos',
+    items: [
+      { name: 'Videos', id: 'videos' },
+      { name: 'Donaciones', id: 'donaciones' },
+    ],
+  },
+  {
+    name: 'Material educativo',
+    items: [
+      { name: 'Descargas', id: 'descargas' },
+      { name: 'Formatos', id: 'formatos' },
+      { name: 'Afiches', id: 'afiches' },
+      { name: 'Capacítate', id: 'capacitate' },
+      { name: 'Recursos', id: 'recursos' },
+    ],
+  },
+  {
+    name: 'Participa',
+    items: [{ name: 'Afiliación', id: 'afiliacion' }],
+  },
+];
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -747,36 +781,54 @@ function App() {
             </div>
 
             {/* Desktop Menu */}
-            <div className="hidden items-center gap-3 2xl:flex">
-              {[
-                { name: 'Inicio', id: 'inicio' },
-                { name: 'Nosotros', id: 'nosotros' },
-                { name: 'Consejo de Paz', id: 'consejo-paz' },
-                { name: 'Alianzas', id: 'alianzas' },
-                { name: 'Videos', id: 'videos' },
-                { name: 'Noticias', id: 'noticias' },
-                { name: 'Descargas', id: 'descargas' },
-                { name: 'Formatos', id: 'formatos' },
-                { name: 'Afiches', id: 'afiches' },
-                { name: 'Donaciones', id: 'donaciones' },
-                { name: 'Afiliación', id: 'afiliacion' },
-                { name: 'Capacítate', id: 'capacitate' },
-                { name: 'Recursos', id: 'recursos' },
-                { name: 'Contacto', id: 'contacto' },
-              ].map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`text-sm font-medium transition-colors hover:text-blue-400 ${scrolled ? 'text-gray-700' : 'text-white'}`}
-                >
-                  {item.name}
-                </button>
+            <div className="hidden items-center gap-5 xl:flex">
+              <button
+                onClick={() => scrollToSection('inicio')}
+                className={`text-sm font-medium transition-colors hover:text-blue-400 ${scrolled ? 'text-gray-700' : 'text-white'}`}
+              >
+                Inicio
+              </button>
+              {menuGroups.map((group) => (
+                <details key={group.name} className="group relative">
+                  <summary
+                    className={`flex cursor-pointer list-none items-center gap-1 text-sm font-medium transition-colors hover:text-blue-400 [&::-webkit-details-marker]:hidden ${scrolled ? 'text-gray-700' : 'text-white'}`}
+                  >
+                    {group.name}
+                    <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
+                  </summary>
+                  <div className="absolute left-1/2 top-full mt-3 w-56 -translate-x-1/2 rounded-xl border border-gray-100 bg-white p-2 shadow-2xl">
+                    {group.items.map((item) => (
+                      <button
+                        key={item.id}
+                        onClick={(event) => {
+                          event.currentTarget.closest('details')?.removeAttribute('open');
+                          scrollToSection(item.id);
+                        }}
+                        className="block w-full rounded-lg px-3 py-2.5 text-left text-sm font-medium text-gray-700 transition-colors hover:bg-blue-50 hover:text-blue-700"
+                      >
+                        {item.name}
+                      </button>
+                    ))}
+                  </div>
+                </details>
               ))}
+              <button
+                onClick={() => scrollToSection('noticias')}
+                className={`text-sm font-medium transition-colors hover:text-blue-400 ${scrolled ? 'text-gray-700' : 'text-white'}`}
+              >
+                Noticias
+              </button>
+              <button
+                onClick={() => scrollToSection('contacto')}
+                className={`text-sm font-medium transition-colors hover:text-blue-400 ${scrolled ? 'text-gray-700' : 'text-white'}`}
+              >
+                Contacto
+              </button>
             </div>
 
             {/* Mobile Menu Button */}
             <button
-              className={`inline-flex h-11 w-11 items-center justify-center rounded-lg border 2xl:hidden ${scrolled ? 'border-gray-200 bg-white shadow-sm' : 'border-white/30 bg-black/20'}`}
+              className={`inline-flex h-11 w-11 items-center justify-center rounded-lg border xl:hidden ${scrolled ? 'border-gray-200 bg-white shadow-sm' : 'border-white/30 bg-black/20'}`}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
               aria-expanded={isMenuOpen}
@@ -799,33 +851,48 @@ function App() {
         {isMenuOpen && (
           <div
             id="menu-movil"
-            className="max-h-[calc(100vh-4rem)] overflow-y-auto border-t border-gray-200 bg-white shadow-2xl sm:max-h-[calc(100vh-5rem)] 2xl:hidden"
+            className="max-h-[calc(100vh-4rem)] overflow-y-auto border-t border-gray-200 bg-white shadow-2xl sm:max-h-[calc(100vh-5rem)] xl:hidden"
           >
-            <div className="grid grid-cols-2 gap-2 px-3 py-3 sm:px-5 sm:py-4">
-              {[
-                { name: 'Inicio', id: 'inicio' },
-                { name: 'Nosotros', id: 'nosotros' },
-                { name: 'Consejo de Paz', id: 'consejo-paz' },
-                { name: 'Alianzas', id: 'alianzas' },
-                { name: 'Videos', id: 'videos' },
-                { name: 'Noticias', id: 'noticias' },
-                { name: 'Descargas', id: 'descargas' },
-                { name: 'Formatos', id: 'formatos' },
-                { name: 'Afiches', id: 'afiches' },
-                { name: 'Donaciones', id: 'donaciones' },
-                { name: 'Afiliación', id: 'afiliacion' },
-                { name: 'Capacítate', id: 'capacitate' },
-                { name: 'Recursos', id: 'recursos' },
-                { name: 'Contacto', id: 'contacto' },
-              ].map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className="min-h-11 w-full rounded-lg border border-gray-100 px-3 py-2 text-left text-sm font-medium leading-tight text-gray-700 transition-colors hover:bg-blue-50 hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-                >
-                  {item.name}
-                </button>
+            <div className="space-y-2 px-3 py-3 sm:px-5 sm:py-4">
+              <button
+                onClick={() => scrollToSection('inicio')}
+                className="min-h-11 w-full rounded-lg border border-gray-100 px-3 py-2 text-left text-sm font-semibold text-gray-800 hover:bg-blue-50 hover:text-blue-700"
+              >
+                Inicio
+              </button>
+              {menuGroups.map((group) => (
+                <details key={group.name} className="group rounded-lg border border-gray-100 bg-white">
+                  <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between px-3 py-2 text-sm font-semibold text-gray-800 [&::-webkit-details-marker]:hidden">
+                    {group.name}
+                    <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
+                  </summary>
+                  <div className="grid grid-cols-2 gap-2 border-t border-gray-100 p-2">
+                    {group.items.map((item) => (
+                      <button
+                        key={item.id}
+                        onClick={() => scrollToSection(item.id)}
+                        className="min-h-10 rounded-md bg-gray-50 px-2 py-2 text-left text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700"
+                      >
+                        {item.name}
+                      </button>
+                    ))}
+                  </div>
+                </details>
               ))}
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  onClick={() => scrollToSection('noticias')}
+                  className="min-h-11 rounded-lg border border-gray-100 px-3 py-2 text-left text-sm font-semibold text-gray-800 hover:bg-blue-50 hover:text-blue-700"
+                >
+                  Noticias
+                </button>
+                <button
+                  onClick={() => scrollToSection('contacto')}
+                  className="min-h-11 rounded-lg border border-gray-100 px-3 py-2 text-left text-sm font-semibold text-gray-800 hover:bg-blue-50 hover:text-blue-700"
+                >
+                  Contacto
+                </button>
+              </div>
             </div>
           </div>
         )}
@@ -866,7 +933,7 @@ function App() {
                 derechos humanos en Colombia.
               </p>
 
-              <div className="grid gap-3 sm:grid-cols-3">
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 <Button
                   onClick={() => scrollToSection('afiches')}
                   className="h-auto min-h-14 bg-gradient-to-r from-yellow-500 to-yellow-400 px-4 py-3 text-base font-bold leading-tight text-blue-950 shadow-lg hover:from-yellow-400 hover:to-yellow-300"
@@ -887,6 +954,13 @@ function App() {
                 >
                   <Users className="mr-2 h-5 w-5 flex-shrink-0" />
                   Únete a la Fundación
+                </Button>
+                <Button
+                  onClick={() => scrollToSection('capacitate')}
+                  className="h-auto min-h-14 bg-gradient-to-r from-purple-600 to-fuchsia-500 px-4 py-3 text-base font-bold leading-tight text-white shadow-lg hover:from-purple-500 hover:to-fuchsia-400"
+                >
+                  <GraduationCap className="mr-2 h-5 w-5 flex-shrink-0" />
+                  Capacítate gratis
                 </Button>
               </div>
 
@@ -3523,6 +3597,17 @@ function App() {
           </div>
         </div>
       </footer>
+
+      {/* Acceso permanente a orientación */}
+      <button
+        type="button"
+        onClick={() => scrollToSection('contacto')}
+        className="fixed bottom-5 right-4 z-40 inline-flex min-h-12 items-center gap-2 rounded-full bg-gradient-to-r from-blue-700 to-blue-600 px-4 py-3 text-sm font-bold text-white shadow-2xl transition-transform hover:scale-105 hover:from-blue-600 hover:to-blue-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 sm:bottom-6 sm:right-6 sm:text-base"
+        aria-label="Ir a la sección de contacto para solicitar orientación"
+      >
+        <MessageCircle className="h-5 w-5" />
+        ¿Necesitas orientación?
+      </button>
 
       {/* Galeria de Afiches - Lightbox */}
       {isGalleryOpen && (
