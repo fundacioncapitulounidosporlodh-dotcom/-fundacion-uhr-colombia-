@@ -19,6 +19,10 @@ import {
   Search,
   ChevronDown,
   MessageCircle,
+  Award,
+  BadgeCheck,
+  Eye,
+  QrCode,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -47,6 +51,7 @@ const menuGroups = [
       { name: 'Afiches', id: 'afiches' },
       { name: 'Capacítate', id: 'capacitate' },
       { name: 'Recursos', id: 'recursos' },
+      { name: 'Certificados', id: 'verificar-certificado' },
     ],
   },
   {
@@ -54,6 +59,26 @@ const menuGroups = [
     items: [{ name: 'Afiliación', id: 'afiliacion' }],
   },
 ];
+
+const certificadosSolidaridad = [
+  { nombre: 'Ximena Azcarate Calero', codigo: 'CU-2026-0001' },
+  { nombre: 'Gloria Amanda Santamaria Gaviria', codigo: 'CU-2026-0002' },
+  { nombre: 'ASOCOLCUL', codigo: 'CU-2026-0003' },
+  { nombre: 'Sin Tabu', codigo: 'CU-2026-0004' },
+  { nombre: 'Margarita Maria Cardona Santamaria', codigo: 'CU-2026-0007' },
+  { nombre: 'Ana Maria Cardona Santamaria', codigo: 'CU-2026-0008' },
+  { nombre: 'Beatriz Eugenia Gómez Ramirez', codigo: 'CU-2026-0010' },
+  { nombre: 'Tatiana Rengifo Serna', codigo: 'CU-2026-0011' },
+  { nombre: 'Elizabeth Rincon Loaiza', codigo: 'CU-2026-0012' },
+  { nombre: 'Erika Alejandra Bedoya', codigo: 'CU-2026-0013' },
+  { nombre: 'Ingrid Mabel Castrillon Gonzalez', codigo: 'CU-2026-0014' },
+  { nombre: 'Luis Albeiro Barragan Meneses', codigo: 'CU-2026-0015' },
+  { nombre: 'Gilberto y Graciela Cardona', codigo: 'CU-2026-0016' },
+  { nombre: 'Marcela Urrea Ballesteros', codigo: 'CU-2026-0017' },
+].map((certificado) => ({
+  ...certificado,
+  imagen: `/certificados/${certificado.codigo}.jpg`,
+}));
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -65,6 +90,30 @@ function App() {
   const [contactoEnviado, setContactoEnviado] = useState(false);
   const [contactoError, setContactoError] = useState('');
   const [contactoSubmitting, setContactoSubmitting] = useState(false);
+  const [certificateQuery, setCertificateQuery] = useState('');
+  const [selectedCertificate, setSelectedCertificate] = useState<(typeof certificadosSolidaridad)[number] | null>(null);
+
+  useEffect(() => {
+    const shortCode = window.location.pathname.match(/\/v\/(\d{4})/i)?.[1];
+    if (!shortCode) return;
+    const certificate = certificadosSolidaridad.find((item) => item.codigo.endsWith(shortCode));
+    if (certificate) {
+      setSelectedCertificate(certificate);
+      window.setTimeout(() => {
+        document.getElementById('verificar-certificado')?.scrollIntoView({ behavior: 'smooth' });
+      }, 200);
+    }
+  }, []);
+
+  const openCertificate = (certificate: (typeof certificadosSolidaridad)[number]) => {
+    setSelectedCertificate(certificate);
+    window.history.replaceState({}, '', `/v/${certificate.codigo.slice(-4)}#verificar-certificado`);
+  };
+
+  const closeCertificate = () => {
+    setSelectedCertificate(null);
+    window.history.replaceState({}, '', '/#verificar-certificado');
+  };
 
   useEffect(() => {
     const widget = document.getElementById('elfsight-instagram-root');
@@ -2356,6 +2405,94 @@ function App() {
         </div>
       </section>
 
+      {/* Agradecimiento y verificación de certificados */}
+      <section
+        id="verificar-certificado"
+        className="scroll-animate relative overflow-hidden bg-gradient-to-br from-blue-950 via-indigo-950 to-purple-950 py-20 text-white"
+      >
+        <div className="pointer-events-none absolute inset-0 opacity-30">
+          <div className="absolute -left-24 top-10 h-80 w-80 rounded-full bg-yellow-400 blur-3xl" />
+          <div className="absolute -right-20 bottom-0 h-96 w-96 rounded-full bg-fuchsia-500 blur-3xl" />
+        </div>
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto mb-12 max-w-4xl text-center">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-yellow-300/40 bg-yellow-300/10 px-5 py-2 text-sm font-bold text-yellow-200">
+              <Heart className="h-4 w-4 fill-current" />
+              Gratitud que reconstruye esperanza
+            </div>
+            <Award className="mx-auto mb-5 h-16 w-16 text-yellow-300" />
+            <h2 className="text-3xl font-black leading-tight sm:text-5xl">
+              Gracias por su valiosa colaboración
+            </h2>
+            <p className="mx-auto mt-5 max-w-3xl text-lg leading-relaxed text-blue-100 sm:text-xl">
+              Reconocemos a quienes se unieron solidariamente para ayudar a las familias afectadas por el terremoto en Colombia. Su aporte hizo posible recuperar viviendas, brindar esperanza y acompañar a quienes más lo necesitaban.
+            </p>
+            <p className="mt-5 text-xl font-bold text-yellow-300">
+              Ayudar es unir corazones. Reconstruir es dar esperanza.
+            </p>
+          </div>
+
+          <div className="mx-auto mb-10 max-w-2xl rounded-2xl border border-white/15 bg-white/10 p-4 shadow-2xl backdrop-blur-md sm:p-6">
+            <div className="mb-3 flex items-center justify-center gap-2 text-lg font-bold">
+              <BadgeCheck className="h-6 w-6 text-green-300" />
+              Verifique un certificado auténtico
+            </div>
+            <label htmlFor="certificate-search" className="sr-only">Buscar certificado por nombre o número</label>
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-500" />
+              <input
+                id="certificate-search"
+                type="search"
+                value={certificateQuery}
+                onChange={(event) => setCertificateQuery(event.target.value)}
+                placeholder="Nombre o número: CU-2026-0001"
+                className="min-h-14 w-full rounded-xl border border-white/30 bg-white py-3 pl-12 pr-4 text-base text-gray-900 shadow-inner outline-none placeholder:text-gray-500 focus:ring-4 focus:ring-yellow-300/40"
+              />
+            </div>
+            <p className="mt-3 flex items-center justify-center gap-2 text-sm text-blue-100">
+              <QrCode className="h-4 w-4" />
+              También puede escanear el QR impreso en el certificado.
+            </p>
+          </div>
+
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {certificadosSolidaridad
+              .filter((certificate) => {
+                const query = certificateQuery.trim().toLocaleLowerCase('es');
+                return !query || certificate.nombre.toLocaleLowerCase('es').includes(query) || certificate.codigo.toLowerCase().includes(query);
+              })
+              .map((certificate) => (
+                <article key={certificate.codigo} className="group overflow-hidden rounded-2xl border border-white/15 bg-white text-gray-900 shadow-xl transition-transform hover:-translate-y-1">
+                  <button type="button" onClick={() => openCertificate(certificate)} className="block w-full text-left">
+                    <div className="relative aspect-[3/2] overflow-hidden bg-amber-50">
+                      <img loading="lazy" decoding="async" src={certificate.imagen} alt={`Certificado otorgado a ${certificate.nombre}`} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]" />
+                      <span className="absolute right-3 top-3 inline-flex items-center gap-1 rounded-full bg-green-600 px-3 py-1.5 text-xs font-bold text-white shadow-lg">
+                        <BadgeCheck className="h-4 w-4" /> Auténtico
+                      </span>
+                    </div>
+                    <div className="p-5">
+                      <h3 className="text-lg font-extrabold leading-snug text-blue-950">{certificate.nombre}</h3>
+                      <div className="mt-3 flex items-center justify-between gap-3">
+                        <span className="font-mono text-sm font-bold text-purple-700">{certificate.codigo}</span>
+                        <span className="inline-flex items-center gap-1 text-sm font-bold text-blue-700"><Eye className="h-4 w-4" /> Ver</span>
+                      </div>
+                    </div>
+                  </button>
+                </article>
+              ))}
+          </div>
+
+          {certificateQuery && certificadosSolidaridad.filter((certificate) => {
+            const query = certificateQuery.trim().toLocaleLowerCase('es');
+            return certificate.nombre.toLocaleLowerCase('es').includes(query) || certificate.codigo.toLowerCase().includes(query);
+          }).length === 0 && (
+            <div className="rounded-2xl border border-white/15 bg-white/10 p-8 text-center text-lg text-blue-100">
+              No encontramos un certificado con ese nombre o número.
+            </div>
+          )}
+        </div>
+      </section>
+
       {/* Formulario de Afiliacion */}
       <section
         id="afiliacion"
@@ -3597,6 +3734,26 @@ function App() {
           </div>
         </div>
       </footer>
+
+      {selectedCertificate && (
+        <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/90 p-3 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="certificate-title" onClick={closeCertificate}>
+          <div className="relative max-h-[96vh] w-full max-w-6xl overflow-y-auto rounded-2xl bg-white p-3 shadow-2xl sm:p-6" onClick={(event) => event.stopPropagation()}>
+            <button type="button" onClick={closeCertificate} className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-black/75 text-white shadow-lg hover:bg-black" aria-label="Cerrar certificado">
+              <X className="h-6 w-6" />
+            </button>
+            <div className="mb-4 pr-14">
+              <div className="flex items-center gap-2 font-bold text-green-700"><BadgeCheck className="h-6 w-6" /> Certificado auténtico</div>
+              <h2 id="certificate-title" className="mt-1 text-xl font-black text-blue-950 sm:text-2xl">{selectedCertificate.nombre}</h2>
+              <p className="font-mono font-bold text-purple-700">{selectedCertificate.codigo}</p>
+            </div>
+            <img src={selectedCertificate.imagen} alt={`Certificado auténtico de ${selectedCertificate.nombre}`} className="h-auto w-full rounded-xl border border-amber-200" />
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:justify-center">
+              <a href={selectedCertificate.imagen} download className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-blue-700 px-6 py-3 font-bold text-white hover:bg-blue-600"><Download className="h-5 w-5" /> Descargar certificado</a>
+              <button type="button" onClick={() => navigator.clipboard?.writeText(window.location.href)} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border-2 border-blue-700 px-6 py-3 font-bold text-blue-700 hover:bg-blue-50"><QrCode className="h-5 w-5" /> Copiar enlace de verificación</button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Acceso permanente a orientación */}
       <button
