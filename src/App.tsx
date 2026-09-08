@@ -115,6 +115,16 @@ function App() {
     window.history.replaceState({}, '', '/#verificar-certificado');
   };
 
+  const normalizedCertificateQuery = certificateQuery.trim().toLocaleLowerCase('es');
+  const matchingCertificates = certificadosSolidaridad.filter(
+    (certificate) =>
+      certificate.nombre.toLocaleLowerCase('es').includes(normalizedCertificateQuery) ||
+      certificate.codigo.toLowerCase().includes(normalizedCertificateQuery)
+  );
+  const displayedCertificates = normalizedCertificateQuery
+    ? matchingCertificates
+    : certificadosSolidaridad.slice(0, 1);
+
   useEffect(() => {
     const widget = document.getElementById('elfsight-instagram-root');
     const slot = document.getElementById('instagram-widget-slot');
@@ -2453,15 +2463,15 @@ function App() {
               <QrCode className="h-4 w-4" />
               También puede escanear el QR impreso en el certificado.
             </p>
+            {!normalizedCertificateQuery && (
+              <p className="mt-2 text-center text-sm font-medium text-yellow-200">
+                Escriba un nombre o número para consultar los demás certificados.
+              </p>
+            )}
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {certificadosSolidaridad
-              .filter((certificate) => {
-                const query = certificateQuery.trim().toLocaleLowerCase('es');
-                return !query || certificate.nombre.toLocaleLowerCase('es').includes(query) || certificate.codigo.toLowerCase().includes(query);
-              })
-              .map((certificate) => (
+          <div className={`grid gap-5 ${displayedCertificates.length > 1 ? 'sm:grid-cols-2 lg:grid-cols-3' : 'mx-auto max-w-xl'}`}>
+            {displayedCertificates.map((certificate) => (
                 <article key={certificate.codigo} className="group overflow-hidden rounded-2xl border border-white/15 bg-white text-gray-900 shadow-xl transition-transform hover:-translate-y-1">
                   <button type="button" onClick={() => openCertificate(certificate)} className="block w-full text-left">
                     <div className="relative aspect-[3/2] overflow-hidden bg-amber-50">
@@ -2482,10 +2492,7 @@ function App() {
               ))}
           </div>
 
-          {certificateQuery && certificadosSolidaridad.filter((certificate) => {
-            const query = certificateQuery.trim().toLocaleLowerCase('es');
-            return certificate.nombre.toLocaleLowerCase('es').includes(query) || certificate.codigo.toLowerCase().includes(query);
-          }).length === 0 && (
+          {normalizedCertificateQuery && matchingCertificates.length === 0 && (
             <div className="rounded-2xl border border-white/15 bg-white/10 p-8 text-center text-lg text-blue-100">
               No encontramos un certificado con ese nombre o número.
             </div>
