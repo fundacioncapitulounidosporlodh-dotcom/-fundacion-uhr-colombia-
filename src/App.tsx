@@ -67,6 +67,7 @@ const certificadosSolidaridad = [
   { nombre: 'Sin Tabu', codigo: 'CU-2026-0004' },
   { nombre: 'Margarita Maria Cardona Santamaria', codigo: 'CU-2026-0007' },
   { nombre: 'Ana Maria Cardona Santamaria', codigo: 'CU-2026-0008' },
+  { nombre: 'Idalia Marina Santamaria Gaviria', codigo: 'CU-2026-0009' },
   { nombre: 'Beatriz Eugenia Gómez Ramirez', codigo: 'CU-2026-0010' },
   { nombre: 'Tatiana Rengifo Serna', codigo: 'CU-2026-0011' },
   { nombre: 'Elizabeth Rincon Loaiza', codigo: 'CU-2026-0012' },
@@ -75,6 +76,7 @@ const certificadosSolidaridad = [
   { nombre: 'Luis Albeiro Barragan Meneses', codigo: 'CU-2026-0015' },
   { nombre: 'Gilberto y Graciela Cardona', codigo: 'CU-2026-0016' },
   { nombre: 'Marcela Urrea Ballesteros', codigo: 'CU-2026-0017' },
+  { nombre: 'Edison Hidalgo Ortiz', codigo: 'CU-2026-0018' },
 ].map((certificado) => ({
   ...certificado,
   imagen: `/certificados/${certificado.codigo}.jpg`,
