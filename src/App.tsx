@@ -77,6 +77,10 @@ const certificadosSolidaridad = [
   { nombre: 'Gilberto y Graciela Cardona', codigo: 'CU-2026-0016' },
   { nombre: 'Marcela Urrea Ballesteros', codigo: 'CU-2026-0017' },
   { nombre: 'Edison Hidalgo Ortiz', codigo: 'CU-2026-0018' },
+  { nombre: 'Jessica Fernanda Escobar Labrada', codigo: 'CU-2026-0019' },
+  { nombre: 'Maria del Pilar Barragan Meneses', codigo: 'CU-2026-0020' },
+  { nombre: 'Armando Martinez y Zuleyma Santamaria', codigo: 'CU-2026-0021' },
+  { nombre: 'Juan Sebastian Buitrago Barragan', codigo: 'CU-2026-0022' },
 ].map((certificado) => ({
   ...certificado,
   imagen: `/certificados/${certificado.codigo}.jpg`,
