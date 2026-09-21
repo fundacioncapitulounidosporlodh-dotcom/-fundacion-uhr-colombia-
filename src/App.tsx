@@ -2934,7 +2934,7 @@ function App() {
                     <span className="px-2 py-1 bg-purple-100 text-purple-700 text-xs font-medium rounded-full">Certificado</span>
                   </div>
                   <h4 className="text-lg font-bold text-gray-900 mb-2">
-                    Ley 1801: procedimientos y derechos
+                    Ley 1801 de 2016 – Código Nacional de Seguridad y Convivencia Ciudadana
                   </h4>
                   <p className="text-gray-600 text-sm mb-4 line-clamp-2">
                     Curso interactivo Ley 1801: procedimientos de Policía, debido proceso y defensa ciudadana.
