@@ -2940,7 +2940,7 @@ function App() {
                     Curso interactivo Ley 1801: procedimientos de Policía, debido proceso y defensa ciudadana.
                   </p>
                   <a
-                    href="https://curso-ley-1801-procedimientos-derechos.frajabar21.chatgpt.site"
+                    href="/campus-virtual/ley-1801/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
