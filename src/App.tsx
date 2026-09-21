@@ -2907,56 +2907,6 @@ function App() {
             </div>
           </div>
 
-          {/* Campus Virtual de la Fundación */}
-          <div className="mb-16">
-            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-950 via-blue-800 to-cyan-600 p-1 shadow-2xl">
-              <div className="relative overflow-hidden rounded-[22px] bg-blue-950 px-6 py-8 sm:px-10 sm:py-10">
-                <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-cyan-400/20 blur-3xl" />
-                <div className="absolute -bottom-24 left-1/3 h-64 w-64 rounded-full bg-yellow-400/10 blur-3xl" />
-                <div className="relative grid items-center gap-8 lg:grid-cols-[1fr_auto]">
-                  <div>
-                    <div className="mb-4 inline-flex items-center rounded-full border border-cyan-300/40 bg-cyan-300/10 px-4 py-2 text-sm font-bold text-cyan-100">
-                      <GraduationCap className="mr-2 h-5 w-5" />
-                      Campus Virtual de la Fundación
-                    </div>
-                    <h3 className="mb-4 text-3xl font-black leading-tight text-white sm:text-4xl">
-                      Ley 1801 sin abusos
-                    </h3>
-                    <p className="mb-6 max-w-3xl text-lg leading-relaxed text-blue-100">
-                      Curso interactivo sobre procedimientos de Policía, identificación ciudadana, comparendos, proceso verbal inmediato y abreviado, debido proceso y derechos de defensa.
-                    </p>
-                    <div className="mb-7 flex flex-wrap gap-3">
-                      <span className="rounded-full bg-white/10 px-3 py-1.5 text-sm font-semibold text-white">7 módulos progresivos</span>
-                      <span className="rounded-full bg-white/10 px-3 py-1.5 text-sm font-semibold text-white">Evaluación final</span>
-                      <span className="rounded-full bg-yellow-400 px-3 py-1.5 text-sm font-bold text-blue-950">Certificado descargable</span>
-                      <span className="rounded-full bg-emerald-400 px-3 py-1.5 text-sm font-bold text-emerald-950">Acceso gratuito</span>
-                    </div>
-                    <a
-                      href="https://curso-ley-1801-procedimientos-derechos.frajabar21.chatgpt.site"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Button className="h-13 bg-yellow-400 px-7 text-base font-black text-blue-950 shadow-lg hover:bg-yellow-300">
-                        <GraduationCap className="mr-2 h-5 w-5" />
-                        Ingresar al Campus Virtual
-                        <ExternalLink className="ml-2 h-4 w-4" />
-                      </Button>
-                    </a>
-                  </div>
-                  <div className="mx-auto flex h-44 w-44 items-center justify-center rounded-full border-4 border-yellow-400/60 bg-white p-3 shadow-2xl sm:h-52 sm:w-52">
-                    <img
-                      loading="lazy"
-                      decoding="async"
-                      src="/logo-fundacion-capitulo.jpg"
-                      alt="Fundación Capítulo Unidos por los Derechos Humanos Colombia"
-                      className="h-full w-full rounded-full object-contain"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
           {/* Categoría: Derechos Humanos */}
           <div className="mb-16">
             <div className="flex items-center gap-3 mb-6">
@@ -2967,6 +2917,41 @@ function App() {
               <div className="flex-1 h-px bg-blue-200 ml-4" />
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {/* Campus Virtual de la Fundación */}
+              <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-md overflow-hidden hover:-translate-y-2 border-t-4 border-t-purple-500">
+                <div className="h-40 bg-gradient-to-br from-purple-700 to-blue-800 flex items-center justify-center p-4">
+                  <img
+                    loading="lazy"
+                    decoding="async"
+                    src="/logo-fundacion-capitulo.jpg"
+                    alt="Campus Virtual de la Fundación Capítulo Unidos por los Derechos Humanos Colombia"
+                    className="h-28 w-28 rounded-full object-contain bg-white p-1 group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <CardContent className="p-5">
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">Gratuito</span>
+                    <span className="px-2 py-1 bg-purple-100 text-purple-700 text-xs font-medium rounded-full">Certificado</span>
+                  </div>
+                  <h4 className="text-lg font-bold text-gray-900 mb-2">
+                    Campus Virtual de la Fundación Capítulo Unidos por los Derechos Humanos Colombia
+                  </h4>
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                    Curso interactivo Ley 1801: procedimientos de Policía, debido proceso y defensa ciudadana.
+                  </p>
+                  <a
+                    href="https://curso-ley-1801-procedimientos-derechos.frajabar21.chatgpt.site"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button size="sm" className="w-full bg-purple-700 hover:bg-purple-800">
+                      <GraduationCap className="w-4 h-4 mr-1" />
+                      Ingresar al curso
+                    </Button>
+                  </a>
+                </CardContent>
+              </Card>
+
               {/* UHR */}
               <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-md overflow-hidden hover:-translate-y-2 border-t-4 border-t-blue-500">
                 <div className="h-40 bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center p-4">
