@@ -2934,13 +2934,13 @@ function App() {
                     <span className="px-2 py-1 bg-purple-100 text-purple-700 text-xs font-medium rounded-full">Certificado</span>
                   </div>
                   <h4 className="text-lg font-bold text-gray-900 mb-2">
-                    Campus Virtual de la Fundación Capítulo Unidos por los Derechos Humanos Colombia
+                    Ley 1801: procedimientos y derechos
                   </h4>
                   <p className="text-gray-600 text-sm mb-4 line-clamp-2">
                     Curso interactivo Ley 1801: procedimientos de Policía, debido proceso y defensa ciudadana.
                   </p>
                   <a
-                    href="https://curso-ley-1801-procedimientos-derechos.frajabar21.chatgpt.site"
+                    href="/campus-virtual/ley-1801/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -2976,11 +2976,47 @@ function App() {
                     Declaración Universal, los 30 derechos humanos y su relación con la Constitución y las leyes colombianas.
                   </p>
                   <a
-                    href="https://aula-derechos-humanos-colombia.frajabar21.chatgpt.site"
+                    href="/campus-virtual/derechos-humanos/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     <Button size="sm" className="w-full bg-amber-600 hover:bg-amber-700">
+                      <GraduationCap className="w-4 h-4 mr-1" />
+                      Ingresar al curso
+                    </Button>
+                  </a>
+                </CardContent>
+              </Card>
+
+              {/* Mecanismos judiciales */}
+              <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-md overflow-hidden hover:-translate-y-2 border-t-4 border-t-emerald-600">
+                <div className="h-40 bg-gradient-to-br from-slate-950 via-emerald-950 to-amber-700 flex items-center justify-center p-4">
+                  <img
+                    loading="lazy"
+                    decoding="async"
+                    src="/logo-fundacion-capitulo.jpg"
+                    alt="Curso Mecanismos judiciales de protección de derechos en Colombia"
+                    className="h-28 w-28 rounded-full object-contain bg-white p-1 group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <CardContent className="p-5">
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">Gratuito</span>
+                    <span className="px-2 py-1 bg-emerald-100 text-emerald-800 text-xs font-medium rounded-full">8 módulos · 20 h</span>
+                    <span className="px-2 py-1 bg-purple-100 text-purple-700 text-xs font-medium rounded-full">Certificado</span>
+                  </div>
+                  <h4 className="text-lg font-bold text-gray-900 mb-2">
+                    Mecanismos judiciales de protección de derechos
+                  </h4>
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                    Tutela, habeas corpus, petición, cumplimiento, acción popular, habeas data y acciones de grupo.
+                  </p>
+                  <a
+                    href="/campus-virtual/mecanismos-judiciales/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button size="sm" className="w-full bg-emerald-700 hover:bg-emerald-800">
                       <GraduationCap className="w-4 h-4 mr-1" />
                       Ingresar al curso
                     </Button>

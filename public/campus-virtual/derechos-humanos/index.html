@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#142b63">
+  <meta name="description" content="Curso interactivo de siete módulos sobre los derechos humanos y su protección en Colombia.">
+  <title>Aula de Derechos Humanos</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,600;6..72,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <header class="topbar">
+    <button class="brand" data-go-home aria-label="Ir al inicio">
+      <img class="brand-logo" src="logo-fundacion.png" alt="Logo de la Fundación Capítulo Unidos por los Derechos Humanos Colombia">
+      <span><strong>Fundación Capítulo Unidos</strong><small>por los Derechos Humanos Colombia</small></span>
+    </button>
+    <button id="installBtn" class="install hidden">Instalar app</button>
+  </header>
+
+  <main id="app" tabindex="-1"></main>
+
+  <nav class="bottom-nav" aria-label="Navegación principal">
+    <button data-nav="home" class="active"><span>⌂</span>Inicio</button>
+    <button data-nav="rights"><span>§</span>30 derechos</button>
+    <button data-nav="progress"><span>✓</span>Mi avance</button>
+    <button data-nav="sources"><span>↗</span>Fuentes</button>
+  </nav>
+
+  <template id="homeTemplate">
+    <section class="hero">
+      <img class="hero-logo" src="logo-fundacion.png" alt="Logo oficial de la Fundación">
+      <div class="eyebrow">CURSO GRATUITO · 7 MÓDULOS</div>
+      <h1>Conoce tus derechos.<br><em>Aprende a defenderlos.</em></h1>
+      <p>La Declaración Universal explicada con ejemplos cotidianos y su relación con la Constitución y las leyes colombianas.</p>
+      <div class="hero-actions">
+        <button class="primary" data-start>Comenzar el curso <span>→</span></button>
+        <button class="secondary" data-nav="rights">Explorar los 30 derechos</button>
+      </div>
+    </section>
+    <section id="registrationWarning" class="registration-warning hidden">
+      <div><strong>⚠ Nombre pendiente para el certificado</strong><span>Regístralo antes de finalizar el curso. Se escribirá exactamente como lo ingreses.</span></div>
+      <button class="pill-btn" data-edit-student>Registrar nombre</button>
+    </section>
+    <section class="progress-card">
+      <div><span class="label">TU RECORRIDO</span><strong id="progressText">0 de 7 módulos</strong></div>
+      <span id="progressPct" class="progress-number">0%</span>
+      <div class="progress-track"><i id="progressBar"></i></div>
+    </section>
+    <section class="section-head"><div><span class="eyebrow dark">RUTA DE APRENDIZAJE</span><h2>Siete pasos para ejercer ciudadanía</h2></div><p>Cada módulo incluye lectura clara, video, caso práctico y una pregunta de comprobación.</p></section>
+    <section id="moduleGrid" class="module-grid"></section>
+    <section class="principle"><span class="big-quote">“</span><blockquote>Todos los seres humanos nacen libres e iguales en dignidad y derechos.</blockquote><cite>Artículo 1 · Declaración Universal de Derechos Humanos</cite></section>
+  </template>
+
+  <dialog id="quizDialog">
+    <button class="dialog-close" aria-label="Cerrar">×</button>
+    <div id="quizBody"></div>
+  </dialog>
+  <dialog id="registrationDialog" class="registration-dialog">
+    <form id="registrationForm" class="registration-form">
+      <img src="logo-fundacion.png" alt="Logo de la Fundación">
+      <span class="eyebrow dark">REGISTRO DEL PARTICIPANTE</span>
+      <h2>Bienvenido al curso</h2>
+      <p>Escribe tu nombre completo exactamente como deseas que aparezca en el certificado.</p>
+      <label for="registerName">Nombre completo</label>
+      <input id="registerName" name="name" autocomplete="name" minlength="3" required placeholder="Escribe nombres y apellidos">
+      <small id="registrationPrivacy">Podrás ver el curso sin registrarlo. La cédula se solicitará únicamente al finalizar.</small>
+      <div id="registrationError" class="registration-error" role="alert"></div>
+      <button class="primary" type="submit">Guardar nombre <span>→</span></button>
+      <button class="skip-registration" type="button" data-skip-registration>Continuar sin registrar</button>
+    </form>
+  </dialog>
+  <script src="rights-data.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
