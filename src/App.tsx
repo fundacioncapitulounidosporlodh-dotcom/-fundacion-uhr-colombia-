@@ -2907,6 +2907,56 @@ function App() {
             </div>
           </div>
 
+          {/* Campus Virtual de la Fundación */}
+          <div className="mb-16">
+            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-950 via-blue-800 to-cyan-600 p-1 shadow-2xl">
+              <div className="relative overflow-hidden rounded-[22px] bg-blue-950 px-6 py-8 sm:px-10 sm:py-10">
+                <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-cyan-400/20 blur-3xl" />
+                <div className="absolute -bottom-24 left-1/3 h-64 w-64 rounded-full bg-yellow-400/10 blur-3xl" />
+                <div className="relative grid items-center gap-8 lg:grid-cols-[1fr_auto]">
+                  <div>
+                    <div className="mb-4 inline-flex items-center rounded-full border border-cyan-300/40 bg-cyan-300/10 px-4 py-2 text-sm font-bold text-cyan-100">
+                      <GraduationCap className="mr-2 h-5 w-5" />
+                      Campus Virtual de la Fundación
+                    </div>
+                    <h3 className="mb-4 text-3xl font-black leading-tight text-white sm:text-4xl">
+                      Ley 1801 sin abusos
+                    </h3>
+                    <p className="mb-6 max-w-3xl text-lg leading-relaxed text-blue-100">
+                      Curso interactivo sobre procedimientos de Policía, identificación ciudadana, comparendos, proceso verbal inmediato y abreviado, debido proceso y derechos de defensa.
+                    </p>
+                    <div className="mb-7 flex flex-wrap gap-3">
+                      <span className="rounded-full bg-white/10 px-3 py-1.5 text-sm font-semibold text-white">7 módulos progresivos</span>
+                      <span className="rounded-full bg-white/10 px-3 py-1.5 text-sm font-semibold text-white">Evaluación final</span>
+                      <span className="rounded-full bg-yellow-400 px-3 py-1.5 text-sm font-bold text-blue-950">Certificado descargable</span>
+                      <span className="rounded-full bg-emerald-400 px-3 py-1.5 text-sm font-bold text-emerald-950">Acceso gratuito</span>
+                    </div>
+                    <a
+                      href="https://curso-ley-1801-procedimientos-derechos.frajabar21.chatgpt.site"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button className="h-13 bg-yellow-400 px-7 text-base font-black text-blue-950 shadow-lg hover:bg-yellow-300">
+                        <GraduationCap className="mr-2 h-5 w-5" />
+                        Ingresar al Campus Virtual
+                        <ExternalLink className="ml-2 h-4 w-4" />
+                      </Button>
+                    </a>
+                  </div>
+                  <div className="mx-auto flex h-44 w-44 items-center justify-center rounded-full border-4 border-yellow-400/60 bg-white p-3 shadow-2xl sm:h-52 sm:w-52">
+                    <img
+                      loading="lazy"
+                      decoding="async"
+                      src="/logo-fundacion-capitulo.jpg"
+                      alt="Fundación Capítulo Unidos por los Derechos Humanos Colombia"
+                      className="h-full w-full rounded-full object-contain"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Categoría: Derechos Humanos */}
           <div className="mb-16">
             <div className="flex items-center gap-3 mb-6">
