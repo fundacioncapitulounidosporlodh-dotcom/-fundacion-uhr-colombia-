@@ -2881,15 +2881,14 @@ function App() {
             <div className="inline-flex items-center px-4 py-2 bg-yellow-100 rounded-full mb-4">
               <GraduationCap className="w-4 h-4 text-yellow-600 mr-2" />
               <span className="text-yellow-700 text-sm font-medium">
-                Capacitación
+                Campus Virtual de la Fundación
               </span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-bold text-gray-900 mb-4">
-              Capacítate y Certifícate
+              Aprende, avanza y certifícate
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-8">
-              Capacítate gratis con las mejores instituciones del mundo.
-              Cursos, seminarios y diplomados sin costo.
+              Bienvenido al Campus Virtual de la Fundación Capítulo Unidos por los Derechos Humanos Colombia. Formación ciudadana gratuita, progresiva e interactiva para conocer, ejercer y defender los derechos humanos.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <div className="bg-white px-6 py-3 rounded-xl shadow-md border-l-4 border-blue-500">
@@ -2905,14 +2904,25 @@ function App() {
                 <div className="text-sm text-gray-500">Certificados</div>
               </div>
             </div>
+            <div className="grid sm:grid-cols-3 gap-4 max-w-4xl mx-auto mt-8 text-left">
+              <div className="bg-white rounded-xl p-4 shadow-sm"><strong className="text-blue-700">Comprender</strong><p className="text-sm text-gray-600 mt-1">Normas, derechos, competencias y procedimientos.</p></div>
+              <div className="bg-white rounded-xl p-4 shadow-sm"><strong className="text-emerald-700">Aplicar</strong><p className="text-sm text-gray-600 mt-1">Casos, talleres editables y cuestionarios interactivos.</p></div>
+              <div className="bg-white rounded-xl p-4 shadow-sm"><strong className="text-purple-700">Certificar</strong><p className="text-sm text-gray-600 mt-1">Progreso por módulos y certificado al finalizar.</p></div>
+            </div>
+            <a href="/campus-virtual/" className="inline-block mt-8">
+              <Button className="bg-blue-800 hover:bg-blue-900 px-7">
+                <GraduationCap className="w-5 h-5 mr-2" />
+                Abrir el Campus Virtual
+              </Button>
+            </a>
           </div>
 
           {/* Categoría: Derechos Humanos */}
-          <div className="mb-16">
+          <div className="hidden">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-1 h-8 bg-blue-500 rounded-full" />
               <h3 className="text-2xl font-bold text-gray-900">
-                Derechos Humanos
+                Cursos y diplomado propios
               </h3>
               <div className="flex-1 h-px bg-blue-200 ml-4" />
             </div>
@@ -3023,6 +3033,33 @@ function App() {
                   </a>
                 </CardContent>
               </Card>
+
+              {/* Diplomado Ley 1801 */}
+              <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-md overflow-hidden hover:-translate-y-2 border-t-4 border-t-yellow-500">
+                <div className="h-40 bg-gradient-to-br from-slate-950 via-blue-950 to-yellow-600 flex items-center justify-center p-4">
+                  <img loading="lazy" decoding="async" src="/logo-fundacion-capitulo.jpg" alt="Diplomado Ley 1801 de 2016" className="h-28 w-28 rounded-full object-contain bg-white p-1 group-hover:scale-110 transition-transform duration-300" />
+                </div>
+                <CardContent className="p-5">
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">Gratuito</span>
+                    <span className="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-full">10 módulos · 80 h</span>
+                    <span className="px-2 py-1 bg-purple-100 text-purple-700 text-xs font-medium rounded-full">Certificado</span>
+                  </div>
+                  <h4 className="text-lg font-bold text-gray-900 mb-2">Diplomado Ley 1801 de 2016 — Código Nacional de Seguridad y Convivencia Ciudadana</h4>
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">Videos diferentes por módulo, guías PDF, talleres editables, cuestionarios, diccionario jurídico y proyecto final.</p>
+                  <a href="/campus-virtual/diplomado-ley-1801/" target="_blank" rel="noopener noreferrer">
+                    <Button size="sm" className="w-full bg-yellow-600 hover:bg-yellow-700 text-slate-950"><GraduationCap className="w-4 h-4 mr-1" />Ingresar al diplomado</Button>
+                  </a>
+                </CardContent>
+              </Card>
+
+            </div>
+          </div>
+
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-6"><div className="w-1 h-8 bg-slate-500 rounded-full" /><h3 className="text-2xl font-bold text-gray-900">Otras plataformas de formación</h3><div className="flex-1 h-px bg-slate-200 ml-4" /></div>
+            <p className="text-gray-600 mb-6">Enlaces externos de instituciones y organizaciones aliadas para ampliar el aprendizaje.</p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
 
               {/* UHR */}
               <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-md overflow-hidden hover:-translate-y-2 border-t-4 border-t-blue-500">
