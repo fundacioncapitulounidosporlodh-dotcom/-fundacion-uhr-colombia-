@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Prueba navegable · Diplomado Ley 1801 de 2016</title>
+    <style>
+      :root {
+        --nav: #071a38;
+        --blue: #1657bd;
+        --gold: #e0ad36;
+        --bg: #f3f6fb;
+        --ink: #17253c;
+        --muted: #657287;
+        --line: #d9e2ef;
+        --green: #157347;
+        --red: #b42318;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font:
+          16px/1.55 system-ui,
+          -apple-system,
+          Segoe UI,
+          sans-serif;
+      }
+      header {
+        background: linear-gradient(125deg, #06162f, #14458c);
+        color: #fff;
+        padding: 18px;
+      }
+      .head {
+        max-width: 1180px;
+        margin: auto;
+      }
+      .brand {
+        font-size: 0.85rem;
+        color: #dce9ff;
+      }
+      .brand-logos,.module-logos{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:12px 0}
+      .brand-logos img{width:62px;height:62px;object-fit:contain;border-radius:50%;background:#fff;padding:4px;box-shadow:0 5px 18px #0003}
+      .brand-logos img.main{width:82px;height:82px}
+      .module-logos{justify-content:flex-start;border-bottom:1px solid var(--line);padding-bottom:12px}
+      .module-logos img{width:44px;height:44px;object-fit:contain;border-radius:50%;background:#fff;border:1px solid var(--line);padding:3px}
+      .badge {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 5px 10px;
+        border: 1px solid #ffffff45;
+        border-radius: 999px;
+        background: #ffffff12;
+      }
+      .head h1 {
+        margin: 14px 0 8px;
+        font-size: clamp(1.8rem, 4vw, 3rem);
+        line-height: 1.05;
+      }
+      .head p {
+        max-width: 850px;
+        color: #dce8fb;
+      }
+      .layout {
+        max-width: 1180px;
+        margin: 22px auto;
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 18px;
+        padding: 0 14px;
+      }
+      .side,
+      .card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        box-shadow: 0 10px 28px #10264d0c;
+      }
+      .side {
+        padding: 16px;
+        align-self: start;
+        position: sticky;
+        top: 12px;
+      }
+      .side h3 {
+        margin-top: 0;
+      }
+      .progress {
+        height: 10px;
+        background: #dfe6f0;
+        border-radius: 99px;
+        overflow: hidden;
+      }
+      .progress i {
+        display: block;
+        height: 100%;
+        background: linear-gradient(90deg, var(--gold), #ffd86b);
+        width: 0;
+      }
+      .navbtn {
+        display: block;
+        width: 100%;
+        text-align: left;
+        border: 0;
+        background: transparent;
+        padding: 10px;
+        border-radius: 9px;
+        margin: 4px 0;
+        color: var(--ink);
+        cursor: pointer;
+      }
+      .navbtn.current {
+        background: #eaf1ff;
+        color: #083d91;
+        font-weight: 800;
+      }
+      .navbtn.locked {
+        color: #9aa4b2;
+        cursor: not-allowed;
+      }
+      .card {
+        padding: clamp(18px, 4vw, 34px);
+        margin-bottom: 16px;
+      }
+      .eyebrow {
+        color: #1554ad;
+        text-transform: uppercase;
+        font-size: 0.78rem;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+      }
+      .card h2 {
+        color: var(--nav);
+        line-height: 1.18;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      .box {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 15px;
+        background: #fbfdff;
+      }
+      .box b {
+        color: #103d78;
+      }
+      .law {
+        border-left: 5px solid var(--blue);
+        background: #f7faff;
+        padding: 15px;
+        border-radius: 10px;
+        margin: 14px 0;
+      }
+      .actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 9px;
+      }
+      .link,
+      .btn {
+        display: inline-block;
+        border: 0;
+        border-radius: 9px;
+        padding: 9px 12px;
+        text-decoration: none;
+        font-weight: 800;
+        cursor: pointer;
+      }
+      .link {
+        background: #e8f0ff;
+        color: #0a4da8;
+      }
+      .link.compat {
+        background: #fff2cc;
+        color: #6c4b00;
+      }
+      .btn {
+        background: var(--gold);
+        color: #251b00;
+      }
+      .btn.secondary {
+        background: #e8eef7;
+        color: var(--nav);
+      }
+      .quiz {
+        background: var(--nav);
+        color: #fff;
+        padding: 18px;
+        border-radius: 14px;
+        margin-top: 20px;
+      }
+      .option {
+        display: block;
+        border: 1px solid #ffffff2e;
+        background: #ffffff10;
+        border-radius: 9px;
+        padding: 10px;
+        margin: 8px 0;
+        cursor: pointer;
+      }
+      .feedback {
+        font-weight: 750;
+        margin-top: 10px;
+      }
+      .good {
+        color: #82edb1;
+      }
+      .bad {
+        color: #ffaaa4;
+      }
+      .case {
+        border: 1px dashed #9db3d1;
+        background: #f7fbff;
+        border-radius: 12px;
+        padding: 15px;
+      }
+      .notice {
+        border-left: 5px solid var(--gold);
+        background: #fff8dc;
+        border-radius: 10px;
+        padding: 14px;
+      }
+      .terms {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .term {
+        border: 1px solid #bfd0e6;
+        border-radius: 999px;
+        padding: 5px 9px;
+        background: white;
+        color: #21476f;
+        font-size: 0.85rem;
+      }
+      .cert {
+        display: none;
+        background: #fff;
+        border: 10px double #d3a32e;
+        padding: 34px;
+        text-align: center;
+        aspect-ratio: 1.414/1;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .cert.show {
+        display: flex;
+      }
+      .field {
+        width: 100%;
+        padding: 11px;
+        border: 1px solid #b9c8dd;
+        border-radius: 9px;
+        font: inherit;
+        margin: 5px 0 12px;
+      }
+      .video {
+        overflow: hidden;
+        border-radius: 14px;
+        background: #020b19;
+        margin: 18px 0;
+      }
+      .video iframe {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border: 0;
+      }
+      .video-note {
+        padding: 11px 14px;
+        background: #eaf1ff;
+        color: #173c6d;
+        font-size: 0.9rem;
+      }
+      .workshop {
+        border: 2px solid #c9d8ec;
+        border-radius: 14px;
+        padding: 18px;
+        margin: 20px 0;
+        background: #fffdf7;
+      }
+      .workshop textarea {
+        min-height: 170px;
+        resize: vertical;
+      }
+      .saved { color: var(--green); font-weight: 800; }
+      @media (max-width: 780px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+        .side {
+          position: static;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .cert {
+          aspect-ratio: auto;
+          min-height: 520px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="head">
+        <div class="brand">
+          Fundación Capítulo Unidos por los Derechos Humanos Colombia
+        </div>
+        <div class="brand-logos"><img class="main" src="assets/fundacion-sello.jpg" alt="Fundación Capítulo Unidos por los Derechos Humanos Colombia"><img src="assets/fundacion-paloma.jpg" alt="Fundación"><img src="assets/veeduria.jpg" alt="Veeduría Ciudadana"><img src="assets/arbol-fuente.jpg" alt="Fundación Árbol Fuente de Vida"><img src="assets/unidos-derechos.jpg" alt="Unidos por los Derechos Humanos"></div>
+        <span class="badge">CAMPUS VIRTUAL · DIPLOMADO CERTIFICADO</span>
+        <h1>
+          Diplomado Ley 1801 de 2016 — Código Nacional de Seguridad y
+          Convivencia Ciudadana
+        </h1>
+        <p>
+          <b>Intensidad académica certificada: 80 horas.</b> Incluye estudio
+          guiado, lectura autónoma de normas, análisis de casos, actividades,
+          evaluaciones y proyecto final. No exige permanecer 80 horas continuas
+          conectado.
+        </p>
+        <div class="grid">
+          <div class="box">
+            <b>35 horas</b><br />Lectura, guías, normas y contenidos
+            audiovisuales
+          </div>
+          <div class="box">
+            <b>30 horas</b><br />Talleres, casos, cuestionarios y proyecto
+            aplicado
+          </div>
+          <div class="box">
+            <b>15 horas</b><br />Investigación autónoma y preparación de
+            evaluaciones
+          </div>
+          <div class="box">
+            <b>4 semanas</b><br />20 horas semanales estimadas; avance
+            asincrónico
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="layout">
+      <aside class="side">
+        <h3>Tu avance</h3>
+        <div class="progress"><i id="bar"></i></div>
+        <p id="status">Módulo 1 de 10</p>
+        <nav id="nav"></nav>
+        <button class="navbtn" onclick="openGlossary()">
+          📖 Diccionario jurídico
+        </button>
+        <p style="font-size: 0.83rem; color: var(--muted)">
+          La navegación completa se habilita al terminar. El progreso y los
+          talleres se conservan en este dispositivo. Cada módulo se desbloquea
+          al completar el taller y aprobar su cuestionario.
+        </p>
+      </aside>
+      <main id="main"></main>
+    </div>
+    <script>
+      const SENADO_OK = "https://share.google/I5nze4B0Zxtrw8xhj";
+      const SENADO =
+        "https://www.secretariasenado.gov.co/senado/basedoc/ley_1801_2016.html";
+      const split = (n) =>
+        n < 59
+          ? ""
+          : n < 95
+            ? "_pr001"
+            : n < 149
+              ? "_pr002"
+              : n < 198
+                ? "_pr003"
+                : n < 222
+                  ? "_pr004"
+                  : "_pr005";
+      const exact = (n) =>
+        `https://www.secretariasenado.gov.co/senado/basedoc/ley_1801_2016${split(n)}.html#:~:text=${encodeURIComponent("ARTÍCULO " + n)}`;
+      const source = (n, label = "Artículo " + n) =>
+        `<div class="actions"><a class="link compat" target="_blank" rel="noopener" href="${SENADO_OK}">Abrir Ley 1801 en Senado ↗</a><a class="link" target="_blank" rel="noopener" href="${exact(n)}">Ir al ${label} ↗</a></div>`;
+      const corte = (url, label) =>
+        `<a class="link" target="_blank" rel="noopener" href="${url}">${label} ↗</a>`;
+      const quiz = (q, opts, answer, why) =>
+        `<div class="quiz"><b>${q}</b>${opts.map((o, i) => `<label class="option"><input type="radio" name="quiz" value="${i}"> ${o}</label>`).join("")}<button class="btn" onclick="answer(${answer},'${why.replaceAll("'", "&#39;")}')">Comprobar y avanzar</button><div id="feedback" class="feedback"></div></div>`;
+      const modules = [
+        {
+          t: "Constitución, principios y legalidad",
+          body: () =>
+            `<p>La actividad de Policía está sometida a la Constitución, la ley, la dignidad humana y el debido proceso. Una finalidad de convivencia no autoriza cualquier medio.</p><div class="grid"><div class="box"><b>Principio de legalidad</b><p>La autoridad necesita competencia y fundamento normativo previo.</p></div><div class="box"><b>Necesidad y proporcionalidad</b><p>La medida debe ser idónea, indispensable y equilibrada frente a la finalidad legítima.</p></div><div class="box"><b>Debido proceso</b><p>Comprende conocimiento de los hechos, defensa, prueba, motivación y recursos cuando procedan.</p></div><div class="box"><b>Respeto recíproco</b><p>La autoridad y la ciudadanía deben relacionarse con respeto; la investidura no elimina el deber de responder inquietudes.</p></div></div><div class="law"><b>Lectura obligatoria:</b> artículos 8, 10 y 171. Los principios deben aplicarse en cada procedimiento.${source(8, "artículo 8")}</div>${quiz("¿Cuál elemento debe existir antes de imponer una medida correctiva?", ["Una sospecha personal", "Una conducta prevista en la ley y autoridad competente", "Una grabación realizada por el agente", "Una orden interna no publicada"], 1, "La legalidad exige norma previa y competencia.")}`,
+        },
+        {
+          t: "Poder, función, actividad y autoridades",
+          body: () =>
+            `<p>El Código diferencia el poder de Policía, la función de Policía y la actividad de Policía. También distribuye competencias entre autoridades nacionales, territoriales, inspectores y personal uniformado.</p><div class="grid"><div class="box"><b>Poder de Policía</b><p>Facultad normativa para regular libertades y convivencia dentro de la Constitución.</p></div><div class="box"><b>Función de Policía</b><p>Aplicación de las normas por las autoridades legalmente competentes.</p></div><div class="box"><b>Actividad de Policía</b><p>Ejecución material de medios y medidas por el personal uniformado.</p></div><div class="box"><b>Competencia</b><p>No toda autoridad puede imponer cualquier medida; debe revisarse el artículo que atribuye la decisión.</p></div></div><div class="law"><b>Lecturas:</b> artículos 11 a 20 y 198 a 205.${source(198, "artículo 198")}</div>${quiz("¿El personal uniformado puede decidir todas las medidas del Código?", ["Sí, sin excepción", "Solo si el ciudadano acepta", "No; debe respetar la distribución legal de competencias", "Sí, cuando graba el procedimiento"], 2, "La competencia depende de la medida y del procedimiento atribuido por la ley.")}`,
+        },
+        {
+          t: "Identificación, cédula y registro a persona",
+          body: () =>
+            `<p>No portar físicamente la cédula no constituye por sí solo una conducta sancionable. Debe diferenciarse la colaboración con la identificación de la inexistente obligación sancionatoria de llevar siempre el documento.</p><div class="law"><b>T-385 de 2019:</b> estudia la identificación, el traslado para procedimiento policivo y la vulneración del debido proceso por sancionar la sola falta de porte físico.<div class="actions">${corte("https://www.corteconstitucional.gov.co/relatoria/2019/t-385-19.htm", "T-385 de 2019 · Corte")}</div></div><div class="case"><b>Caso:</b> la persona informa nombre, número de documento y permite consulta institucional. El agente no puede convertir automáticamente la ausencia del plástico en infracción ni usar el traslado por protección como castigo.</div><div class="law"><b>Registro a persona:</b> el artículo 159 establece finalidades y supuestos. Debe respetar dignidad, identidad y proporcionalidad.${source(159)}</div>${quiz("¿Qué enseña la T-385 de 2019 sobre no portar la cédula?", ["Que genera multa automática", "Que autoriza traslado por protección", "Que no existe sanción por ese solo hecho", "Que impide verificar la identidad"], 2, "La sentencia descarta una sanción por el solo no porte físico.")}`,
+        },
+        {
+          t: "Medios materiales: traslado y uso de la fuerza",
+          body: () =>
+            `<p>Los medios materiales no son sanciones informales. Cada uno tiene finalidad, presupuestos y límites propios.</p><div class="grid"><div class="box"><b>Traslado por protección · art. 155</b><p>Excepcional, preventivo y orientado a riesgos para vida o integridad. No puede utilizarse como represalia.</p></div><div class="box"><b>Traslado para procedimiento · art. 157</b><p>Figura diferente y excepcional cuando el procedimiento no puede realizarse en el lugar, dentro de los límites fijados por la ley y la jurisprudencia.</p></div><div class="box"><b>Registro a persona · art. 159</b><p>Debe responder a las finalidades legales.</p></div><div class="box"><b>Uso de la fuerza · art. 166</b><p>Solo dentro de los supuestos legales, con necesidad y proporcionalidad.</p></div></div><div class="law"><b>Actualización obligatoria:</b> el artículo 155 fue modificado por el artículo 40 de la Ley 2197 de 2022.<div class="actions"><a class="link" href="https://www.secretariasenado.gov.co/senado/basedoc/ley_2197_2022_pr001.html#:~:text=ARTÍCULO%2040" target="_blank">Ley 2197, art. 40 · Senado ↗</a>${corte("https://www.corteconstitucional.gov.co/relatoria/2023/C-081-23.htm", "C-081 de 2023 · Corte")}</div></div>${quiz("¿Traslado por protección y traslado para procedimiento son equivalentes?", ["Sí", "No; tienen finalidades y requisitos distintos", "Solo durante protestas", "Solo si no hay cédula"], 1, "Son figuras distintas y no pueden intercambiarse arbitrariamente.")}`,
+        },
+        {
+          t: "Grabación, control ciudadano y evidencia",
+          body: () =>
+            `<p>El artículo 21 reconoce el carácter público de las actividades de Policía y permite grabar los procedimientos. La restricción debe estar expresamente prevista en la ley.</p><div class="notice"><b>Regla práctica:</b> grabar no autoriza obstruir, cruzar zonas restringidas ni interferir con evidencia; pero la incomodidad del agente o la exigencia de un “carné de veedor” no reemplazan una restricción legal expresa.</div><div class="grid"><div class="box"><b>Celular</b><p>El artículo 21 no autoriza decomisarlo o borrar archivos por el solo hecho de grabar.</p></div><div class="box"><b>Preservación</b><p>Conserva original, metadatos, copia en la nube, fecha, lugar e identificación disponible de agentes y testigos.</p></div></div><div class="law"><b>Texto oficial:</b> consulta el artículo 21 completo en el Senado.${source(21)}</div>${quiz("¿Qué puede impedir una grabación amparada por el artículo 21?", ["Una orden verbal genérica", "La molestia del funcionario", "Una restricción expresa de ley", "No tener carné de veedor"], 2, "El artículo 21 exige una restricción expresa de ley.")}`,
+        },
+        {
+          t: "Comparendo, medida correctiva, multa y firmeza",
+          body: () =>
+            `<p>Estos conceptos no son sinónimos. La orden de comparendo inicia o materializa una actuación; la medida correctiva exige competencia y procedimiento; la multa es una clase de medida; la firmeza depende de recursos y ejecutoria.</p><div class="grid"><div class="box"><b>Artículo 218</b><p>Define la orden de comparendo como entrega de un documento oficial con orden escrita o virtual.</p></div><div class="box"><b>Artículo 219</b><p>Regula la orden de comparendo y la información que debe suministrarse, incluidos recursos y términos en los casos previstos.</p></div><div class="box"><b>Artículo 180</b><p>Regula las multas y aspectos de su cumplimiento.</p></div><div class="box"><b>Artículo 183</b><p>Las consecuencias por no pagar deben leerse con sus condiciones legales; no se activan por una anotación sin decisión en firme.</p></div></div><div class="law"><b>Documento y defensa:</b> un video del agente puede ser evidencia, pero no sustituye por sí solo la entrega o comunicación legalmente exigida del acto.${source(218)}</div>${quiz("¿Una orden de comparendo equivale automáticamente a una multa en firme?", ["Sí", "No", "Solo si hay video", "Solo si el ciudadano no firma"], 1, "Comparendo, decisión, multa y firmeza son momentos y conceptos diferentes.")}`,
+        },
+        {
+          t: "Proceso verbal inmediato · artículo 222",
+          body: () =>
+            `<p>Se utiliza para comportamientos de competencia del personal uniformado, comandantes de estación o subestación y comandantes de CAI, conforme al artículo 222.</p><div class="grid"><div class="box"><b>Conocimiento</b><p>La autoridad identifica la conducta y su competencia.</p></div><div class="box"><b>Información y defensa</b><p>Debe informar la conducta y escuchar a la persona.</p></div><div class="box"><b>Decisión</b><p>Debe decidir con fundamento en hechos, prueba y norma aplicable.</p></div><div class="box"><b>Impugnación</b><p>La ley prevé el recurso correspondiente y su trámite.</p></div></div><div class="case"><b>Error frecuente:</b> considerar que el comparendo es toda la decisión o que la firma equivale a aceptar responsabilidad.</div><div class="law"><b>Fuente:</b> artículo 222 vigente y notas de constitucionalidad.${source(222)}</div>${quiz("¿Cuándo se aplica el proceso verbal inmediato?", ["A todo conflicto civil", "A comportamientos de competencia de las autoridades indicadas en el artículo 222", "Solo a delitos", "Solo cuando existe abogado"], 1, "El ámbito depende de la competencia expresamente atribuida por el artículo 222.")}`,
+        },
+        {
+          t: "Proceso verbal abreviado · artículo 223",
+          body: () =>
+            `<p>Lo adelantan alcaldes, inspectores y autoridades especiales respecto de asuntos de su competencia. No es una extensión informal del comparendo.</p><div class="grid"><div class="box"><b>Inicio y citación</b><p>Debe permitir conocer el asunto y comparecer.</p></div><div class="box"><b>Audiencia</b><p>Comprende argumentos, invitación a conciliar cuando proceda y práctica de pruebas.</p></div><div class="box"><b>Decisión</b><p>Debe ser motivada y comunicada conforme al procedimiento.</p></div><div class="box"><b>Recursos</b><p>Proceden los previstos por el artículo 223, en la oportunidad legal.</p></div></div><div class="law"><b>Control constitucional:</b> la C-349 de 2017 condicionó el efecto de la inasistencia prevista en el parágrafo 1, permitiendo acreditar justa causa dentro del término fijado.<div class="actions">${source(223)}${corte("https://www.corteconstitucional.gov.co/relatoria/2017/C-349-17.htm", "C-349 de 2017 · Corte")}</div></div>${quiz("¿Puede decidirse el proceso abreviado sin permitir prueba y defensa?", ["Sí, siempre", "Sí, si existe comparendo", "No; son garantías del trámite", "Solo si la multa es baja"], 2, "La audiencia debe respetar defensa, contradicción y prueba.")}`,
+        },
+        {
+          t: "Disciplina policial y rutas de control",
+          body: () =>
+            `<p>Una irregularidad puede activar rutas diferentes: convivencia, disciplina, control administrativo, reparación o investigación penal. No debe afirmarse automáticamente una falta o delito sin investigación.</p><div class="law"><b>Norma especial vigente:</b> Ley 2196 de 2022, Estatuto Disciplinario Policial. La Ley 1015 de 2006 aparece derogada desde el 29 de marzo de 2022.<div class="actions"><a class="link" target="_blank" href="https://www.secretariasenado.gov.co/senado/basedoc/ley_2196_2022.html">Ley 2196 de 2022 · Senado ↗</a></div></div><div class="grid"><div class="box"><b>Evidencia</b><p>Originales, metadatos, documentos, testigos, identificación y cronología.</p></div><div class="box"><b>Lenguaje prudente</b><p>Describe “posibles” irregularidades; la autoridad determina tipicidad y responsabilidad.</p></div><div class="box"><b>Radicación</b><p>Solicita número de radicado y conserva respuestas.</p></div><div class="box"><b>Rutas</b><p>Control disciplinario interno, Procuraduría, Personería, Defensoría o Fiscalía según los hechos y competencias.</p></div></div>${quiz("¿Qué fortalece una queja?", ["Solo publicar un video editado", "Hechos precisos y evidencia original preservada", "Afirmar un delito sin prueba", "Omitir fecha y lugar"], 1, "La trazabilidad de hechos y soportes permite investigar.")}`,
+        },
+        {
+          t: "Clínica de casos, proyecto y evaluación final",
+          body: () =>
+            `<p>Integra lo aprendido en cuatro escenarios: identificación sin cédula física, traslado por protección, impedimento de grabación y comparendo sin copia o sin información de recursos.</p><div class="case"><b>Proyecto aplicado:</b> redacta una ficha de caso con hechos comprobables, norma invocada, autoridad competente, procedimiento debido, evidencia disponible, posible irregularidad y petición concreta.</div><div class="notice"><b>Intensidad académica total:</b> contenidos guiados, lectura normativa autónoma, resolución de casos, cuestionarios, consulta del diccionario y proyecto final integran las 80 horas certificadas. La plataforma no mide permanencia continua.</div>${quiz("¿Cuál es el método correcto para evaluar una actuación policial?", ["Partir de que siempre es delito", "Comparar hechos, competencia, norma, procedimiento y evidencia", "Analizar solo el video del agente", "Revisar únicamente si hubo firma"], 1, "El análisis completo separa hechos, fundamento, competencia, procedimiento y prueba.")}<div id="finalForm" style="display:none"><h3>Datos para el certificado</h3><input class="field" id="name" placeholder="Nombre completo"><input class="field" id="idnum" placeholder="Número de identificación"><button class="btn" onclick="certificate()">Generar certificado</button></div><div id="certificate" class="cert"><div class="brand-logos"><img class="main" src="assets/fundacion-sello.jpg" alt="Fundación"></div><div>FUNDACIÓN CAPÍTULO UNIDOS POR LOS DERECHOS HUMANOS COLOMBIA</div><h2>CERTIFICA</h2><p>Que <b id="cname"></b>, identificado(a) con <b id="cid"></b>, completó y aprobó el</p><h3>Diplomado Ley 1801 de 2016 — Código Nacional de Seguridad y Convivencia Ciudadana</h3><h2>INTENSIDAD ACADÉMICA: 80 HORAS</h2><p><b>Francisco Javier Barragán Meneses</b><br>Director</p><div class="module-logos"><img src="assets/veeduria.jpg"><img src="assets/arbol-fuente.jpg"><img src="assets/unidos-derechos.jpg"></div><button class="btn" onclick="downloadCertificate()">Descargar certificado</button></div>`,
+        },
+      ];
+      const activities = [
+        "Explique cómo comprobaría legalidad, competencia, necesidad y proporcionalidad en un procedimiento concreto.",
+        "Clasifique una actuación entre poder, función o actividad de Policía e identifique la autoridad competente.",
+        "Redacte una respuesta ciudadana respetuosa ante una identificación cuando no se porta físicamente la cédula.",
+        "Compare traslado por protección, traslado para procedimiento y uso de la fuerza: finalidad, requisito y límite.",
+        "Construya un protocolo breve para grabar, preservar el archivo original y evitar interferir en el procedimiento.",
+        "Describa qué información y documentos solicitaría al recibir una orden de comparendo para ejercer defensa.",
+        "Ordene las etapas del proceso verbal inmediato y señale en cuál se ejercen defensa e impugnación.",
+        "Prepare una ficha para audiencia del proceso verbal abreviado: hechos, pruebas, solicitud y recurso procedente.",
+        "Redacte una cronología objetiva para una posible queja, separando hechos, evidencia y valoración jurídica.",
+        "Elabore la ficha final del caso: hechos, norma, competencia, procedimiento, evidencia, irregularidad posible y petición.",
+      ];
+      const videoLessons = [
+        { id: "nB2V05d3PEc", title: "Código Nacional de Seguridad y Convivencia Ciudadana" },
+        { id: "ILpXw2wVxdc", title: "Ley 1801 de 2016: explicación general" },
+        { id: "GXk06Q0XtMw", title: "Identificación y porte de la cédula" },
+        { id: "Fn0Lo7WehTw", title: "Traslado por protección: finalidad y aplicación" },
+        { id: "id6TdVt2gFA", title: "Grabar procedimientos de Policía: artículo 21" },
+        { id: "SIZPR4OGBRk", title: "Orden de comparendo en la Ley 1801" },
+        { id: "b7L2HsSRCSU", title: "Proceso verbal inmediato y apelación" },
+        { id: "uQhr7C3ucGs", title: "Proceso verbal abreviado" },
+        { id: "dyzIu3LcFnc", title: "Ley 2196: Estatuto Disciplinario Policial" },
+        { id: "ngXKDVOf1Ik", title: "Proceso único de Policía y actualización normativa" },
+      ];
+      const glossary = [
+        [
+          "Comparendo",
+          "Documento oficial con orden escrita o virtual; no es sinónimo de multa en firme.",
+        ],
+        [
+          "Medida correctiva",
+          "Consecuencia prevista por la Ley 1801; no toda medida es una multa.",
+        ],
+        ["Competencia", "Atribución legal para actuar y decidir."],
+        [
+          "Debido proceso",
+          "Garantías de legalidad, defensa, prueba, motivación y recursos.",
+        ],
+        [
+          "Ejecutoria",
+          "Momento en que una decisión queda en firme conforme a las reglas aplicables.",
+        ],
+        [
+          "Notificación",
+          "Comunicación de una actuación o decisión en la forma prevista por la ley.",
+        ],
+        [
+          "Proceso verbal inmediato",
+          "Trámite del artículo 222 para competencias allí señaladas.",
+        ],
+        [
+          "Proceso verbal abreviado",
+          "Trámite del artículo 223 ante autoridades competentes.",
+        ],
+        [
+          "Traslado por protección",
+          "Medio preventivo excepcional del artículo 155 vigente.",
+        ],
+        [
+          "Traslado para procedimiento",
+          "Figura excepcional distinta, regulada por el artículo 157.",
+        ],
+        [
+          "Tipicidad",
+          "Correspondencia entre los hechos probados y una conducta previamente definida.",
+        ],
+        [
+          "Motivación",
+          "Razones fácticas, probatorias y jurídicas de una decisión.",
+        ],
+        [
+          "Proporcionalidad",
+          "Relación equilibrada entre medida, necesidad y finalidad legítima.",
+        ],
+        ["Recurso", "Mecanismo legal para solicitar revisión de una decisión."],
+        [
+          "Decisión en firme",
+          "Acto respecto del cual se agotaron o vencieron los recursos aplicables.",
+        ],
+        [
+          "Presunción de inocencia",
+          "Regla que impide tratar como responsable sin decisión adoptada con garantías.",
+        ],
+      ];
+      let unlocked = +(localStorage.getItem("dip1801-unlocked") || 1),
+        current = Math.min(unlocked, modules.length),
+        complete = localStorage.getItem("dip1801-complete") === "1";
+      function nav() {
+        const n = document.getElementById("nav");
+        n.innerHTML = modules
+          .map(
+            (m, i) =>
+              `<button class="navbtn ${i + 1 === current ? "current" : ""} ${i + 1 > unlocked ? "locked" : ""}" ${i + 1 > unlocked ? "disabled" : ""} onclick="openModule(${i + 1})">${i + 1 > unlocked ? "🔒" : "✓".repeat(i + 1 < unlocked)} ${i + 1}. ${m.t}</button>`,
+          )
+          .join("");
+        document.getElementById("bar").style.width =
+          `${((complete ? 10 : unlocked - 1) / 10) * 100}%`;
+        document.getElementById("status").textContent = complete
+          ? "Diplomado completado"
+          : `Módulo ${current} de 10`;
+      }
+      function openModule(i) {
+        if (i > unlocked) return;
+        current = i;
+        const pdf = `pdf/modulo-${String(i).padStart(2, "0")}-ley-1801.pdf`;
+        const lesson = modules[i - 1].body();
+        const cut = lesson.indexOf('<div class="quiz">');
+        const theory = cut >= 0 ? lesson.slice(0, cut) : lesson;
+        const evaluation = cut >= 0 ? lesson.slice(cut) : "";
+        const saved = localStorage.getItem(`dip1801-activity-${i}`) || "";
+        const video = videoLessons[i - 1];
+        const resources = `<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/${video.id}" title="${video.title}" loading="lazy" allowfullscreen></iframe><div class="video-note"><b>${video.title}.</b> Video de apoyo pedagógico seleccionado para este módulo. Su contenido no reemplaza la lectura de la norma vigente ni las sentencias oficiales enlazadas. <a href="https://www.youtube.com/watch?v=${video.id}" target="_blank" rel="noopener">Abrir video ↗</a></div></div><div class="actions"><a class="btn" href="${pdf}" download>Descargar guía PDF de lectura</a><a class="btn secondary" href="${pdf}" target="_blank">Leer guía en pantalla</a></div>`;
+        const workshop = `<section class="workshop"><span class="eyebrow">Actividad interactiva y editable</span><h3>Taller del módulo ${i}</h3><p>${activities[i - 1]}</p><textarea class="field" id="moduleActivity" placeholder="Escriba aquí su análisis. Se guardará solamente en este dispositivo.">${saved}</textarea><div class="actions"><button class="btn" onclick="saveActivity()">Guardar taller</button><span id="savedState" class="saved">${saved ? "Borrador guardado" : ""}</span></div></section>`;
+        const moduleLogos=`<div class="module-logos"><img src="assets/fundacion-sello.jpg" alt="Fundación"><img src="assets/fundacion-paloma.jpg" alt="Fundación"><img src="assets/veeduria.jpg" alt="Veeduría"><img src="assets/arbol-fuente.jpg" alt="Árbol Fuente"><img src="assets/unidos-derechos.jpg" alt="Unidos por los Derechos Humanos"></div>`;
+        document.getElementById("main").innerHTML =
+          `<section class="card">${moduleLogos}<span class="eyebrow">Módulo ${i} de 10</span><h2>${modules[i - 1].t}</h2>${resources}${theory}${workshop}${evaluation}<div class="terms">${glossary
+            .slice((i - 1) % 8, ((i - 1) % 8) + 5)
+            .map(
+              (x) =>
+                `<button class="term" onclick="openGlossary('${x[0]}')">${x[0]}</button>`,
+            )
+            .join("")}</div></section>`;
+        nav();
+        scrollTo({ top: 0, behavior: "smooth" });
+      }
+      function saveActivity() {
+        const value = document.getElementById("moduleActivity").value.trim();
+        localStorage.setItem(`dip1801-activity-${current}`, value);
+        document.getElementById("savedState").textContent = value ? "Taller guardado" : "Borrador vacío";
+      }
+      function answer(correct, why) {
+        const picked = document.querySelector('input[name="quiz"]:checked'),
+          f = document.getElementById("feedback");
+        const activity = document.getElementById("moduleActivity").value.trim();
+        if (activity.length < 30) {
+          f.className = "feedback bad";
+          f.textContent = "Complete el taller editable (mínimo 30 caracteres) antes de presentar el cuestionario.";
+          return;
+        }
+        localStorage.setItem(`dip1801-activity-${current}`, activity);
+        if (!picked) {
+          f.className = "feedback bad";
+          f.textContent = "Selecciona una respuesta.";
+          return;
+        }
+        if (+picked.value !== correct) {
+          f.className = "feedback bad";
+          f.textContent = "Revisa la explicación y vuelve a intentarlo.";
+          return;
+        }
+        f.className = "feedback good";
+        f.textContent = "Correcto. " + why;
+        if (current === 10) {
+          complete = true;
+          localStorage.setItem("dip1801-complete", "1");
+          document.getElementById("finalForm").style.display = "block";
+          nav();
+          return;
+        }
+        if (unlocked === current) {
+          unlocked++;
+          localStorage.setItem("dip1801-unlocked", unlocked);
+        }
+        setTimeout(() => openModule(current + 1), 700);
+      }
+      function openGlossary(q = "") {
+        document.getElementById("main").innerHTML =
+          `<section class="card"><span class="eyebrow">Consulta permanente</span><h2>Diccionario jurídico</h2><input class="field" id="search" placeholder="Buscar término" value="${q}" oninput="renderTerms(this.value)"><div id="dictionary" class="grid"></div><div class="actions"><a class="link compat" target="_blank" href="${SENADO_OK}">Abrir Ley 1801 en Senado ↗</a></div></section>`;
+        renderTerms(q);
+        document
+          .querySelectorAll(".navbtn")
+          .forEach((x) => x.classList.remove("current"));
+      }
+      function renderTerms(q = "") {
+        q = q.toLowerCase();
+        const data = glossary.filter((x) =>
+          (x[0] + " " + x[1]).toLowerCase().includes(q),
+        );
+        document.getElementById("dictionary").innerHTML =
+          data
+            .map((x) => `<div class="box"><b>${x[0]}</b><p>${x[1]}</p></div>`)
+            .join("") || "<p>No se encontró el término.</p>";
+      }
+      function certificate() {
+        const n = document.getElementById("name").value.trim(),
+          id = document.getElementById("idnum").value.trim();
+        if (!n || !id) return alert("Completa nombre e identificación.");
+        document.getElementById("cname").textContent = n;
+        document.getElementById("cid").textContent = id;
+        document.getElementById("certificate").classList.add("show");
+      }
+      async function downloadCertificate(){
+        const name=document.getElementById("cname").textContent,id=document.getElementById("cid").textContent;
+        const load=src=>new Promise((ok,no)=>{const im=new Image();im.onload=()=>ok(im);im.onerror=no;im.src=src});
+        try{
+          const [brand,veeduria,arbol,unidos]=await Promise.all(["assets/fundacion-sello.jpg","assets/veeduria.jpg","assets/arbol-fuente.jpg","assets/unidos-derechos.jpg"].map(load));
+          const c=document.createElement("canvas");c.width=1600;c.height=1130;const x=c.getContext("2d");
+          const g=x.createLinearGradient(0,0,1600,1130);g.addColorStop(0,"#fffdf7");g.addColorStop(.5,"#ffffff");g.addColorStop(1,"#edf4ff");x.fillStyle=g;x.fillRect(0,0,1600,1130);
+          x.strokeStyle="#d7a62e";x.lineWidth=22;x.strokeRect(28,28,1544,1074);x.strokeStyle="#071a38";x.lineWidth=5;x.strokeRect(55,55,1490,1020);
+          x.globalAlpha=.07;x.fillStyle="#d7a62e";x.beginPath();x.arc(170,170,250,0,Math.PI*2);x.fill();x.beginPath();x.arc(1430,960,250,0,Math.PI*2);x.fill();x.globalAlpha=1;
+          const fit=(im,cx,cy,w,h)=>{const r=Math.min(w/im.width,h/im.height),dw=im.width*r,dh=im.height*r;x.drawImage(im,cx+(w-dw)/2,cy+(h-dh)/2,dw,dh)};
+          const center=(t,y,font,color="#071a38")=>{x.font=font;x.fillStyle=color;x.textAlign="center";x.fillText(t,800,y)};
+          fit(brand,710,70,180,180);center("FUNDACIÓN CAPÍTULO UNIDOS POR LOS DERECHOS HUMANOS COLOMBIA",285,"700 30px Arial");
+          center("DIPLOMA DE APROBACIÓN",365,"700 58px Georgia","#b38317");center("CERTIFICA QUE",415,"700 20px Arial","#617087");
+          center(name,500,"italic 58px Georgia","#174eaa");center("identificado(a) con documento No. "+id,550,"25px Arial","#263650");
+          center("aprobó satisfactoriamente el",610,"25px Arial","#263650");center("DIPLOMADO LEY 1801 DE 2016",675,"700 45px Georgia");
+          center("Código Nacional de Seguridad y Convivencia Ciudadana",720,"28px Arial","#263650");center("INTENSIDAD ACADÉMICA CERTIFICADA: 80 HORAS",775,"700 25px Arial","#b38317");
+          x.strokeStyle="#7d899c";x.lineWidth=2;x.beginPath();x.moveTo(580,850);x.lineTo(1020,850);x.stroke();center("Francisco Javier Barragán Meneses",885,"700 23px Arial");center("Director",915,"20px Arial","#617087");
+          x.fillStyle="#071a38";x.fillRect(55,950,1490,125);center("CON EL APOYO DE NUESTROS ALIADOS",982,"700 18px Arial","#ffffff");
+          [[veeduria,320],[arbol,680],[unidos,1040]].forEach(([im,left])=>{x.fillStyle="#fff";x.beginPath();x.roundRect(left,995,240,65,10);x.fill();fit(im,left+8,1000,224,55)});
+          const a=document.createElement("a");a.download="diploma-ley-1801-"+name.normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-zA-Z0-9]+/g,"-").toLowerCase()+".png";a.href=c.toDataURL("image/png",1);a.click();
+        }catch(e){alert("No fue posible generar el certificado. Intenta nuevamente.")}
+      }
+      nav();
+      openModule(current);
+    </script>
+  </body>
+</html>
