@@ -1581,12 +1581,12 @@ function App() {
                 <video
                   controls
                   playsInline
-                  preload="metadata"
+                  preload="auto"
                   poster="/alianza-arbol-fuente-vida-poster.jpg"
                   className="aspect-video h-full w-full object-cover"
                   aria-label="Video de la alianza entre la Fundación Capítulo Unidos por los Derechos Humanos Colombia y la ONG Árbol Fuente de Vida"
                 >
-                  <source src="/alianza-arbol-fuente-vida.mp4" type="video/mp4" />
+                  <source src="/alianza-organizaciones-aliadas-v2.mp4" type="video/mp4" />
                   Su navegador no permite reproducir este video.
                 </video>
               </div>
