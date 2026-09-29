@@ -1582,6 +1582,11 @@ function App() {
                   controls
                   playsInline
                   preload="auto"
+                  onPlay={(event) => {
+                    document.querySelectorAll('video').forEach((video) => {
+                      if (video !== event.currentTarget) video.pause()
+                    })
+                  }}
                   poster="/alianza-arbol-fuente-vida-poster.jpg"
                   className="aspect-video h-full w-full object-cover"
                   aria-label="Video de la alianza entre la Fundación Capítulo Unidos por los Derechos Humanos Colombia y la ONG Árbol Fuente de Vida"
