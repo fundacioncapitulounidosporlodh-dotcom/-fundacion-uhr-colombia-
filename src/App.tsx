@@ -1575,6 +1575,46 @@ function App() {
             </p>
           </div>
 
+          <div className="mb-14 overflow-hidden rounded-3xl bg-gradient-to-br from-blue-950 via-blue-900 to-indigo-900 shadow-2xl">
+            <div className="grid items-center lg:grid-cols-[1.15fr_0.85fr]">
+              <div className="relative bg-black">
+                <video
+                  controls
+                  playsInline
+                  preload="metadata"
+                  poster="/alianza-arbol-fuente-vida-poster.jpg"
+                  className="aspect-video h-full w-full object-cover"
+                  aria-label="Video de la alianza entre la Fundación Capítulo Unidos por los Derechos Humanos Colombia y la ONG Árbol Fuente de Vida"
+                >
+                  <source src="/alianza-arbol-fuente-vida.mp4" type="video/mp4" />
+                  Su navegador no permite reproducir este video.
+                </video>
+              </div>
+
+              <div className="p-7 text-white sm:p-10 lg:p-12">
+                <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-yellow-300/40 bg-yellow-300/10 px-4 py-2 text-sm font-bold text-yellow-200">
+                  <Users className="h-4 w-4" />
+                  Juntos multiplicamos el impacto
+                </div>
+                <h3 className="text-2xl font-black leading-tight sm:text-3xl">
+                  Alianzas que transforman comunidades
+                </h3>
+                <p className="mt-5 leading-relaxed text-blue-100">
+                  La Fundación Capítulo Unidos por los Derechos Humanos Colombia
+                  reconoce y agradece a todas las organizaciones aliadas que,
+                  desde sus distintos campos de acción, suman conocimiento,
+                  experiencia y vocación de servicio para promover los derechos
+                  humanos, la participación ciudadana, la paz y el bienestar de
+                  las comunidades.
+                </p>
+                <p className="mt-4 border-l-4 border-yellow-400 pl-4 font-semibold leading-relaxed text-yellow-100">
+                  Cada alianza fortalece nuestra misión y amplía las
+                  oportunidades de educar, acompañar y transformar vidas.
+                </p>
+              </div>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* ONG ARBOL FUENTE DE VIDA */}
             <Card className="hover:shadow-xl transition-all duration-300 border-0 shadow-md card-hover">
