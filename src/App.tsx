@@ -3069,6 +3069,17 @@ function App() {
                 </CardContent>
               </Card>
 
+              {/* Diplomado de IA y derechos humanos */}
+              <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-md overflow-hidden hover:-translate-y-2 border-t-4 border-t-cyan-500">
+                <div className="h-40 bg-gradient-to-br from-slate-950 via-blue-950 to-cyan-700 flex items-center justify-center p-4"><img loading="lazy" decoding="async" src="/campus-virtual/diplomado-ia/assets/c881cf6c1eda40a2fc4688df.png" alt="Guardián" className="h-36 w-36 object-contain" /></div>
+                <CardContent className="p-5">
+                  <div className="flex flex-wrap gap-2 mb-3"><span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">Gratuito</span><span className="px-2 py-1 bg-cyan-100 text-cyan-800 text-xs font-medium rounded-full">12 módulos · 80 horas previstas</span></div>
+                  <h4 className="text-lg font-bold text-gray-900 mb-2">Las principales IA aplicadas al derecho colombiano y la defensa de los derechos humanos</h4>
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">Cuatro mundos con Guardián, videos, guías PDF, fuentes verificables y el caso de Esperanza.</p>
+                  <a href="/campus-virtual/diplomado-ia/" target="_blank" rel="noopener noreferrer"><Button size="sm" className="w-full bg-cyan-700 hover:bg-cyan-800"><GraduationCap className="w-4 h-4 mr-1" />Ingresar al diplomado de IA</Button></a>
+                </CardContent>
+              </Card>
+
               {/* Diplomado Ley 1801 */}
               <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-md overflow-hidden hover:-translate-y-2 border-t-4 border-t-yellow-500">
                 <div className="h-40 bg-gradient-to-br from-slate-950 via-blue-950 to-yellow-600 flex items-center justify-center p-4">
@@ -3107,14 +3118,14 @@ function App() {
                 <CardContent className="p-5">
                   <div className="flex flex-wrap gap-2 mb-3">
                     <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">Gratuito</span>
-                    <span className="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-full">3 cursos · 1 diplomado</span>
+                    <span className="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-full">3 cursos · 2 diplomados</span>
                     <span className="px-2 py-1 bg-purple-100 text-purple-700 text-xs font-medium rounded-full">Certificados</span>
                   </div>
                   <h4 className="text-lg font-bold text-gray-900 mb-2">
                     Campus Virtual de la Fundación
                   </h4>
                   <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                    Formación progresiva en derechos humanos, Ley 1801 y mecanismos de protección ciudadana.
+                    Formación progresiva en derechos humanos, Ley 1801, mecanismos de protección ciudadana e inteligencia artificial.
                   </p>
                   <a href="/campus-virtual/" target="_blank" rel="noopener noreferrer">
                     <Button size="sm" className="w-full bg-blue-800 hover:bg-blue-900">
