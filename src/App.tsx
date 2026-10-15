@@ -100,9 +100,9 @@ function App() {
   const [selectedCertificate, setSelectedCertificate] = useState<(typeof certificadosSolidaridad)[number] | null>(null);
   const [selectedAlly, setSelectedAlly] = useState<null | {
     name: string;
-    image: string;
     pageUrl: string;
     platform: string;
+    feedUrl: string;
   }>(null);
 
   useEffect(() => {
@@ -1650,27 +1650,20 @@ function App() {
                   type="button"
                   onClick={() => setSelectedAlly({
                     name: 'ONG Árbol Fuente de Vida',
-                    image: '/alianza-arbol-fuente-vida-poster.jpg',
-                    pageUrl: 'https://ongfuentevidaddhhihrc.org/',
-                    platform: 'Sitio oficial',
+                    pageUrl: 'https://www.facebook.com/ong.derechoshumanos.gov.co/',
+                    platform: 'Facebook',
+                    feedUrl: 'https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fong.derechoshumanos.gov.co%2F&tabs=timeline&width=500&height=680&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false',
                   })}
                   className="group mb-5 w-full overflow-hidden rounded-2xl border border-gray-200 bg-white text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg"
                   aria-label="Ver la publicación más reciente de ONG Árbol Fuente de Vida"
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
-                    <img
-                      loading="lazy"
-                      decoding="async"
-                      src="/alianza-arbol-fuente-vida-poster.jpg"
-                      alt="Publicación reciente de ONG Árbol Fuente de Vida"
-                      className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                    />
-                    <span className="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 text-xs font-bold text-blue-900 shadow">
-                      Última publicación
-                    </span>
-                    <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-4 pb-3 pt-12 text-sm font-bold text-white">
-                      Toca para ampliar y conocer su trabajo
-                    </span>
+                  <div className="flex min-h-32 items-center gap-4 bg-gradient-to-br from-blue-700 to-blue-950 p-5 text-white">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white text-3xl font-black text-blue-700 shadow">f</div>
+                    <div>
+                      <span className="block text-xs font-bold uppercase tracking-wider text-blue-100">Publicaciones originales</span>
+                      <span className="mt-1 block text-base font-bold">Abrir ventana de Facebook</span>
+                      <span className="mt-1 block text-xs text-blue-100">La publicación más reciente aparece primero</span>
+                    </div>
                   </div>
                 </button>
                 <a
@@ -4029,7 +4022,7 @@ function App() {
           onClick={() => setSelectedAlly(null)}
         >
           <div
-            className="relative w-full max-w-2xl overflow-hidden rounded-3xl bg-white shadow-2xl"
+            className="relative flex max-h-[92vh] w-full max-w-xl flex-col overflow-hidden rounded-3xl bg-white shadow-2xl"
             onClick={(event) => event.stopPropagation()}
           >
             <button
@@ -4040,21 +4033,28 @@ function App() {
             >
               <X className="h-6 w-6" />
             </button>
-            <img
-              src={selectedAlly.image}
-              alt={`Publicación reciente de ${selectedAlly.name}`}
-              className="max-h-[60vh] w-full bg-gray-100 object-contain"
-            />
-            <div className="p-6 sm:p-8">
+            <div className="border-b border-gray-200 p-5 pr-16">
               <p className="mb-2 text-sm font-bold uppercase tracking-wide text-blue-700">
-                Publicación destacada del aliado
+                Publicaciones originales del aliado
               </p>
               <h2 id="ally-publication-title" className="text-2xl font-black text-gray-950">
                 {selectedAlly.name}
               </h2>
-              <p className="mt-3 text-gray-600">
-                Conoce sus acciones, proyectos y aportes al fortalecimiento de las comunidades.
-              </p>
+            </div>
+            <div className="min-h-0 flex-1 overflow-y-auto bg-gray-100 p-3 sm:p-5">
+              <iframe
+                title={`Publicaciones de ${selectedAlly.name} en ${selectedAlly.platform}`}
+                src={selectedAlly.feedUrl}
+                width="500"
+                height="680"
+                style={{ border: 'none', overflow: 'hidden', width: '100%', maxWidth: '500px', display: 'block', margin: '0 auto' }}
+                scrolling="yes"
+                frameBorder="0"
+                allowFullScreen
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+              />
+            </div>
+            <div className="border-t border-gray-200 bg-white p-4 text-center">
               <a
                 href={selectedAlly.pageUrl}
                 target="_blank"
@@ -4062,7 +4062,7 @@ function App() {
                 className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-blue-700 px-6 py-3 font-bold text-white transition hover:bg-blue-800 sm:w-auto"
               >
                 <ExternalLink className="h-5 w-5" />
-                Visitar {selectedAlly.platform}
+                Abrir perfil en {selectedAlly.platform}
               </a>
             </div>
           </div>
