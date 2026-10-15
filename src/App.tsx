@@ -1580,15 +1580,15 @@ function App() {
             </p>
 
             <div className="mt-9 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-5">
-              <div className="rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-sm">
+              <div className="rounded-2xl border border-white/20 bg-blue-950/90 p-5 shadow-xl backdrop-blur-sm">
                 <div className="text-3xl font-black text-yellow-300">10</div>
                 <div className="mt-1 text-sm font-semibold text-blue-100">Organizaciones aliadas</div>
               </div>
-              <div className="rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-sm">
+              <div className="rounded-2xl border border-white/20 bg-blue-950/90 p-5 shadow-xl backdrop-blur-sm">
                 <Globe className="mx-auto h-8 w-8 text-yellow-300" />
                 <div className="mt-1 text-sm font-semibold text-blue-100">Alcance nacional e internacional</div>
               </div>
-              <div className="rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-sm">
+              <div className="rounded-2xl border border-white/20 bg-blue-950/90 p-5 shadow-xl backdrop-blur-sm">
                 <Heart className="mx-auto h-8 w-8 text-yellow-300" />
                 <div className="mt-1 text-sm font-semibold text-blue-100">Una misión compartida</div>
               </div>
