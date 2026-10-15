@@ -98,12 +98,6 @@ function App() {
   const [contactoSubmitting, setContactoSubmitting] = useState(false);
   const [certificateQuery, setCertificateQuery] = useState('');
   const [selectedCertificate, setSelectedCertificate] = useState<(typeof certificadosSolidaridad)[number] | null>(null);
-  const [selectedAlly, setSelectedAlly] = useState<null | {
-    name: string;
-    pageUrl: string;
-    platform: string;
-    feedUrl: string;
-  }>(null);
 
   useEffect(() => {
     const shortCode = window.location.pathname.match(/\/v\/(\d{4})/i)?.[1];
@@ -1646,26 +1640,6 @@ function App() {
                   altos estándares de calidad para el desarrollo social y
                   económico comunitario.
                 </p>
-                <button
-                  type="button"
-                  onClick={() => setSelectedAlly({
-                    name: 'ONG Árbol Fuente de Vida',
-                    pageUrl: 'https://www.facebook.com/ong.derechoshumanos.gov.co/',
-                    platform: 'Facebook',
-                    feedUrl: 'https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fong.derechoshumanos.gov.co%2F&tabs=timeline&width=500&height=680&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false',
-                  })}
-                  className="group mb-5 w-full overflow-hidden rounded-2xl border border-gray-200 bg-white text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg"
-                  aria-label="Ver la publicación más reciente de ONG Árbol Fuente de Vida"
-                >
-                  <div className="flex min-h-32 items-center gap-4 bg-gradient-to-br from-blue-700 to-blue-950 p-5 text-white">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white text-3xl font-black text-blue-700 shadow">f</div>
-                    <div>
-                      <span className="block text-xs font-bold uppercase tracking-wider text-blue-100">Publicaciones originales</span>
-                      <span className="mt-1 block text-base font-bold">Abrir ventana de Facebook</span>
-                      <span className="mt-1 block text-xs text-blue-100">La publicación más reciente aparece primero</span>
-                    </div>
-                  </div>
-                </button>
                 <a
                   href="https://ongfuentevidaddhhihrc.org/"
                   target="_blank"
@@ -4008,62 +3982,6 @@ function App() {
             <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:justify-center">
               <a href={selectedCertificate.imagen} download className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-blue-700 px-6 py-3 font-bold text-white hover:bg-blue-600"><Download className="h-5 w-5" /> Descargar certificado</a>
               <button type="button" onClick={() => navigator.clipboard?.writeText(window.location.href)} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border-2 border-blue-700 px-6 py-3 font-bold text-blue-700 hover:bg-blue-50"><QrCode className="h-5 w-5" /> Copiar enlace de verificación</button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {selectedAlly && (
-        <div
-          className="fixed inset-0 z-[75] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="ally-publication-title"
-          onClick={() => setSelectedAlly(null)}
-        >
-          <div
-            className="relative flex max-h-[92vh] w-full max-w-xl flex-col overflow-hidden rounded-3xl bg-white shadow-2xl"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <button
-              type="button"
-              onClick={() => setSelectedAlly(null)}
-              className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-black/70 text-white shadow-lg hover:bg-black"
-              aria-label="Cerrar publicación"
-            >
-              <X className="h-6 w-6" />
-            </button>
-            <div className="border-b border-gray-200 p-5 pr-16">
-              <p className="mb-2 text-sm font-bold uppercase tracking-wide text-blue-700">
-                Publicaciones originales del aliado
-              </p>
-              <h2 id="ally-publication-title" className="text-2xl font-black text-gray-950">
-                {selectedAlly.name}
-              </h2>
-            </div>
-            <div className="min-h-0 flex-1 overflow-y-auto bg-gray-100 p-3 sm:p-5">
-              <iframe
-                title={`Publicaciones de ${selectedAlly.name} en ${selectedAlly.platform}`}
-                src={selectedAlly.feedUrl}
-                width="500"
-                height="680"
-                style={{ border: 'none', overflow: 'hidden', width: '100%', maxWidth: '500px', display: 'block', margin: '0 auto' }}
-                scrolling="yes"
-                frameBorder="0"
-                allowFullScreen
-                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-              />
-            </div>
-            <div className="border-t border-gray-200 bg-white p-4 text-center">
-              <a
-                href={selectedAlly.pageUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-blue-700 px-6 py-3 font-bold text-white transition hover:bg-blue-800 sm:w-auto"
-              >
-                <ExternalLink className="h-5 w-5" />
-                Abrir perfil en {selectedAlly.platform}
-              </a>
             </div>
           </div>
         </div>
