@@ -98,6 +98,12 @@ function App() {
   const [contactoSubmitting, setContactoSubmitting] = useState(false);
   const [certificateQuery, setCertificateQuery] = useState('');
   const [selectedCertificate, setSelectedCertificate] = useState<(typeof certificadosSolidaridad)[number] | null>(null);
+  const [selectedAlly, setSelectedAlly] = useState<null | {
+    name: string;
+    image: string;
+    pageUrl: string;
+    platform: string;
+  }>(null);
 
   useEffect(() => {
     const shortCode = window.location.pathname.match(/\/v\/(\d{4})/i)?.[1];
@@ -1640,6 +1646,33 @@ function App() {
                   altos estándares de calidad para el desarrollo social y
                   económico comunitario.
                 </p>
+                <button
+                  type="button"
+                  onClick={() => setSelectedAlly({
+                    name: 'ONG Árbol Fuente de Vida',
+                    image: '/alianza-arbol-fuente-vida-poster.jpg',
+                    pageUrl: 'https://ongfuentevidaddhhihrc.org/',
+                    platform: 'Sitio oficial',
+                  })}
+                  className="group mb-5 w-full overflow-hidden rounded-2xl border border-gray-200 bg-white text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg"
+                  aria-label="Ver la publicación más reciente de ONG Árbol Fuente de Vida"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
+                    <img
+                      loading="lazy"
+                      decoding="async"
+                      src="/alianza-arbol-fuente-vida-poster.jpg"
+                      alt="Publicación reciente de ONG Árbol Fuente de Vida"
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    />
+                    <span className="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 text-xs font-bold text-blue-900 shadow">
+                      Última publicación
+                    </span>
+                    <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-4 pb-3 pt-12 text-sm font-bold text-white">
+                      Toca para ampliar y conocer su trabajo
+                    </span>
+                  </div>
+                </button>
                 <a
                   href="https://ongfuentevidaddhhihrc.org/"
                   target="_blank"
@@ -3982,6 +4015,55 @@ function App() {
             <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:justify-center">
               <a href={selectedCertificate.imagen} download className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-blue-700 px-6 py-3 font-bold text-white hover:bg-blue-600"><Download className="h-5 w-5" /> Descargar certificado</a>
               <button type="button" onClick={() => navigator.clipboard?.writeText(window.location.href)} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border-2 border-blue-700 px-6 py-3 font-bold text-blue-700 hover:bg-blue-50"><QrCode className="h-5 w-5" /> Copiar enlace de verificación</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {selectedAlly && (
+        <div
+          className="fixed inset-0 z-[75] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="ally-publication-title"
+          onClick={() => setSelectedAlly(null)}
+        >
+          <div
+            className="relative w-full max-w-2xl overflow-hidden rounded-3xl bg-white shadow-2xl"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setSelectedAlly(null)}
+              className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-black/70 text-white shadow-lg hover:bg-black"
+              aria-label="Cerrar publicación"
+            >
+              <X className="h-6 w-6" />
+            </button>
+            <img
+              src={selectedAlly.image}
+              alt={`Publicación reciente de ${selectedAlly.name}`}
+              className="max-h-[60vh] w-full bg-gray-100 object-contain"
+            />
+            <div className="p-6 sm:p-8">
+              <p className="mb-2 text-sm font-bold uppercase tracking-wide text-blue-700">
+                Publicación destacada del aliado
+              </p>
+              <h2 id="ally-publication-title" className="text-2xl font-black text-gray-950">
+                {selectedAlly.name}
+              </h2>
+              <p className="mt-3 text-gray-600">
+                Conoce sus acciones, proyectos y aportes al fortalecimiento de las comunidades.
+              </p>
+              <a
+                href={selectedAlly.pageUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-blue-700 px-6 py-3 font-bold text-white transition hover:bg-blue-800 sm:w-auto"
+              >
+                <ExternalLink className="h-5 w-5" />
+                Visitar {selectedAlly.platform}
+              </a>
             </div>
           </div>
         </div>
