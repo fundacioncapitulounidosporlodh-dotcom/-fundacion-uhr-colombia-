@@ -1196,6 +1196,77 @@ function App() {
             </div>
           </div>
 
+          {/* Noticia: nuevos montos de inembargabilidad 2026 */}
+          <article className="mb-8 overflow-hidden rounded-3xl border border-yellow-400/30 bg-gradient-to-br from-blue-950 via-slate-900 to-black shadow-2xl">
+            <div className="grid items-stretch lg:grid-cols-[0.82fr_1.18fr]">
+              <a
+                href="/noticia-inembargabilidad-2026.jpg"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative block bg-white p-4 sm:p-6"
+                aria-label="Ampliar Carta Circular 0069 de 2026 de la Superintendencia Financiera de Colombia"
+              >
+                <img
+                  loading="lazy"
+                  decoding="async"
+                  src="/noticia-inembargabilidad-2026.jpg"
+                  alt="Carta Circular 0069 de 2026 de la Superintendencia Financiera de Colombia"
+                  className="mx-auto max-h-[700px] w-full object-contain transition-transform duration-300 group-hover:scale-[1.01]"
+                />
+                <span className="absolute bottom-7 left-1/2 -translate-x-1/2 rounded-full bg-blue-950/90 px-4 py-2 text-xs font-bold text-white shadow-lg">
+                  Toca para ampliar
+                </span>
+              </a>
+
+              <div className="flex flex-col justify-center p-7 sm:p-10">
+                <div className="mb-4 flex flex-wrap items-center gap-3">
+                  <span className="rounded-full border border-yellow-300/40 bg-yellow-300/10 px-3 py-1 text-xs font-black uppercase tracking-wider text-yellow-200">
+                    Información ciudadana
+                  </span>
+                  <span className="text-sm text-blue-200">15 de octubre de 2026</span>
+                </div>
+                <h3 className="text-2xl font-black leading-tight text-white sm:text-4xl">
+                  ¿Sabías que parte de tus ahorros puede ser inembargable?
+                </h3>
+                <p className="mt-4 text-lg font-semibold leading-relaxed text-yellow-200">
+                  Conoce cómo funciona esta protección y cuáles son los nuevos montos vigentes en Colombia.
+                </p>
+                <p className="mt-4 leading-relaxed text-slate-200">
+                  La Superintendencia Financiera de Colombia actualizó, mediante la Carta Circular 0069 de 2026, los beneficios de inembargabilidad y de entrega directa de depósitos sin juicio de sucesión.
+                </p>
+
+                <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                  <div className="rounded-2xl border border-blue-400/20 bg-blue-500/10 p-5">
+                    <p className="text-sm font-bold uppercase tracking-wide text-blue-200">Límite de inembargabilidad</p>
+                    <p className="mt-2 text-2xl font-black text-white">$58.570.564</p>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-300">Para las sumas depositadas en cuentas y depósitos de ahorro contemplados en la circular.</p>
+                  </div>
+                  <div className="rounded-2xl border border-yellow-400/20 bg-yellow-400/10 p-5">
+                    <p className="text-sm font-bold uppercase tracking-wide text-yellow-200">Entrega sin juicio de sucesión</p>
+                    <p className="mt-2 text-2xl font-black text-white">$97.617.597</p>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-300">Hasta este monto, en los productos y para los beneficiarios señalados por la norma.</p>
+                  </div>
+                </div>
+
+                <div className="mt-6 rounded-2xl border-l-4 border-yellow-400 bg-white/5 p-4">
+                  <p className="font-bold text-white">Vigencia: 1 de octubre de 2026 al 30 de septiembre de 2027.</p>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-300">
+                    Estos beneficios tienen requisitos y excepciones. Cada situación debe analizarse según el tipo de depósito, la obligación y las circunstancias particulares.
+                  </p>
+                </div>
+
+                <a
+                  href="/noticia-inembargabilidad-2026.jpg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 inline-flex w-fit items-center rounded-full bg-yellow-400 px-6 py-3 font-black text-blue-950 transition-colors hover:bg-yellow-300"
+                >
+                  Conoce cómo funciona <ExternalLink className="ml-2 h-4 w-4" />
+                </a>
+              </div>
+            </div>
+          </article>
+
           {/* Noticia: ASOCOLCUL se une como aliado */}
           <div className="bg-gradient-to-r from-green-900/80 to-blue-900/80 backdrop-blur-sm border border-green-500/30 rounded-2xl p-6 sm:p-8 mb-8 shadow-xl">
             <div className="flex flex-col sm:flex-row gap-6 items-start">
