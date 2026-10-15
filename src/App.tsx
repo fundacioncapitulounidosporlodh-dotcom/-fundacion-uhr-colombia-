@@ -23,6 +23,9 @@ import {
   BadgeCheck,
   Eye,
   QrCode,
+  Handshake,
+  ArrowRight,
+  Sparkles,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -1557,22 +1560,39 @@ function App() {
       </section>
 
       {/* Alianzas Section */}
-      <section id="alianzas" className="py-20 bg-gray-50 scroll-animate opacity-0 translate-y-10">
+      <section id="alianzas" className="relative overflow-hidden bg-slate-50 py-20 scroll-animate opacity-0 translate-y-10">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-80 bg-gradient-to-br from-blue-950 via-blue-900 to-indigo-900" />
+        <div className="pointer-events-none absolute -right-24 top-12 h-72 w-72 rounded-full bg-yellow-400/10 blur-3xl" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 bg-blue-100 rounded-full mb-4">
-              <Users className="w-4 h-4 text-blue-600 mr-2" />
-              <span className="text-blue-700 text-sm font-medium">
-                Nuestras Alianzas
+          <div className="relative text-center mb-12 text-white">
+            <div className="inline-flex items-center rounded-full border border-yellow-300/40 bg-yellow-300/10 px-4 py-2 mb-5">
+              <Handshake className="w-4 h-4 text-yellow-300 mr-2" />
+              <span className="text-yellow-100 text-sm font-bold tracking-wide">
+                UNA RED QUE TRANSFORMA
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Organizaciones Aliadas
+            <h2 className="text-4xl sm:text-5xl font-black mb-5">
+              Unidos llegamos más lejos
             </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Trabajamos junto a diversas organizaciones para promover y
-              defender los derechos humanos en Colombia
+            <p className="text-blue-100 text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed">
+              Organizaciones que convierten la cooperación en acciones reales
+              por la dignidad humana, la paz y el bienestar de las comunidades.
             </p>
+
+            <div className="mt-9 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-5">
+              <div className="rounded-2xl border border-white/20 bg-blue-950/90 p-5 shadow-xl backdrop-blur-sm">
+                <div className="text-3xl font-black text-yellow-300">10</div>
+                <div className="mt-1 text-sm font-semibold text-blue-100">Organizaciones aliadas</div>
+              </div>
+              <div className="rounded-2xl border border-white/20 bg-blue-950/90 p-5 shadow-xl backdrop-blur-sm">
+                <Globe className="mx-auto h-8 w-8 text-yellow-300" />
+                <div className="mt-1 text-sm font-semibold text-blue-100">Alcance nacional e internacional</div>
+              </div>
+              <div className="rounded-2xl border border-white/20 bg-blue-950/90 p-5 shadow-xl backdrop-blur-sm">
+                <Heart className="mx-auto h-8 w-8 text-yellow-300" />
+                <div className="mt-1 text-sm font-semibold text-blue-100">Una misión compartida</div>
+              </div>
+            </div>
           </div>
 
           <div className="mb-14 overflow-hidden rounded-3xl bg-gradient-to-br from-blue-950 via-blue-900 to-indigo-900 shadow-2xl">
@@ -1620,7 +1640,15 @@ function App() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="mb-8 flex items-end justify-between gap-5">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-[0.2em] text-blue-700">Nuestra red</p>
+              <h3 className="mt-2 text-3xl font-black text-slate-900">Conoce a quienes caminan con nosotros</h3>
+            </div>
+            <Sparkles className="hidden h-9 w-9 text-yellow-500 sm:block" />
+          </div>
+
+          <div className="allies-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* ONG ARBOL FUENTE DE VIDA */}
             <Card className="hover:shadow-xl transition-all duration-300 border-0 shadow-md card-hover">
               <CardContent className="p-8 text-center">
@@ -2040,6 +2068,45 @@ function App() {
                 </div>
               </CardContent>
             </Card>
+          </div>
+
+          <div className="mt-14 overflow-hidden rounded-3xl bg-gradient-to-r from-blue-950 via-blue-900 to-indigo-900 shadow-2xl">
+            <div className="grid gap-8 p-8 sm:p-10 lg:grid-cols-[1fr_auto] lg:items-center lg:p-12">
+              <div className="text-white">
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-yellow-300 px-4 py-2 text-sm font-black text-blue-950">
+                  <Handshake className="h-4 w-4" />
+                  Nuevas alianzas
+                </div>
+                <h3 className="text-3xl font-black sm:text-4xl">¿Tu organización quiere sumar su impacto?</h3>
+                <p className="mt-4 max-w-3xl text-lg leading-relaxed text-blue-100">
+                  Construyamos iniciativas conjuntas, compartamos capacidades y ampliemos el alcance de acciones que protegen los derechos humanos.
+                </p>
+                <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-blue-100">
+                  <span className="flex items-center gap-2"><BadgeCheck className="h-5 w-5 text-yellow-300" /> Proyectos colaborativos</span>
+                  <span className="flex items-center gap-2"><BadgeCheck className="h-5 w-5 text-yellow-300" /> Visibilidad institucional</span>
+                  <span className="flex items-center gap-2"><BadgeCheck className="h-5 w-5 text-yellow-300" /> Impacto comunitario</span>
+                </div>
+                <p className="mt-5 text-sm text-blue-200">
+                  La vinculación se conversa de manera privada y cada organización se publica únicamente con su autorización.
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
+                <Button
+                  onClick={() => scrollToSection('formatos')}
+                  className="h-auto rounded-full bg-yellow-400 px-7 py-4 font-black text-blue-950 shadow-lg hover:bg-yellow-300"
+                >
+                  Solicitar una alianza <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+                <a
+                  href="https://wa.me/573016733819?text=Hola%2C%20quiero%20conocer%20c%C3%B3mo%20establecer%20una%20alianza%20con%20la%20Fundaci%C3%B3n."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full border border-white/30 px-7 py-4 font-bold text-white transition-colors hover:bg-white/10"
+                >
+                  <MessageCircle className="mr-2 h-5 w-5" /> Hablar con la Fundación
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
