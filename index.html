@@ -9,15 +9,18 @@
     <meta name="description" content="Capítulo Colombia autorizado de Unidos por los Derechos Humanos. Educamos y empoderamos comunidades sobre sus derechos fundamentales. Organización internacional con sede en Estados Unidos." />
     <meta name="keywords" content="derechos humanos, Colombia, United for Human Rights, UHR, fundación, educación, derechos fundamentales, capacitación, alianzas, paz, reconciliación" />
     <meta name="author" content="Fundación Capítulo Unidos por los Derechos Humanos Colombia" />
+    <meta name="theme-color" content="#0b2d6b" />
 <meta name="robots" content="index, follow" />
 
-    <link rel="canonical" href="https://fundacioncapitulounidosporlos-ddhh.netlify.app/" />\n    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    <link rel="canonical" href="https://fundacioncapitulounidosporlos-ddhh.netlify.app/" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/logo-uhr.png" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Fundación Capítulo Unidos por los Derechos Humanos Colombia" />
     <meta property="og:url" content="https://fundacioncapitulounidosporlos-ddhh.netlify.app/" />
     <meta property="og:title" content="Fundación Capítulo Unidos por los Derechos Humanos Colombia" />
     <meta property="og:description" content="Capítulo Colombia autorizado de Unidos por los Derechos Humanos. Educamos y empoderamos comunidades sobre sus derechos fundamentales." />
@@ -43,17 +46,42 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Fundación Capítulo Unidos por los Derechos Humanos Colombia",
-        "url": "https://fundacioncapitulounidosporlos-ddhh.netlify.app/",
-        "logo": "https://fundacioncapitulounidosporlos-ddhh.netlify.app/logo-uhr.png",
-        "email": "fundacioncapitulounidosporlodh@gmail.com",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Santiago de Cali",
-          "addressRegion": "Valle del Cauca",
-          "addressCountry": "CO"
-        }
+        "@graph": [
+          {
+            "@type": "NGO",
+            "@id": "https://fundacioncapitulounidosporlos-ddhh.netlify.app/#organization",
+            "name": "Fundación Capítulo Unidos por los Derechos Humanos Colombia",
+            "alternateName": "Capítulo Colombia de Unidos por los Derechos Humanos",
+            "url": "https://fundacioncapitulounidosporlos-ddhh.netlify.app/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://fundacioncapitulounidosporlos-ddhh.netlify.app/logo-uhr.png"
+            },
+            "description": "Fundación dedicada a la educación, promoción y defensa de los derechos humanos en Colombia.",
+            "email": "fundacioncapitulounidosporlodh@gmail.com",
+            "telephone": "+57 301 673 3819",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Santiago de Cali",
+              "addressRegion": "Valle del Cauca",
+              "addressCountry": "CO"
+            },
+            "sameAs": [
+              "https://www.instagram.com/capitulounidosddhhcol",
+              "https://www.tiktok.com/@capitulounidosddhhcol"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://fundacioncapitulounidosporlos-ddhh.netlify.app/#website",
+            "url": "https://fundacioncapitulounidosporlos-ddhh.netlify.app/",
+            "name": "Fundación Capítulo Unidos por los Derechos Humanos Colombia",
+            "inLanguage": "es-CO",
+            "publisher": {
+              "@id": "https://fundacioncapitulounidosporlos-ddhh.netlify.app/#organization"
+            }
+          }
+        ]
       }
     </script>
 
