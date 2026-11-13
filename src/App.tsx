@@ -2911,7 +2911,18 @@ function App() {
                   </div>
 
                   {formError && (
-                    <p role="alert" className="text-center text-sm text-red-600">{formError}</p>
+                    <div role="alert" className="text-center">
+                      <p className="text-sm text-red-600 mb-3">{formError}</p>
+                      <a
+                        href="https://wa.me/573016733819?text=Hola%2C%20deseo%20enviar%20mi%20solicitud%20de%20afiliaci%C3%B3n%20a%20la%20Fundaci%C3%B3n."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-2 rounded-lg bg-green-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-700"
+                      >
+                        <MessageCircle className="w-4 h-4" />
+                        Enviar solicitud por WhatsApp
+                      </a>
+                    </div>
                   )}
 
                   <Button
@@ -3972,7 +3983,18 @@ function App() {
                     </label>
                   </div>
                   {contactoError && (
-                    <p role="alert" className="text-center text-sm text-red-600">{contactoError}</p>
+                    <div role="alert" className="text-center">
+                      <p className="text-sm text-red-600 mb-3">{contactoError}</p>
+                      <a
+                        href="https://wa.me/573016733819?text=Hola%2C%20deseo%20comunicarme%20con%20la%20Fundaci%C3%B3n%20Cap%C3%ADtulo%20Unidos%20por%20los%20Derechos%20Humanos%20Colombia."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-2 rounded-lg bg-green-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-700"
+                      >
+                        <MessageCircle className="w-4 h-4" />
+                        Escribir por WhatsApp
+                      </a>
+                    </div>
                   )}
                   <Button type="submit" disabled={contactoSubmitting} className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-3">
                     <Mail className="w-5 h-5 mr-2" />
