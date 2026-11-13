@@ -3705,23 +3705,32 @@ function App() {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Info */}
             <div className="space-y-8">
-              <Card className="border-0 shadow-md">
-                <CardContent className="p-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Mail className="w-6 h-6 text-blue-600" />
+              <a
+                href="mailto:fundacioncapitulounidosporlodh@gmail.com?subject=Contacto%20desde%20el%20sitio%20web"
+                aria-label="Enviar correo electrónico a la Fundación"
+                className="block rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              >
+                <Card className="border-0 shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg cursor-pointer">
+                  <CardContent className="p-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Mail className="w-6 h-6 text-blue-600" />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-gray-900 mb-1">
+                          Correo Electrónico
+                        </h3>
+                        <p className="text-gray-600">
+                          fundacioncapitulounidosporlodh@gmail.com
+                        </p>
+                        <span className="inline-flex items-center text-blue-600 hover:text-blue-700 text-sm mt-1 font-medium">
+                          Enviar correo
+                        </span>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="font-bold text-gray-900 mb-1">
-                        Correo Electrónico
-                      </h3>
-                      <p className="text-gray-600">
-                        fundacioncapitulounidosporlodh@gmail.com
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              </a>
 
               <Card className="border-0 shadow-md">
                 <CardContent className="p-6">
