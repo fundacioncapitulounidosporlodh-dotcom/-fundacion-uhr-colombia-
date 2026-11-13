@@ -96,7 +96,8 @@
   </head>
   <body>
     <!-- Netlify detecta estos formularios durante la compilación. -->
-    <form name="afiliacion" data-netlify="true" hidden>
+    <form name="afiliacion" method="POST" data-netlify="true" hidden>
+      <input type="hidden" name="form-name" value="afiliacion" />
       <input type="text" name="nombre" />
       <input type="email" name="email" />
       <input type="text" name="tipoDocumento" />
@@ -108,7 +109,8 @@
       <textarea name="motivo"></textarea>
       <input type="checkbox" name="autorizacionDatos" />
     </form>
-    <form name="contacto" data-netlify="true" hidden>
+    <form name="contacto" method="POST" data-netlify="true" hidden>
+      <input type="hidden" name="form-name" value="contacto" />
       <input type="text" name="nombre" />
       <input type="email" name="email" />
       <input type="text" name="asunto" />
