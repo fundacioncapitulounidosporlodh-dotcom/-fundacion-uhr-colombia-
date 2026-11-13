@@ -748,6 +748,7 @@ function App() {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams({
           'form-name': 'afiliacion',
+          estado: 'Pendiente de aprobación',
           ...Object.fromEntries(
             Object.entries(formData).map(([key, value]) => [key, String(value)])
           ),
@@ -771,7 +772,7 @@ function App() {
       });
     } catch {
       setFormError(
-        'No pudimos enviar la solicitud. Inténtalo nuevamente o escríbenos por WhatsApp.'
+        'No fue posible registrar la solicitud en este momento. Tus datos no se borraron; revisa la conexión e inténtalo nuevamente.'
       );
     } finally {
       setFormSubmitting(false);
@@ -2722,7 +2723,7 @@ function App() {
                     ¡Gracias por tu interés!
                   </h3>
                   <p className="text-gray-600 mb-6">
-                    Tu solicitud de afiliación fue enviada correctamente.
+                    Tu solicitud fue enviada correctamente y quedó pendiente de aprobación. La Fundación fue notificada para revisarla y te contactará cuando finalice el proceso.
                   </p>
                   <Button
                     onClick={() => setFormEnviado(false)}
